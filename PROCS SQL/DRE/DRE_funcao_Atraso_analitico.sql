@@ -1,0 +1,301 @@
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+use SIG
+go
+
+/*
+ EXEC DRE_FUNCAO_ATRASO_ANALITICO '20150430'
+
+*/
+-- PROC CARGA DRE_FUNCAO_ANALITICO  **********************************************************************************************************************************************************************************
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'DRE_FUNCAO_ATRASO_ANALITICO' AND type = 'P')
+   DROP PROCEDURE [dbo].[DRE_FUNCAO_ATRASO_ANALITICO] 
+GO
+
+-- MENSAL
+-- ***************************************
+CREATE Procedure [dbo].[DRE_FUNCAO_ATRASO_ANALITICO] 
+ (@DTREF  SMALLDATETIME )	AS  
+
+BEGIN
+
+DECLARE @DTINI  AS DATETIME
+DECLARE @DTFIM  AS DATETIME
+DECLARE @DTM1   AS DATETIME
+
+-- INICIO DO MES DE REF
+SET @DTINI = CONVERT(CHAR(4),DATEPART(YEAR,@DTREF))+
+			RIGHT(RTRIM('00'+CONVERT(CHAR(2),DATEPART(MONTH,@DTREF))),2)+'01'
+SET @DTFIM = @DTREF
+
+SET @DTM1 = DATEADD(M,2,@DTINI)
+SET @DTM1 = DATEADD(DD,-1,@DTM1)
+
+/*
+
+SELECT *		FROM	CDCSANTANAMicroCredito..CPARC O (NOLOCK) WHERE PADTMOV BETWEEN '20150401' AND '20150430' 
+SELECT *	FROM	GESTORCOB..EFINA O (NOLOCK)
+WHERE EFNROPER = '612058593' 
+PANROPER	PANRPARC
+55003882	043
+
+SELECT *	FROM	GESTORCOB..ELCCB O (NOLOCK)
+WHERE LCNROPER = '612058593' 
+
+PANROPER	PANRPARC
+612109399	023
+612140317	015
+612166325	004
+
+612177278
+612136467
+
+SELECT		NVL_RISCO,* FROM  RATING_HISTORICO R (NOLOCK)
+				WHERE	--DT_FECHA = '20150430' AND
+ NUM_OPE ='612136467'
+
+OPDTBASE	OPNROPER	CONTRATOoriginal	DESCR_TIPO	NVL_RISCO	LOAN	OPQTDDPARC	PDECOR	PARC	CLCEPFIS	CLCIDFIS	CLUFFIS	CLRENDA	IDADE	ClSexo	ClESTciv	LojaCod	LojaCEP	LojaCIDADE	LojaUF	AGENTEcod	OperadorCod	TC	OPTAC	PASLDXMLT	PASLDXMR
+2014-01-16 00:00:00	612147335	612147335	Leves	C	12835,92	48	15	013	14060050	RIBEIRAO PRETO	SP	2325	40	NULL	3	007467	14055630	SAO PAULO	SP	103	001340	1250	0	11,59	92,75
+
+DROP   TABLE DRE_ATRASO
+CREATE TABLE DRE_ATRASO (
+DT_FECHA			DATETIME,
+OPNROPER			VARCHAR(20),
+CONTRATOoriginal	VARCHAR(20),	
+DESCR_TIPO			VARCHAR(30),
+NVL_RISCO		VARCHAR(2),
+LOAN			FLOAT,
+LIBERADO			FLOAT,
+TABELADO			FLOAT,
+OPQTDDPARC		INT,
+PDECOR			INT,
+PARC			INT,
+CLCEPFIS		VARCHAR(10),
+CLCIDFIS		VARCHAR(100),
+CLUFFIS			VARCHAR(5),
+CLRENDA			FLOAT,
+OCUPACAO		VARCHAR(10),
+IDADE			INT,
+ClSexo			VARCHAR(10),
+ClESTciv		INT,
+TIPO_CASA		VARCHAR(10),
+LojaCod			VARCHAR(20),
+LojaCEP			VARCHAR(10),
+LojaCIDADE		VARCHAR(50),
+LojaUF			VARCHAR(2),
+AGENTEcod		VARCHAR(20),
+OperadorCod		VARCHAR(20),
+
+TC				FLOAT,
+OPTAC			FLOAT,
+PASLDXMLT		FLOAT,
+PASLDXMR		FLOAT,
+PDD				FLOAT,
+VLR_PDD_ATU		FLOAT,
+VLR_PDD_ANT		FLOAT,
+NVL_RISCO_ANT	VARCHAR(2),
+VLR_PARCELA		FLOAT,
+VLR_RETORNO		FLOAT,
+VLR_RECEITA		FLOAT,
+VLR_IOF			FLOAT,
+VLR_ISS			FLOAT,
+VLR_PIS			FLOAT,
+VLR_COFINS		FLOAT,
+VLR_CAPTACAO	FLOAT,
+
+vlr_IRPJ	FLOAT,
+VLR_CSSL	FLOAT,
+VLR_CRED_TRIB	FLOAT,
+OUTRAS_TX		FLOAT,
+
+REC_APLIC_SLDO_CX FLOAT,
+REPASSE_AGENTE_6P	FLOAT,
+RETORNO_LOJA	FLOAT,
+REPASSE_AGENTE_PROMOT	FLOAT,
+DESP_CAPT_SLD_CX	FLOAT,
+DESP_CAPT_OPER		FLOAT,
+DESP_PESSOAL_VDA	FLOAT,
+DESP_PESSOAL_SUP	FLOAT,
+
+SLDO_INSCRITO	float,
+PROPORCAO_CARTEIRA	float,
+VLR_COMISSAO	float,
+VLR_COMISSAO_TERCO_AV	float,
+VLR_COMISSAO_DIFERIDA_36AVOS	float,
+VLR_FINANCIADO	float,
+DT_BASE	datetime,
+vlr_comissao_diferida_pzo_Op	float,
+COMISSAO_AV	float,
+SLD_DIFERIR_2_3	float)
+
+-- CDC (Tarifas)  Multa  Juros de Atraso
+
+CREATE INDEX  DRE_ATRASO_IDX1 ON DRE_ATRASO (DT_FECHA,OPNROPER,PARC )
+
+Column_name	Type	Computed	Length	Prec	Scale	Nullable	TrimTrailingBlanks	FixedLenNullInSource	Collation
+DT_FECHA	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+OPNROPER	varchar	no	20	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+CONTRATOoriginal	varchar	no	20	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+DESCR_TIPO	varchar	no	30	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+NVL_RISCO	varchar	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+LOAN	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+LIBERADO	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+TABELADO	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+OPQTDDPARC	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+PDECOR	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+PARC	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+CLCEPFIS	varchar	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+CLCIDFIS	varchar	no	100	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+CLUFFIS	varchar	no	5	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+CLRENDA	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+OCUPACAO	varchar	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+IDADE	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+ClSexo	varchar	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+ClESTciv	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+TIPO_CASA	varchar	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+LojaCod	varchar	no	20	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+LojaCEP	varchar	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+LojaCIDADE	varchar	no	50	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+LojaUF	varchar	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+AGENTEcod	varchar	no	20	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+OperadorCod	varchar	no	20	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+TC	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+OPTAC	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+PASLDXMLT	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+PASLDXMR	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+PDD	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_PDD_ATU	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_PDD_ANT	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+NVL_RISCO_ANT	varchar	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+VLR_PARCELA	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_RETORNO	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_RECEITA	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_IOF	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_ISS	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_PIS	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_COFINS	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_CAPTACAO	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+vlr_IRPJ	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_CSSL	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_CRED_TRIB	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+OUTRAS_TX	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+REC_APLIC_SLDO_CX	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+REPASSE_AGENTE_6P	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+RETORNO_LOJA	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+REPASSE_AGENTE_PROMOT	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+DESP_CAPT_SLD_CX	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+DESP_CAPT_OPER	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+DESP_PESSOAL_VDA	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+DESP_PESSOAL_SUP	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+SLDO_INSCRITO	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+PROPORCAO_CARTEIRA	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_COMISSAO	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_COMISSAO_TERCO_AV	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_COMISSAO_DIFERIDA_36AVOS	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+VLR_FINANCIADO	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+DT_BASE	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+vlr_comissao_diferida_pzo_Op	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+COMISSAO_AV	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+SLD_DIFERIR_2_3	float	no	8	53   	NULL	yes	(n/a)	(n/a)	NULL
+
+*/
+
+--OPVLRFIN,			 --  VLR_LIBERADO
+
+--'20150401'
+
+UPDATE	DRE_ATRASO
+SET		PASLDXMLT=MULTA, PASLDXMR=MORA, DESPESA_ATRASO = ISNULL(DESCONTO,0.0)
+/*
+SELECT  --   TOP 100 * 
+			OPDTBASE, OPNROPER, 
+			CASE WHEN RIGHT(OPNROPER,1) IN ('A','B','C','D') THEN SUBSTRING(OPNROPER,1,LEN(OPNROPER)-1) 
+				 ELSE OPNROPER END AS CONTRATOoriginal,
+			DESCR_TIPO,
+			ISNULL((SELECT		NVL_RISCO FROM  RATING_HISTORICO R (NOLOCK)
+				WHERE	DT_FECHA = @DTREF AND NUM_OPE = PANROPER),'HH') AS NVL_RISCO,  -- RATING
+			-- VF - VP
+			(OPVLRPARC *  OPQTDDPARC)- OPVlrOpCZ AS LOAN, 
+			OPQTDDPARC,DATEDIFF(MM,OPDTBASE,@DTREF)  AS PDECOR,
+			PANRPARC AS PARC,  -- PARCELA COM ATRASO
+			CLCEPFIS , CLCIDFIS, CLUFFIS, CLRENDA, 
+			DATEDIFF(YY,CLDTNASC,@DTREF) AS IDADE,
+			ClSexo,ClESTciv, 
+			-- TIPO CASA ??
+			OpCodORG4	AS LojaCod, 
+			O4CEP		AS LojaCEP,
+			O4CID		AS LojaCIDADE,
+			O4UF		AS LojaUF,
+
+			O3CODORGA13 AS AGENTEcod,
+
+			OpCodORG3   AS OperadorCod,
+
+			OpDESPESA3  AS TC,
+			OPTAC		, -- VLR_TARIFA			
+			PASLDXMLT, PASLDXMR   */
+FROM
+	(SELECT		PANROPER, SUM(PASLDXMLT) AS MULTA, SUM(PASLDXMR) AS MORA,
+					-- TEM PAGO, PMT - PAGO = DESCONTO 
+				SUM(CASE WHEN ISNULL(PAVLRPAGO,0.0)> 0.0 AND (ISNULL(PAVLRPR,0.0)+ISNULL(PAVLRJR,0.0)) - ISNULL(PAVLRPAGO,0.0)  > 0.0 THEN 
+							  (ISNULL(PAVLRPR,0.0)+ISNULL(PAVLRJR,0.0))-ISNULL(PAVLRPAGO,0.0) 
+						 ELSE  0.0 END ) AS DESCONTO
+		FROM
+			(SELECT		PANROPER,PANRPARC, PASLDXMLT, PASLDXMR,PAVLRDESC, PAVLRPAGO, PAVLRPR,  PAVLRJR
+				FROM	CDCSANTANAMicroCredito..CPARC P (NOLOCK) 
+				WHERE	PADTLIQ BETWEEN @DTINI AND @DTREF 
+					AND PACNTRL = (SELECT	MAX(PACNTRL)  FROM CDCSANTANAMicroCredito..CPARC P2 (NOLOCK) 
+									WHERE	P2.PANROPER = P.PANROPER AND P2.PANRPARC = P.PANRPARC)
+-- ANTES PADTMOV , PAVLRDESC
+				--	AND PASLDXMLT >0.0
+				) AS PARC
+		GROUP BY PANROPER ) AS ATRASO
+WHERE	DT_FECHA = @DTREF
+	AND OPNROPER = PANROPER 
+	AND NVL_RISCO <>''		-- SER DA CARTEIRA
+
+/*
+	JOIN 	CDCSANTANAMicroCredito..COPER O (NOLOCK)
+		ON	OPNROPER = PANROPER 
+		--   LISTA COM MODALIDADES DO PRODUTO VEIC
+		 JOIN (SELECT	M.COD_MODA, DESCR_TIPO
+						FROM	 Ttipo_prod T (NOLOCK), TModa_tipo_prod M (NOLOCK)  
+						WHERE	M.COD_PROD = T.COD_PROD 
+							AND T.COD_MODALIDADE = M.COD_MODALIDADE 
+						AND T.COD_PROD = 'V' ) AS MOD
+		ON OPCODOP =  COD_MODA
+
+		LEFT JOIN   CDCSANTANAMicroCredito..CCLIE C (NOLOCK)
+			ON OPCODCLI = CLCODCLI
+
+		LEFT JOIN	(SELECT  * 
+							-- ISNULL(OP.O3CODORGA13,'') -- ISNULL(A.COD_AGENTE,'')
+						FROM	CDCSANTANAMicroCredito..TORG3 OP (NOLOCK) 
+							) AS OPERADOR
+				ON O3CODORG = OpCodORG3  -- OPERADOR
+
+		LEFT JOIN	(SELECT  * 
+						FROM	CDCSANTANAMicroCredito..TORG4 OP (NOLOCK) 
+							) AS LOJA
+				ON O4CODORG = OpCodORG4  -- OPERADOR
+
+TODOS OS ATRASOS
+	WHERE	-- PRODUCAO
+			CONVERT(VARCHAR(8),OPDTBASE,112) BETWEEN @DTINI AND @DTFIM 
+			-- SEM RENEGOCIADOS
+		AND RIGHT(OPNROPER,1) NOT IN ('A','B','C','D')
+*/
+
+END
+GO
+
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO

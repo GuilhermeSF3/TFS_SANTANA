@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsRollrateMensal" targetNamespace="http://tempuri.org/dsRollrateMensal.xsd" xmlns:mstns="http://tempuri.org/dsRollrateMensal.xsd" xmlns="http://tempuri.org/dsRollrateMensal.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="SantanaConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="SantanaConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Relatorios.My.MySettings.GlobalReference.Default.SantanaConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsRollrateMensal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsRollrateMensal" msprop:Generator_UserDSName="dsRollrateMensal">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RR_ROLLRATE_RPT" msprop:Generator_TableClassName="RR_ROLLRATE_RPTDataTable" msprop:Generator_TableVarName="tableRR_ROLLRATE_RPT" msprop:Generator_TablePropName="RR_ROLLRATE_RPT" msprop:Generator_RowDeletingName="RR_ROLLRATE_RPTRowDeleting" msprop:Generator_RowChangingName="RR_ROLLRATE_RPTRowChanging" msprop:Generator_RowEvHandlerName="RR_ROLLRATE_RPTRowChangeEventHandler" msprop:Generator_RowDeletedName="RR_ROLLRATE_RPTRowDeleted" msprop:Generator_UserTableName="RR_ROLLRATE_RPT" msprop:Generator_RowChangedName="RR_ROLLRATE_RPTRowChanged" msprop:Generator_RowEvArgName="RR_ROLLRATE_RPTRowChangeEvent" msprop:Generator_RowClassName="RR_ROLLRATE_RPTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DT_FECHA" msprop:Generator_ColumnVarNameInTable="columnDT_FECHA" msprop:Generator_ColumnPropNameInRow="DT_FECHA" msprop:Generator_ColumnPropNameInTable="DT_FECHAColumn" msprop:Generator_UserColumnName="DT_FECHA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AGENTE" msprop:Generator_ColumnVarNameInTable="columnAGENTE" msprop:Generator_ColumnPropNameInRow="AGENTE" msprop:Generator_ColumnPropNameInTable="AGENTEColumn" msprop:Generator_UserColumnName="AGENTE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COBRADORA" msprop:Generator_ColumnVarNameInTable="columnCOBRADORA" msprop:Generator_ColumnPropNameInRow="COBRADORA" msprop:Generator_ColumnPropNameInTable="COBRADORAColumn" msprop:Generator_UserColumnName="COBRADORA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ORDEM_LINHA" msprop:Generator_ColumnVarNameInTable="columnORDEM_LINHA" msprop:Generator_ColumnPropNameInRow="ORDEM_LINHA" msprop:Generator_ColumnPropNameInTable="ORDEM_LINHAColumn" msprop:Generator_UserColumnName="ORDEM_LINHA" type="xs:int" minOccurs="0" />
+              <xs:element name="FORMATO" msprop:Generator_ColumnVarNameInTable="columnFORMATO" msprop:Generator_ColumnPropNameInRow="FORMATO" msprop:Generator_ColumnPropNameInTable="FORMATOColumn" msprop:Generator_UserColumnName="FORMATO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRICAO" msprop:Generator_ColumnVarNameInTable="columnDESCRICAO" msprop:Generator_ColumnPropNameInRow="DESCRICAO" msprop:Generator_ColumnPropNameInTable="DESCRICAOColumn" msprop:Generator_UserColumnName="DESCRICAO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="A_QTDE" msprop:Generator_ColumnVarNameInTable="columnA_QTDE" msprop:Generator_ColumnPropNameInRow="A_QTDE" msprop:Generator_ColumnPropNameInTable="A_QTDEColumn" msprop:Generator_UserColumnName="A_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="A_SALDO" msprop:Generator_ColumnVarNameInTable="columnA_SALDO" msprop:Generator_ColumnPropNameInRow="A_SALDO" msprop:Generator_ColumnPropNameInTable="A_SALDOColumn" msprop:Generator_UserColumnName="A_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="B_QTDE" msprop:Generator_ColumnVarNameInTable="columnB_QTDE" msprop:Generator_ColumnPropNameInRow="B_QTDE" msprop:Generator_ColumnPropNameInTable="B_QTDEColumn" msprop:Generator_UserColumnName="B_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="B_SALDO" msprop:Generator_ColumnVarNameInTable="columnB_SALDO" msprop:Generator_ColumnPropNameInRow="B_SALDO" msprop:Generator_ColumnPropNameInTable="B_SALDOColumn" msprop:Generator_UserColumnName="B_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="C_QTDE" msprop:Generator_ColumnVarNameInTable="columnC_QTDE" msprop:Generator_ColumnPropNameInRow="C_QTDE" msprop:Generator_ColumnPropNameInTable="C_QTDEColumn" msprop:Generator_UserColumnName="C_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="C_SALDO" msprop:Generator_ColumnVarNameInTable="columnC_SALDO" msprop:Generator_ColumnPropNameInRow="C_SALDO" msprop:Generator_ColumnPropNameInTable="C_SALDOColumn" msprop:Generator_UserColumnName="C_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="D_QTDE" msprop:Generator_ColumnVarNameInTable="columnD_QTDE" msprop:Generator_ColumnPropNameInRow="D_QTDE" msprop:Generator_ColumnPropNameInTable="D_QTDEColumn" msprop:Generator_UserColumnName="D_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="D_SALDO" msprop:Generator_ColumnVarNameInTable="columnD_SALDO" msprop:Generator_ColumnPropNameInRow="D_SALDO" msprop:Generator_ColumnPropNameInTable="D_SALDOColumn" msprop:Generator_UserColumnName="D_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="E_QTDE" msprop:Generator_ColumnVarNameInTable="columnE_QTDE" msprop:Generator_ColumnPropNameInRow="E_QTDE" msprop:Generator_ColumnPropNameInTable="E_QTDEColumn" msprop:Generator_UserColumnName="E_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="E_SALDO" msprop:Generator_ColumnVarNameInTable="columnE_SALDO" msprop:Generator_ColumnPropNameInRow="E_SALDO" msprop:Generator_ColumnPropNameInTable="E_SALDOColumn" msprop:Generator_UserColumnName="E_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="F_QTDE" msprop:Generator_ColumnVarNameInTable="columnF_QTDE" msprop:Generator_ColumnPropNameInRow="F_QTDE" msprop:Generator_ColumnPropNameInTable="F_QTDEColumn" msprop:Generator_UserColumnName="F_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="F_SALDO" msprop:Generator_ColumnVarNameInTable="columnF_SALDO" msprop:Generator_ColumnPropNameInRow="F_SALDO" msprop:Generator_ColumnPropNameInTable="F_SALDOColumn" msprop:Generator_UserColumnName="F_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="G_QTDE" msprop:Generator_ColumnVarNameInTable="columnG_QTDE" msprop:Generator_ColumnPropNameInRow="G_QTDE" msprop:Generator_ColumnPropNameInTable="G_QTDEColumn" msprop:Generator_UserColumnName="G_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="G_SALDO" msprop:Generator_ColumnVarNameInTable="columnG_SALDO" msprop:Generator_ColumnPropNameInRow="G_SALDO" msprop:Generator_ColumnPropNameInTable="G_SALDOColumn" msprop:Generator_UserColumnName="G_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="H_QTDE" msprop:Generator_ColumnVarNameInTable="columnH_QTDE" msprop:Generator_ColumnPropNameInRow="H_QTDE" msprop:Generator_ColumnPropNameInTable="H_QTDEColumn" msprop:Generator_UserColumnName="H_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="H_SALDO" msprop:Generator_ColumnVarNameInTable="columnH_SALDO" msprop:Generator_ColumnPropNameInRow="H_SALDO" msprop:Generator_ColumnPropNameInTable="H_SALDOColumn" msprop:Generator_UserColumnName="H_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="HH_QTDE" msprop:Generator_ColumnVarNameInTable="columnHH_QTDE" msprop:Generator_ColumnPropNameInRow="HH_QTDE" msprop:Generator_ColumnPropNameInTable="HH_QTDEColumn" msprop:Generator_UserColumnName="HH_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="HH_SALDO" msprop:Generator_ColumnVarNameInTable="columnHH_SALDO" msprop:Generator_ColumnPropNameInRow="HH_SALDO" msprop:Generator_ColumnPropNameInTable="HH_SALDOColumn" msprop:Generator_UserColumnName="HH_SALDO" type="xs:double" minOccurs="0" />
+              <xs:element name="TTL_QTDE" msprop:Generator_ColumnVarNameInTable="columnTTL_QTDE" msprop:Generator_ColumnPropNameInRow="TTL_QTDE" msprop:Generator_ColumnPropNameInTable="TTL_QTDEColumn" msprop:Generator_UserColumnName="TTL_QTDE" type="xs:double" minOccurs="0" />
+              <xs:element name="TTL_SALDO" msprop:Generator_ColumnVarNameInTable="columnTTL_SALDO" msprop:Generator_ColumnPropNameInRow="TTL_SALDO" msprop:Generator_ColumnPropNameInTable="TTL_SALDOColumn" msprop:Generator_UserColumnName="TTL_SALDO" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
