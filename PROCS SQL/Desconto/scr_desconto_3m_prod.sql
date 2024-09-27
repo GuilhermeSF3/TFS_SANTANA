@@ -1,0 +1,619 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+Use SIG
+go
+
+-- PROC producao 3m desconto  ********************************************************************************************************************************************************************************** 
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'SCR_DESCONTO_PRODUCAO' AND type = 'P')
+   DROP PROCEDURE [dbo].SCR_DESCONTO_PRODUCAO
+
+GO
+
+-- PROC producao 3m desconto  ********************************************************************************************************************************************************************************** 
+CREATE Procedure [dbo].SCR_DESCONTO_PRODUCAO (@data_ref as datetime	, @relatorio int ) AS  
+BEGIN  
+
+
+/*  Relatorio
+Cedente=1, Operador=2 , Resumo Operador=3
+
+
+SCR_DESCONTO_PRODUCAO '20170331',1
+select * from  DESCONTO_PRODUCAO_3m   (NOLOCK)  WHERE DATA_REF='20170331'
+  
+drop   table DESCONTO_PRODUCAO_3m  
+create table DESCONTO_PRODUCAO_3m  (  
+	data_ref datetime,  
+	cod_oper varchar(20),
+	OPERADOR	varchar(200),
+	cod_cedente varchar(20),
+	CEDENTE		varchar(200),
+	CNPJ		varchar(20),
+	MES_ANO_ANT		float,
+	MES_ANT		float,
+	MES_ATUAL	float,	
+	DIF_MES		float,
+	PRC_DIF_MES	float,
+	DIF_ANO		float,
+	PRC_DIF_ANO float )
+
+ALTER  table DESCONTO_PRODUCAO_3m  ADD CPFCNPJ VARCHAR(20)
+
+
+-- confere 
+select sum(VLR_OP) FROM	COMERCIAL_PRODUCAO (NOLOCK) WHERE	DT_FECHA between '20170301' AND '20170331'
+	AND PRODUTO='D'	 AND	VLR_OP > 0.0
+5M323434,6  mar/17 empr 1 e 2
+select sum(VLR_OP) FROM	COMERCIAL_PRODUCAO (NOLOCK) WHERE	DT_FECHA between '20170201' AND '20170228'
+	AND PRODUTO='D'	 AND	VLR_OP > 0.0
+6M200652,28
+select sum(VLR_OP) FROM	COMERCIAL_PRODUCAO (NOLOCK) WHERE	DT_FECHA between '20160301' AND '20160331'
+	AND PRODUTO='D'	 AND	VLR_OP > 0.0
+4129444,23 mar/16
+  
+select DISTINCT AGENTE FROM	COMERCIAL_PRODUCAO (NOLOCK) WHERE	DT_FECHA BETWEEN '20160101' AND '20161231'
+	AND PRODUTO='D'	 AND	VLR_OP > 0.0
+SELECT *
+FROM NETFACTOR..nfOperacao operacaoStruc
+INNER JOIN  NETFACTOR..nfIngressos  on nfIngressos.opecodigo =  operacaoStruc.opecodigo
+INNER JOIN  NETFACTOR..nfEmpresa ON nfEmpresa.empCodigo = operacaoStruc.empCodigo
+INNER JOIN  NETFACTOR..nfCedente ON nfCedente.cedCodigo = operacaoStruc.cedCodigo AND nfCedente.empCodigo = operacaoStruc.empCodigo
+INNER JOIN  NETFACTOR..nfPessoa  ON nfPessoa.pesCNPJCPF = nfCedente.pesCNPJCPF
+LEFT JOIN NETFACTOR..nfagente ON operacaoStruc.agecodigo = nfagente.agecodigo and nfagente.empcodigo = operacaoStruc.empcodigo
+LEFT JOIN  NETFACTOR..nfPessoa as agentepessoa  ON agentepessoa.pesCNPJCPF = nfAgente.pesCNPJCPF
+
+SELECT * FROM FINSGRDBS..tb_operADOR (NOLOCK)
+SELECT * FROM FINSGRDBS..tb_operC (NOLOCK)
+
+select * FROM		FinSGRDBS..tb_oper   (NOLOCK)  -- OPERADOR
+select * FROM		FinSGRDBS..tb_cednte  (NOLOCK) -- CEDNTE_CPFCGC TEXTO SEM FORMATO
+-- TEM NA PROD E NAO NA HOMOLOG
+*/  
+  
+-- limpa  
+delete from DESCONTO_PRODUCAO_3m where data_ref=@data_ref  
+  
+  
+-- select * from DESCONTO_PRODUCAO_3m  (nolock) where data_ref='20170831'
+-- carrega MES 1 -- DATA REF  
+insert DESCONTO_PRODUCAO_3m  
+(  
+	data_ref , --datetime,  
+	cod_oper   , --varchar(50), 
+	cod_cedente , -- CLIENTE 
+	MES_ATUAL	)  
+select	DISTINCT
+		@data_ref,  
+  		Agente,  
+		CODCLI,  
+		SUM(VLR_PRESENTE)  -- VLR PRESENTE DO DESCONTO
+--		declare @data_ref datetime set @data_ref='20160131'  select *
+FROM	COMERCIAL_PRODUCAO (NOLOCK)  
+ WHERE	DT_FECHA = @data_ref  
+	AND PRODUTO='D'	
+	AND	VLR_OP > 0.0	
+	AND VEICULO NOT IN ('ADIANTA') -- SEM ADIANTA, CESSAO
+GROUP BY AGENTE  , CODCLI
+
+-- CPFCNPJ DO CEDENTE DO NETFACTOR
+IF DATEPART(YYYY,@data_ref) >= 2017 
+BEGIN
+		-- DECLARE @data_ref DATETIME SET @data_ref ='20170331'
+		UPDATE	DESCONTO_PRODUCAO_3m  
+			SET	CPFCNPJ = pesCNPJCPF
+		FROM	NETFACTOR..nfCedente (NOLOCK) 
+		 WHERE	DATA_REF = @data_ref  
+			AND COD_CEDENTE = CEDCODIGO
+		-- NOME DO CEDENTE
+		UPDATE	DESCONTO_PRODUCAO_3m  
+			SET	CEDENTE = pesNOME
+		FROM	NETFACTOR..nfPESSOA (NOLOCK) 
+		 WHERE	DATA_REF = @data_ref  
+			AND PesCNPJCPF = CPFCNPJ
+END
+
+-- insere CG na producao   ***************** CG NO FUNCAO CPF
+--	 DECLARE @data_ref DATETIME SET @data_ref = '20170331' 
+UPDATE			DESCONTO_PRODUCAO_3m
+		SET		MES_ATUAL = ISNULL(MES_ATUAL,0.0)+P.VLR  -- VLR PRESENTE DO DESCONTO + CG
+		FROM	(SELECT		CODCLI,  SUM(VLR_PRESENTE)  AS VLR
+					FROM	COMERCIAL_PRODUCAO (NOLOCK) 
+				 WHERE		DT_FECHA =  @data_ref    AND PRODUTO in ('CG')	-- CG
+					AND		VLR_OP > 0.0	 
+				 GROUP BY   CODCLI	) AS P
+		 WHERE	DESCONTO_PRODUCAO_3m.DATA_REF  = @data_ref  
+			AND DESCONTO_PRODUCAO_3m.CPFCNPJ   = CODCLI	   
+-- select * FROM	DESCONTO_PRODUCAO_3m(NOLOCK) WHERE	DaTa_ref =  '20170331' 
+
+-- INSERE OS NÃO LOCALIZADOS CG NO RELATORIO  *********** CG DO FUNCAO
+insert DESCONTO_PRODUCAO_3m  
+(  	data_ref   , --datetime,  
+	cod_oper   , --varchar(50), 
+	CPFCNPJ    , -- CPFCNPJ do CLIENTE 
+	COD_CEDENTE,CEDENTE,
+	MES_ATUAL	)  
+--		declare @data_ref datetime set @data_ref='20160131' 
+select	DISTINCT
+		-- SANTANA OPERADOR CG PRECISA AJUSTAR ********** COD_CEDENTE,CEDENTE,
+		@data_ref,  12,  CODCLI,  '99999',--'CG FUNCAO',
+		( SELECT  'cg '+clNomeCli	FROM	CDCSANTANAMicroCredito..Cclie O (NOLOCK) 
+			where clcodcli=CODCLI ),  -- CLIENTE DO FUNCAO
+		VLR  -- VLR PRESENTE DO DESCONTO
+FROM	(
+--		declare @data_ref datetime set @data_ref='20160131' 
+			SELECT		CODCLI,  SUM(VLR_PRESENTE) AS VLR -- VLR PRESENTE DO DESCONTO
+			FROM	COMERCIAL_PRODUCAO (NOLOCK)  
+			 WHERE	DT_FECHA = @data_ref  AND PRODUTO='CG'	AND	VLR_OP > 0.0	
+			GROUP BY  CODCLI ) AS PROD
+ 	--	INSERE OS NAO LOCALIZADOS
+WHERE   CODCLI	   NOT IN (SELECT DISTINCT CPFCNPJ FROM DESCONTO_PRODUCAO_3m (NOLOCK)
+							WHERE	DATA_REF  = @data_ref  )
+
+
+/*
+select  CODCLI,  SUM(VLR_PRESENTE) FROM	COMERCIAL_PRODUCAO (NOLOCK)  
+ WHERE	DT_FECHA =  '20170331'    	AND PRODUTO in ('CG') AND	VLR_OP > 0.0
+GROUP BY 	Agente,  CODCLI
+
+
+SELECT * FROM  DESCONTO_PRODUCAO_3m (NOLOCK) WHERE DATA_REF='20170331'
+		CEDENTE =
+SELECT CEDCODIGO,* FROM  NETFACTOR..nfCedente (NOLOCK) 
+SELECT * FROM  NETFACTOR..nfPESSOA (NOLOCK) 07105038000178
+WHERE PESCNPJCPF=CEDNTE_CPFCGC
+-- SELECT * FROM DESCONTO_PRODUCAO_3m (NOLOCK)
+*/
+
+-- MES ANTERIOR
+--  DECLARE @data_ref DATETIME  SET @data_ref ='20170331'
+ DECLARE @M2 DATETIME  
+ -- DATA DE FECHAMENTO ************************************  
+ -- DIA 1 DO MES ATUAL  
+ SET  @M2 =  CONVERT(CHAR(4),DATEPART(YEAR,@data_ref))+  
+    RIGHT(RTRIM('00'+CONVERT(CHAR(2),DATEPART(MONTH,@data_ref))),2)+'01'  
+ -- FIM DO MES ANTERIOR = FECHAMENTO  
+ SET  @M2=DATEADD(DD,-1,@M2)  
+  --  SELECT  @M2  
+-- ATUALIZA O MES ANTERIOR  ***********************************
+IF    DATEPART(YYYY,@M2)>= 2017		-- NETFACTOR
+BEGIN
+		-- SELECT * FROM DESCONTO_PRODUCAO_3m  (NOLOCK)
+		UPDATE	 DESCONTO_PRODUCAO_3m  
+			SET  MES_ANT = VLR  
+		FROM (
+		--		declare @M2 datetime set @M2='20170131'  
+				Select 	   Agente,  CODCLI,  SUM(VLR_PRESENTE) AS VLR
+		FROM	COMERCIAL_PRODUCAO (NOLOCK)  
+		 WHERE	DT_FECHA = @M2  
+			AND PRODUTO='D'		AND	VLR_OP > 0.0
+			AND VEICULO NOT IN ('ADIANTA') -- SEM ADIANTA, CESSAO
+		GROUP BY AGENTE  , CODCLI ) AS H   
+		WHERE	DESCONTO_PRODUCAO_3m.data_ref   = @data_ref  
+			AND DESCONTO_PRODUCAO_3m.COD_OPER   = H.Agente
+			AND DESCONTO_PRODUCAO_3m.COD_CEDENTE= H.CODCLI
+END
+-- ATUALIZA O MES ANTERIOR  ***********************************
+IF    DATEPART(YYYY,@M2)<= 2016		-- ATT 
+BEGIN
+		-- SELECT * FROM DESCONTO_PRODUCAO_3m  (NOLOCK)
+		UPDATE	 DESCONTO_PRODUCAO_3m  
+			SET  MES_ANT = VLR  
+		FROM (
+		--		declare @M2 datetime set @M2='20170131'  
+				Select 	   Agente,  CODCLI,  SUM(VLR_PRESENTE) AS VLR
+		FROM	COMERCIAL_PRODUCAO (NOLOCK)  
+		 WHERE	DT_FECHA = @M2  
+			AND PRODUTO='D'		AND	VLR_OP > 0.0
+			AND VEICULO NOT IN ('ADIANTA') -- SEM ADIANTA, CESSAO
+		GROUP BY AGENTE  , CODCLI ) AS H   
+	-- DE PARA CEDENTE
+		WHERE	DESCONTO_PRODUCAO_3m.data_ref   = @data_ref  
+			AND DESCONTO_PRODUCAO_3m.COD_OPER   = H.Agente
+			AND DESCONTO_PRODUCAO_3m.COD_CEDENTE= H.CODCLI
+END
+
+-- INSERE OS NAO LOCALIZADOS   ****************************** mes ant
+-- SELECT * FROM	 DESCONTO_PRODUCAO_3m  (NOLOCK)
+	INSERT	DESCONTO_PRODUCAO_3m
+	SELECT  @data_ref, 	   C.Agente, '', C.CODCLI,'', 0.0, SUM(C.VLR) AS VLR, -- MES ANT
+			0.0, 0.0, 0.0, 0.0, 0.0, ''
+	--		declare @data_ref datetime set @data_ref='20170430'  declare @M2 datetime set @M2='20170331'  
+	--		SELECT  * 
+	FROM	(SELECT		C1.Agente, C1.CODCLI, SUM(C1.VLR_PRESENTE) AS VLR
+				FROM	COMERCIAL_PRODUCAO C1 (NOLOCK)
+				 WHERE	C1.DT_FECHA = @M2  
+					AND C1.PRODUTO='D'		AND	C1.VLR_OP > 0.0
+					AND VEICULO NOT IN ('ADIANTA') -- SEM ADIANTA, CESSAO
+				GROUP BY C1.AGENTE  , C1.CODCLI ) AS C 
+			WHERE NOT EXISTS
+			(SELECT * FROM DESCONTO_PRODUCAO_3m D1 (NOLOCK)  
+					WHERE	D1.data_ref   = @data_ref  
+						AND D1.COD_OPER   = C.Agente
+						AND D1.COD_CEDENTE= C.CODCLI )
+		GROUP BY	 C.Agente,  C.CODCLI
+
+-- insere CG na producao   ***************** CG NO FUNCAO CPF  *** mes ant
+--	 DECLARE @data_ref DATETIME SET @data_ref = '20170331' 
+UPDATE			DESCONTO_PRODUCAO_3m
+		SET		MES_ANT = ISNULL(MES_ANT,0.0)+P.VLR  -- VLR PRESENTE DO DESCONTO + CG
+		FROM	(
+--	 DECLARE @M2 DATETIME SET @M2 = '20170228' 
+				SELECT		CODCLI,  SUM(VLR_PRESENTE)  AS VLR
+					FROM	COMERCIAL_PRODUCAO (NOLOCK) 
+				 WHERE		DT_FECHA =  @M2    AND PRODUTO in ('CG')	-- CG
+					AND		VLR_OP > 0.0	 
+				 GROUP BY   CODCLI	) AS P
+		 WHERE	DESCONTO_PRODUCAO_3m.DATA_REF  = @data_ref  
+			AND DESCONTO_PRODUCAO_3m.CPFCNPJ   = CODCLI	   
+-- select * FROM	DESCONTO_PRODUCAO_3m(NOLOCK) WHERE	DaTa_ref =  '20170331' 
+
+-- INSERE OS NÃO LOCALIZADOS CG NO RELATORIO  *********** CG DO FUNCAO
+insert DESCONTO_PRODUCAO_3m  
+(  	data_ref   , --datetime,  
+	cod_oper   , --varchar(50), 
+	CPFCNPJ    , -- CPFCNPJ do CLIENTE 
+	COD_CEDENTE,CEDENTE,
+	MES_ANT	)  
+--		declare @data_ref datetime set @data_ref='20160131' 
+select	DISTINCT
+		-- SANTANA OPERADOR CG PRECISA AJUSTAR ********** COD_CEDENTE,CEDENTE,
+		@data_ref,  12,  CODCLI,  '99999',--'CG FUNCAO',
+		( SELECT  'cg '+clNomeCli	FROM	CDCSANTANAMicroCredito..Cclie O (NOLOCK) 
+			where clcodcli=CODCLI ),  -- CLIENTE DO FUNCAO
+		VLR  -- VLR PRESENTE DO DESCONTO
+FROM	(
+--		declare @data_ref datetime set @data_ref='20160131' 
+			SELECT		CODCLI,  SUM(VLR_PRESENTE) AS VLR -- VLR PRESENTE DO DESCONTO
+			FROM	COMERCIAL_PRODUCAO (NOLOCK)  
+			 WHERE	DT_FECHA = @M2  AND PRODUTO='CG'	AND	VLR_OP > 0.0	
+			GROUP BY  CODCLI ) AS PROD
+ 	--	INSERE OS NAO LOCALIZADOS
+WHERE   CODCLI	   NOT IN (SELECT DISTINCT CPFCNPJ FROM DESCONTO_PRODUCAO_3m (NOLOCK)
+							WHERE	DATA_REF  = @data_ref  )
+
+
+  
+-- *************************************************************  
+
+ -- MES   = E ANO ANTERIOR
+ -- DIA IGUAL AO MES ATUAL     ************** ANO ANTERIOR
+ SET  @M2 =		CONVERT(CHAR(4),DATEPART(YEAR,@data_ref)-1)+  
+				RIGHT(RTRIM('00'+CONVERT(CHAR(2),DATEPART(MONTH,@data_ref))),2)+
+				RIGHT(RTRIM('00'+CONVERT(CHAR(2),DATEPART(DAY  ,@data_ref))),2)
+ -- FIM DO MES DO FECHAMENTO   *******  ANO ANTERIOR
+ -- SET  @M2=DATEADD(DD,-1,@M2)  
+--  SELECT   @M2
+-- ATUALIZA O MES = E ANO ANTERIOR  ***********************************
+-- 2016 BASE DO ATT
+IF DATEPART(YYYY,@M2) = 2016		-- BASE DO ATT EM 2016, >= 2017 NETFACTOR
+BEGIN
+-- TABELA AUXILIAR COM PRODUCAO DO ANO ANT
+-- UPDATE SE ACHAR PELO CNPJ
+-- INCLUIR OS NAO LOCALIZADOS
+/*
+		--		declare @M2 datetime set @M2='20161231'  
+				Select 	Agente,  '' AS CLI_NETFACTOR, C.CEDNTE_CPFCGC, CODCLI AS CLI_ATT, SUM(VLR_OP) AS VLR
+				Into	#aux_desconto_prod_ano_ATT
+				FROM	(SELECT * FROM COMERCIAL_PRODUCAO (NOLOCK)  
+							WHERE	DT_FECHA = @M2  
+								AND PRODUTO='D'		AND	VLR_OP > 0.0   ) AS H   
+				LEFT JOIN   -- SELECT * FROM
+						FinSGRDBS..tb_cednte C (NOLOCK) -- CEDNTE_CPFCGC TEXTO SEM FORMATO
+					ON  C.CEDNTE_CEDN = H.CODCLI  -- ATT
+				GROUP BY AGENTE  , CODCLI , C.CEDNTE_CPFCGC 
+
+				-- AJUSTA O COD CLI DO NETFACTOR SEGUNDO O CPF
+				UPDATE	#aux_desconto_prod_ano_ATT
+					SET	CLI_NETFACTOR = ISNULL(( SELECT  CEDCODIGO 
+											FROM  NETFACTOR..nfCedente C (NOLOCK) 
+											WHERE PESCNPJCPF='0'+CEDNTE_CPFCGC  ),'')
+SELECT * FROM #aux_desconto_prod_ano_ATT
+							LEFT JOIN  NETFACTOR..nfCedente C (NOLOCK) 
+											ON PESCNPJCPF='0'+CEDNTE_CPFCGC
+SELECT CEDCODIGO,* FROM  NETFACTOR..nfCedente (NOLOCK) 
+WHERE PESCNPJCPF=CEDNTE_CPFCGC
+ON nfCedente.cedCodigo = operacaoStruc.cedCodigo AND nfCedente.empCodigo = operacaoStruc.empCodigo
+
+SELECT * FROM  NETFACTOR..nfCedente (NOLOCK) 
+SELECT * FROM  NETFACTOR..nfPessoa (NOLOCK) ORDER BY PESNOME
+ASTUSTEC MEDICAL TEC COM A TEC EIRELI
+pesCNPJCPF	pesNome
+07865699000100	ASTUSTEC MEDICAL TEC COM A TEC EIRELI
+-- ATT TEM 0 NA FRENTE
+SELECT * FROM			FinSGRDBS..tb_cednte C (NOLOCK) ORDER BY CEDNTE_NOME
+cednte_cpfcgc	cednte_nome
+007865699000100	ASTUSTEC MEDICAL TECNOLOGY COM ASSIT TEC APAR MEDICOS EIRELI
+
+*/
+		
+-- 
+		--		declare @M2 datetime set @M2='20161231'  declare @data_ref datetime set @data_ref='20170331'  
+		-- SELECT * FROM DESCONTO_PRODUCAO_3m  (NOLOCK)
+		UPDATE	 DESCONTO_PRODUCAO_3m  
+			SET  MES_ANO_ANT = VLR  
+		FROM (
+		--		declare @M2 datetime set @M2='20161231'  
+				Select 	Agente,  CODCLI, C.CEDNTE_CPFCGC,  SUM(VLR_PRESENTE) AS VLR
+				FROM	(SELECT * FROM COMERCIAL_PRODUCAO (NOLOCK)  
+							WHERE	DT_FECHA = @M2  
+								AND PRODUTO='D'		AND	VLR_OP > 0.0
+								AND VEICULO NOT IN ('ADIANTA') -- SEM ADIANTA, CESSAO
+							) AS H   
+				LEFT JOIN   -- SELECT * FROM
+-- DESCONTO_PRODUCAO_3m
+						FinSGRDBS..tb_cednte C (NOLOCK) -- CEDNTE_CPFCGC TEXTO SEM FORMATO
+					ON  C.CEDNTE_CEDN = H.CODCLI
+					--  ON	C.CEDNTE_CPFCGC = DESCONTO_PRODUCAO_3m.CPFCNPJ
+				GROUP BY AGENTE  , CODCLI , C.CEDNTE_CPFCGC ) AS TTL
+		WHERE	DESCONTO_PRODUCAO_3m.data_ref   = @data_ref  
+			-- NETFACTOR TEM 1 ZERO A ESQ A MENOS
+			AND '0'+DESCONTO_PRODUCAO_3m.CPFCNPJ= TTL.CEDNTE_CPFCGC
+--			AND DESCONTO_PRODUCAO_3m.COD_CEDENTE= TTL.CODCLI
+--			AND DESCONTO_PRODUCAO_3m.COD_OPER   = H.Agente
+END  
+
+-- 2017 BASE DO NETFACTOR
+IF DATEPART(YYYY,@M2) = 2017		-- BASE E CODIGOS IGUAIS
+BEGIN
+		-- SELECT * FROM DESCONTO_PRODUCAO_3m  (NOLOCK)
+		UPDATE	 DESCONTO_PRODUCAO_3m  
+			SET  MES_ANO_ANT = VLR  
+		FROM (
+		--		declare @M2 datetime set @M2='20170131'  
+				Select 	Agente,  CODCLI,  SUM(VLR_PRESENTE) AS VLR
+				FROM	COMERCIAL_PRODUCAO (NOLOCK)  
+				WHERE	DT_FECHA = @M2  
+					AND PRODUTO='D'		AND	VLR_OP > 0.0
+					AND VEICULO NOT IN ('ADIANTA') -- SEM ADIANTA, CESSAO
+				GROUP BY AGENTE  , CODCLI ) AS H   
+		WHERE	DESCONTO_PRODUCAO_3m.data_ref   = @data_ref  
+			AND DESCONTO_PRODUCAO_3m.COD_OPER   = H.Agente
+			AND DESCONTO_PRODUCAO_3m.COD_CEDENTE= H.CODCLI
+END  
+-- *************************************************************  
+
+-- INSERE OS NAO LOCALIZADOS   ****************************** mes = e ano ant
+--IF	DATEPART(YYYY,@M2) <= 2016
+--BEGIN
+/*
+	-- ATT
+	-- SELECT * FROM	 DESCONTO_PRODUCAO_3m  (NOLOCK)
+	INSERT	DESCONTO_PRODUCAO_3m
+	-- DECLARE  @data_ref  DATETIME SET  @data_ref  ='20170331'  DECLARE  @M2  DATETIME SET  @M2  ='20160331'
+	SELECT  @data_ref, 	   H.Agente, '', H.CODCLI,'', SUM(H.VLR) AS VLR, 0.0,  -- MES= ANO ANT, MES ANT
+			0.0, 0.0, 0.0, 0.0, 0.0, ''
+	--		declare @data_ref datetime set @data_ref='20170430'  declare @M2 datetime set @M2='20170331'  
+	--		
+SELECT  * 
+	FROM	(
+	--		declare @data_ref datetime set @data_ref='20170430'  declare @M2 datetime set @M2='20170331'  
+			SELECT		Agente, CODCLI, cednte_nome, SUM(VLR_PRESENTE) AS VLR
+			FROM	(
+			--		declare @data_ref datetime set @data_ref='20170430'  declare @M2 datetime set @M2='20170331'  
+				SELECT *
+				FROM	COMERCIAL_PRODUCAO C1 (NOLOCK)
+				 WHERE	C1.DT_FECHA = @M2  
+					AND C1.PRODUTO='D'		AND	C1.VLR_OP > 0.0
+					AND VEICULO NOT IN ('ADIANTA') -- SEM ADIANTA, CESSAO
+				--	GROUP BY C1.AGENTE  , C1.CODCLI 
+						) AS C 
+			-- SELECT * FROM FINSGRDBS..tb_cednte(NOLOCK)   emp_cod,cednte_cedn,cednte_cpfcgc,cednte_nome
+		LEFT JOIN		FINSGRDBS..tb_cednte CLI (NOLOCK)  -- CEDNTE_CPFCGC TEXTO SEM FORMATO
+					ON  CLI.CEDNTE_CEDN = C.CODCLI 
+			WHERE	NOT EXISTS
+					(SELECT * FROM DESCONTO_PRODUCAO_3m D1 (NOLOCK)  
+							WHERE	D1.data_ref   = @data_ref  
+								-- AND D1.COD_OPER   = C.Agente	AND D1.COD_CEDENTE= C.CODCLI 
+								-- CEDENTE NOME INICIO 			AND LEFT(D1.CEDENTE,12) =LEFT(CLI.cednte_nome,12)
+							--  ON	C.CEDNTE_CPFCGC = DESCONTO_PRODUCAO_3m.CPFCNPJ
+							AND '0'+D1.CPFCNPJ= CLI.CEDNTE_CPFCGC  )
+			GROUP BY AGENTE  , CODCLI , CLI.CEDNTE_CPFCGC 				) AS H
+		WHERE	DESCONTO_PRODUCAO_3m.data_ref   = @data_ref  
+			-- NETFACTOR TEM 1 ZERO A ESQ A MENOS
+		GROUP BY	 C.Agente,  C.CODCLI, CLI.cednte_nome
+*/
+--END
+			
+
+/*				LEFT JOIN   -- SELECT * FROM
+-- DESCONTO_PRODUCAO_3m
+						FinSGRDBS..tb_cednte C (NOLOCK) -- CEDNTE_CPFCGC TEXTO SEM FORMATO
+					ON  C.CEDNTE_CEDN = H.CODCLI
+					--  ON	C.CEDNTE_CPFCGC = DESCONTO_PRODUCAO_3m.CPFCNPJ
+				GROUP BY AGENTE  , CODCLI , C.CEDNTE_CPFCGC ) AS TTL
+		WHERE	DESCONTO_PRODUCAO_3m.data_ref   = @data_ref  
+			-- NETFACTOR TEM 1 ZERO A ESQ A MENOS
+			AND '0'+DESCONTO_PRODUCAO_3m.CPFCNPJ= TTL.CEDNTE_CPFCGC
+*/
+
+IF 	DATEPART(YYYY,@M2) >= 2017 -- THEN
+BEGIN	-- NETFACTOR
+	-- SELECT * FROM	 DESCONTO_PRODUCAO_3m  (NOLOCK)
+	INSERT	DESCONTO_PRODUCAO_3m
+	SELECT  @data_ref, 	   C.Agente, '', C.CODCLI,'', SUM(C.VLR) AS VLR, 0.0,  -- MES= ANO ANT, MES ANT
+			0.0, 0.0, 0.0, 0.0, 0.0, ''
+	--		declare @data_ref datetime set @data_ref='20170430'  declare @M2 datetime set @M2='20170331'  
+	--		SELECT  * 
+	FROM	(SELECT		C1.Agente, C1.CODCLI, SUM(C1.VLR_PRESENTE) AS VLR
+				FROM	COMERCIAL_PRODUCAO C1 (NOLOCK)
+				 WHERE	C1.DT_FECHA = @M2  
+					AND C1.PRODUTO='D'		AND	C1.VLR_OP > 0.0
+					AND VEICULO NOT IN ('ADIANTA') -- SEM ADIANTA, CESSAO
+				GROUP BY C1.AGENTE  , C1.CODCLI ) AS C 
+			WHERE NOT EXISTS
+			(SELECT * FROM DESCONTO_PRODUCAO_3m D1 (NOLOCK)  
+					WHERE	D1.data_ref   = @data_ref  
+						AND D1.COD_OPER   = C.Agente
+						AND D1.COD_CEDENTE= C.CODCLI )
+		GROUP BY	 C.Agente,  C.CODCLI
+END
+
+/*  
+  
+-- M3  
+ DECLARE @M3 DATETIME  
+ -- DATA DE FECHAMENTO ************************************  
+ -- DIA 1 DO MES ATUAL  
+ SET  @M3 =  CONVERT(CHAR(4),DATEPART(YEAR,@M2))+  
+    RIGHT(RTRIM('00'+CONVERT(CHAR(2),DATEPART(MONTH,@M2))),2)+'01'  
+ -- FIM DO MES ANTERIOR = FECHAMENTO  
+ SET  @M3=DATEADD(DD,-1,@M3)  
+ -- PROCESSAMENTO NO ULTIMO DIA UTIL DO MES  RISCO  
+  
+ -- ALTERACAO DT FECHAMENTO ULTIMO DIA DO MES  
+ IF @M3 <= '20140831' -- ANTES AGO/2014  
+ BEGIN  
+  -- CHECA SE EH DIA UTIL  
+  SELECT @M3= CASE WHEN DATEPART(DW,@M3) = 1 THEN DATEADD(D,-2,@M3) -- DOMINGO  
+        WHEN DATEPART(DW,@M3) = 7 THEN DATEADD(D,-1,@M3) -- SABADO  
+        ELSE @M3      END  
+ END  
+ -- SELECT @M3  
+  
+  
+  
+-- CALCULA PERCENTUAL  
+UPDATE CARTEIRA_3m  
+SET  TM3 = CARTEIRA_3m.VLRM3 / T.VLRM3 * 100.0,  
+  TM2 = CARTEIRA_3m.VLRM2 / T.VLRM2 * 100.0,  
+  TM1 = CARTEIRA_3m.VLRM1 / T.VLRM1 * 100.0  
+FROM (   SELECT  *  
+   FROM CARTEIRA_3m  (NOLOCK)  
+   WHERE data_ref =@data_ref   
+    AND CLASSE   = 'TTL'    
+  ) AS T  
+WHERE CARTEIRA_3m.data_ref =@data_ref  
+  
+  
+
+SELECT * FROM 
+SELECT PESCNPJCPF,* FROM  NETFACTOR..nfAGENTE (NOLOCK) 
+EMPCODIGO AGECODIGO
+SELECT * FROM  NETFACTOR..nfPESSOA (NOLOCK) 
+SELECT * FROM  DESCONTO_PRODUCAO_3m (NOLOCK) 
+*/
+
+
+
+
+-- CALCULA PERCENTUAL 
+-- select * from   DESCONTO_PRODUCAO_3m  (nolock) where data_ref='20170831'
+UPDATE DESCONTO_PRODUCAO_3m  
+SET  DIF_MES = MES_ATUAL - MES_ANT,
+	 DIF_ANO = MES_ATUAL - MES_ANO_ANT,
+	 PRC_DIF_MES = CASE WHEN MES_ANT=0.0 THEN 0.0 ELSE ((MES_ATUAL/MES_ANT    )-1.0) * 100.0 END,  
+	 PRC_DIF_ANO = CASE WHEN MES_ANO_ANT=0.0 THEN 0.0 ELSE ((MES_ATUAL/MES_ANO_ANT)-1.0) * 100.0 END
+WHERE		Data_ref =@data_ref 
+
+-- CEDENTE  ****************************
+--  SELECT * FROM DESCONTO_PRODUCAO_3m WHERE data_ref ='20170831'
+-- DECLARE @data_ref DATETIME SET @data_ref ='20170331'
+IF DATEPART(YYYY,@data_ref) >= 2017
+UPDATE		DESCONTO_PRODUCAO_3m
+	SET		CEDENTE	 = P.PESNOME, CPFCNPJ = P.PESCNPJCPF
+--  SELECT *
+	FROM		NETFACTOR..nfCEDENTE A (NOLOCK) 
+	LEFT JOIN	NETFACTOR..nfPESSOA P (NOLOCK) 
+		ON		A.PESCNPJCPF = P.PESCNPJCPF
+	WHERE		Data_ref =@data_ref 
+		AND		COD_CEDENTE=A.CEDCODIGO  -- COD OPERADOR = AGENTE
+		AND		ISNULL(CEDENTE,'') = ''
+
+-- CEDENTE DA ADIANTA
+-- SELECT * 	FROM		NETFACTOR..nfagente A (NOLOCK) WHERE ageCodigo= 22
+-- SELECT * 	FROM		NETFACTOR..nfCEDENTE A (NOLOCK) WHERE CEDcodigo= 513
+/*
+SELECT * FROM NETFACTOR..nfOperacao (nolock) where opedata between '20170801' and '20170831' and opecodigo=22 and cedcodigo=513
+
+-- netfactor até 7/6/17 bckp
+*/
+
+-- CEDENTE DO ATT
+-- DECLARE @data_ref DATETIME SET @data_ref ='20170331'
+IF DATEPART(YYYY,@data_ref) <= 2016  -- ATT
+UPDATE		DESCONTO_PRODUCAO_3m
+	SET		CEDENTE	 = CEDNTE_NOME, CPFCNPJ = CEDNTE_CPFCGC
+--  SELECT *
+	FROM		FinSGRDBS..TB_CEDNTE C (NOLOCK) 
+	WHERE		Data_ref =@data_ref 
+		AND		COD_CEDENTE=C.CEDNTE_CEDN  -- COD CEDENTE
+		AND		ISNULL(CEDENTE,'') = ''
+
+
+-- OPERADOR  ****************** NOME
+-- DECLARE @data_ref DATETIME SET @data_ref ='20170331'
+UPDATE		DESCONTO_PRODUCAO_3m
+	SET		OPERADOR	 = P.PESNOME
+--  SELECT *
+	FROM		NETFACTOR..nfAGENTE A (NOLOCK) 
+	LEFT JOIN	NETFACTOR..nfPESSOA P (NOLOCK) 
+		ON		A.PESCNPJCPF = P.PESCNPJCPF
+	WHERE		Data_ref =@data_ref 
+		AND		COD_OPER=A.AGECODIGO  -- COD OPERADOR = AGENTE
+
+--  SELECT * FROM DESCONTO_PRODUCAO_3m (NOLOCK) WHERE DATA_REF ='20170331'
+  
+-- MOSTRA NA TELA  CEDENTE
+IF	@relatorio =1
+BEGIN
+		SELECT	COD_OPER, 
+				ISNULL(OPERADOR,'')		AS OPERADOR, 
+				ISNULL(COD_CEDENTE,'')	AS COD_CEDENTE, 
+				ISNULL(CEDENTE,'')		AS CEDENTE,
+				ISNULL(MES_ANO_ANT,0.0) AS MES_ANO_ANT,
+				ISNULL(MES_ANT,0.0)		AS MES_ANT,
+				ISNULL(MES_ATUAL,0.0)	AS MES_ATUAL,
+				ISNULL(DIF_MES,0.0)		AS DIF_MES,
+				ISNULL(PRC_DIF_MES,0.0)	AS PRC_DIF_MES,
+				ISNULL(DIF_ANO,0.0)		AS DIF_ANO,
+				ISNULL(PRC_DIF_ANO,0.0)	AS PRC_DIF_ANO
+		 FROM	DESCONTO_PRODUCAO_3m (NOLOCK) WHERE data_ref =@data_ref 
+		 ORDER  BY CEDENTE
+		--AND CLASSE <>'TTL'  
+END  
+
+-- MOSTRA NA TELA  OPERAD
+IF	@relatorio =2
+BEGIN
+		SELECT	COD_OPER, 
+				ISNULL(OPERADOR,'')		AS OPERADOR, 
+				ISNULL(COD_CEDENTE,'')	AS COD_CEDENTE, 
+				ISNULL(CEDENTE,'')		AS CEDENTE,
+				ISNULL(MES_ANO_ANT,0.0) AS MES_ANO_ANT,
+				ISNULL(MES_ANT,0.0)		AS MES_ANT,
+				ISNULL(MES_ATUAL,0.0)	AS MES_ATUAL,
+				ISNULL(DIF_MES,0.0)		AS DIF_MES,
+				ISNULL(PRC_DIF_MES,0.0)	AS PRC_DIF_MES,
+				ISNULL(DIF_ANO,0.0)		AS DIF_ANO,
+				ISNULL(PRC_DIF_ANO,0.0)	AS PRC_DIF_ANO
+		 FROM	DESCONTO_PRODUCAO_3m (NOLOCK) WHERE data_ref =@data_ref 
+		 ORDER  BY OPERADOR,CEDENTE
+		--AND CLASSE <>'TTL'  
+END  
+
+-- MOSTRA NA TELA  RESUMO OPERAD
+IF	@relatorio =3
+BEGIN
+		--	 DECLARE @data_ref DATETIME SET @data_ref ='20170331'
+		SELECT	--COD_OPER, 
+				ISNULL(OPERADOR,'')			 AS OPERADOR, 
+				SUM(ISNULL(MES_ANO_ANT,0.0)) AS MES_ANO_ANT,
+				SUM(ISNULL(MES_ANT,0.0))	 AS MES_ANT,
+				SUM(ISNULL(MES_ATUAL,0.0))   AS MES_ATUAL,
+				0.0		AS DIF_MES,
+				0.0	AS PRC_DIF_MES,
+				0.0		AS DIF_ANO,
+				0.0	AS PRC_DIF_ANO
+		 FROM	DESCONTO_PRODUCAO_3m (NOLOCK) WHERE data_ref =@data_ref 
+		 GROUP  BY  OPERADOR  -- COD_OPER ,
+		 ORDER  BY OPERADOR
+		--AND CLASSE <>'TTL'  
+END  
+  
+END  
+  
+  

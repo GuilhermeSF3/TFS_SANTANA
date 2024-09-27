@@ -1,0 +1,31 @@
+USE sig 
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'SCR_PendFORMALIZ_TTL' AND type = 'P')
+   DROP PROCEDURE [dbo].[SCR_PendFORMALIZ_TTL]
+GO   
+    
+CREATE Procedure [dbo].SCR_PendFORMALIZ_TTL (                                        
+         @DT_INI SMALLDATETIME,                            
+         @DT_FIM SMALLDATETIME,                           
+         @AGNT   INT ) AS                          
+                        
+ begin                        
+                       
+SELECT COUNT (*) AS TOTAL, 
+COUNT(CASE SITUACAO WHEN 'INT' THEN 1 ELSE NULL END) AS TOTAL_INT,
+COUNT(CASE SITUACAO WHEN 'PEN' THEN 1 ELSE NULL END) AS TOTAL_PEN,
+COUNT(CASE SITUACAO WHEN 'CAN' THEN 1 ELSE NULL END) AS TOTAL_CAN,
+COUNT(CASE SITUACAO WHEN 'REP' THEN 1 ELSE NULL END) AS TOTAL_REP,
+COUNT(CASE SITUACAO WHEN 'APR' THEN 1 ELSE NULL END) AS TOTAL_APR,
+COUNT(CASE SITUACAO WHEN 'AND' THEN 1 ELSE NULL END) AS TOTAL_AND FROM DCO_PEND_FORMALIZ_ANALITICO
+WHERE 1= 0+ CASE WHEN  @AGNT='99' THEN 1 
+    WHEN  @AGNT<>'99' AND A13CODORG = @AGNT  THEN 1            
+    ELSE  0   END  
+                      
+END 

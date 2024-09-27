@@ -1,0 +1,202 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="SantanaWeb.master.vb" Inherits="Santana.SantanaWeb" %>
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Santana Financeira</title>
+
+    <link rel="stylesheet" href="css/Style.css" />
+    <link rel="stylesheet" href="Content/bootstrap.css" />
+    <link rel="stylesheet" href="Content/bootstrap-select.css" />
+    <link rel="stylesheet" href="css/GridviewScroll.css" />
+    <link rel="stylesheet" href="Content/themes/base/jquery-ui.css" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+
+
+
+</head>
+
+
+
+
+<body>
+    <form id="form1" runat="server">
+
+        <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/Scripts/jquery-2.1.0.min.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery-ui-1.10.4.min.js" />
+                <asp:ScriptReference Path="~/Scripts/bootstrap.min.js" />
+                <asp:ScriptReference Path="~/Scripts/bootstrap-select.js" />
+
+                <asp:ScriptReference Path="~/Scripts/gridviewScroll.js" />
+                <asp:ScriptReference Path="~/Scripts/bootstrap-growl.js" />
+                 
+                <asp:ScriptReference Path="~/Scripts/Spin.js" />
+                <asp:ScriptReference Path="~/Scripts/bootbox.min.js"/>
+                <asp:ScriptReference Path="~/Scripts/date.js"/>
+                <asp:ScriptReference Path="~/Scripts/jquery.validate.js"/>
+
+            </Scripts>
+        </asp:ScriptManager>
+
+
+        <div style="height: auto">
+            <table border="0" style="height: 112px; width: 100%">
+                <!-- fwtable fwsrc="SMC" fwbase="SMC-1.gif" fwstyle="Dreamweaver" fwdocid = "742308039" fwnested="0" -->
+                <tbody>
+                    <tr class="tr-1-r1-c1">
+                        <td class="td-1-r1-c1" colspan="3">&nbsp; &nbsp;
+                                <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td-1-r2-c2">
+                            <table style="width: 387px; height: 88px;" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td class="td-1-r2-c1"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+
+                        <td class="td-1-r2-c2">
+                            <table style="width: 213px; height: 88px" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td class="td-1-r2-c2"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="td-1-r2-c2">
+                            <div>
+                                <table style="width: 180px; height: 88px" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="td-1-r2-c2"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="height: 5px"></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+
+        <div class="container-full">
+            <%-- <hr />--%>
+            <footer style="font-family: Arial; font-size: small; color: darkgray">
+<%--                <p> <%: DateTime.Now.Year%> - Santana SA - Credito Financiamento e Investimento.</p>--%>
+                <p> Santana SA - Credito Financiamento e Investimento.</p>
+            </footer>
+        </div>
+
+    </form>
+</body>
+    
+    
+    
+ <script type="text/javascript">
+     
+
+
+     function Alerta(titulo, mensagem, type) {
+         $.growl({
+             icon: 'glyphicon glyphicon-info-sign',
+             title: titulo,
+             message: mensagem
+         },
+         {
+             template: { title_divider: '<hr class="separator" />' },
+             position: {
+                 from: "top",
+                 align: "center" //center, left, right
+             },
+             offset: 120,
+             pause_on_mouseover: true,
+             type: type //info, success, warning, danger
+
+         });
+     };
+
+
+     function NumericAllow() {
+
+         $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
+             //this.value = this.value.replace(/[^0-9\.]/g,'');
+             $(this).val($(this).val().replace(/[^0-9\,]/g, ""));
+             if ((event.which !== 44 || $(this).val().indexOf(',') !== -1) && (event.which < 48 || event.which > 57)) {
+                 event.preventDefault();
+             }
+         });
+
+         $(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
+             $(this).val($(this).val().replace(/[^\d].+/, ""));
+             if ((event.which < 48 || event.which > 57)) {
+                 event.preventDefault();
+             }
+         });
+     };
+
+
+     var spinner;
+
+     function StartSpin() {
+
+         var opts = {
+             lines: 17, // The number of lines to draw
+             length: 10, // The length of each line
+             width: 7, // The line thickness
+             radius: 21, // The radius of the inner circle
+             corners: 1, // Corner roundness (0..1)
+             rotate: 0, // The rotation offset
+             direction: 1, // 1: clockwise, -1: counterclockwise
+             color: '#000', // #rgb or #rrggbb or array of colors
+             speed: 1, // Rounds per second
+             trail: 80, // Afterglow percentage
+             shadow: false, // Whether to render a shadow
+             hwaccel: false, // Whether to use hardware acceleration
+             className: 'spinner', // The CSS class to assign to the spinner
+             zIndex: 2e9, // The z-index (defaults to 2000000000)
+             top: '50%', // Top position relative to parent
+             left: '50%' // Left position relative to parent
+         };
+
+         var target = document.getElementById('SpingLoad');
+         spinner = new Spinner(opts).spin(target);
+
+     };
+
+
+     function StopSpin() {
+         spinner.stop();
+     };
+
+
+ </script>
+     
+
+
+</html>

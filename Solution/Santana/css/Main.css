@@ -1,0 +1,640 @@
+﻿/* Geral */
+body {background:#FFFFFF; margin:0; font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061;}
+
+/* Fontes em TDS */
+.font-default-0 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061;}
+a.font-default-0 {color: #001061; font-weight: normal; text-decoration: none;}
+a.font-default-0:link {color: #001061; font-weight: normal; text-decoration: underline}
+a.font-default-0:visited {color: #001061; font-weight: normal; text-decoration: underline;}
+a.font-default-0:active {color: #001061; font-weight: normal; text-decoration: underline;}
+a.font-default-0:hover {color: #999999; font-weight: normal; text-decoration: underline;}
+
+.font-default-1 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #FFFFFF;}
+a.font-default-1 {color: #FFFFFF; font-weight: normal; text-decoration: none;}
+a.font-default-1:link {color: #FFFFFF; font-weight: normal; text-decoration: underline}
+a.font-default-1:visited {color: #FFFFFF; font-weight: normal; text-decoration: underline;}
+a.font-default-1:active {color: #FFFFFF; font-weight: normal; text-decoration: underline;}
+a.font-default-1:hover {color: #999999; font-weight: normal; text-decoration: underline;}
+
+.font-default-2 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #000000;}
+.font-default-3 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #8B2200;}
+.font-default-4 {font-family: Courier New; font-size: 12px; color: #FFFFFF;}
+.font-default-4a {font-family: Courier New; font-size: 10px; color: #FFFFFF;}
+.font-default-5 {font-family: Courier New; font-size: 6px; color: #001061;}
+.font-default-6 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 14px; color: #FFFFFF;}
+.font-default-7 {font-family: Courier New; font-size: 10px; color: #FFFFFF;}
+
+/* Titulos das paginas */
+.font-titulo-0 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 12px; color: #001061;}
+.font-titulo-1 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 12px; color: #FFFFFF;}
+.font-titulo-1a {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 12px; color: #FFFFFF;}
+.font-titulo-2 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 12px; color: #B22222;}
+.font-titulo-3 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #FFFFFF;}
+.font-titulo-4 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #B25544;}
+
+/* Styles - TRs completas */
+.tr-n {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061; background-color: transparent;}
+.tr-0 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061; background-color: #FFFFFF;}
+.tr-1 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #FFFFFF; background-color: #001061;}
+.tr-2 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061; background-color: #ffffdc;}
+.tr-3 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061; background-color: #607C9F;}
+.tr-4 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #FFFFFF; background-color: #CCCCCC;}
+.tr-4a {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061; background-color: #006666;}
+.tr-5 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061; background-color: #EEEEEE;}
+.tr-6 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #FFFFFF; background-color: #8B2200;}
+.tr-7 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #FFFFFF; background-color: #00543F;}
+.tr-8 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 12px; color: #FFFFFF; background-color: #00543F;}
+.tr-9 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061; background-color: #5E9B56;}
+
+.tr-preto {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #000000;
+}
+.tr-azul-marinho {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #00008B;
+}
+.tr-verde-escuro {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #006400;
+}
+.tr-verde-claro {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #001061;
+	background-color: #A4FFA4;
+}
+.tr-vermelho {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #B22222;
+}
+.tr-laranja {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #001061;
+	background-color: #FFD27D;
+}
+.tr-roxo {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #9370DB;
+}
+.tr-marrom {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #483602;
+}
+.tr-azul-claro {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #001061;
+	background-color: #95ECED;
+}
+.tr-amarelo {
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
+	font-size: 9px;
+	color: #001061;
+	background-color: Yellow;
+}
+
+/* Styles - Objetos de Formulários */
+div, td, input, select, textarea {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061;}
+input {border: #001061 1px solid; height: 18px;}
+hr {height: 1px; color: #AAAAAA;}
+
+.border {border: #001061 1px solid;}
+.border-no {border: none;}
+
+/* Cores de Fonts */
+.font-azul  {color: #001061;}
+.font-preto {color: #000000;}
+.font-verde {color: #1A4A32;}
+.font-vermelho {color: #8B2200;}
+.font-amarelo {color: Yellow;}
+.font-amarelo-escuro {color: #BFBF00;}
+.font-laranja {color: #CC9933}
+.font-magenta {color: #0040BF}
+.font-vermelho2 {color: #CF4000}
+.font-cinza-1 {color: #444444;}
+.font-cinza-2 {color: #666666;}
+.font-cinza-3 {color: #888888;}
+.font-cinza-4 {color: #AAAAAA;}
+.font-cinza-5 {color: #DFDFDF;}
+.font-cinza-6 {color: #EEEEEE;}
+.font-branco  {color: #FFFFFF;}
+.font-cor-1 {color: #1A4A32;}
+.font-cor-2 {color: #3399CC;}
+.font-cor-3 {color: #6633CC;}
+.font-cor-4 {color: #CC9933;}
+.font-cor-5 {color: #CC6633;}
+.font-cor-6 {color: #999966;}
+.font-cor-7 {color: #1A4A32;}
+
+/* Tamanho de Fonts */
+.font-9 {font-size: 9px;}
+.font-10 {font-size: 10px;}
+.font-11 {font-size: 11px;}
+.font-12 {font-size: 12px;}
+.font-13 {font-size: 13px;}
+.font-14 {font-size: 14px;}
+.font-15 {font-size: 15px;}
+.font-16 {font-size: 16px;}
+.font-17 {font-size: 17px;}
+.font-18 {font-size: 18px;}
+.font-19 {font-size: 19px;}
+.font-20 {font-size: 20px;}
+.font-21 {font-size: 21px;}
+.font-22 {font-size: 22px;}
+.font-23 {font-size: 23px;}
+.font-24 {font-size: 24px;}
+.font-32 {font-size: 32px;}
+.font-48 {font-size: 48px;}
+
+/* Tipos de Fonts */
+.font-f0 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;}
+.font-f1 {font-family: Courier New, Courier, Monospace;}
+.font-f2 {font-family: Times New Roman;}
+
+/* Font de erro */
+.erro {color: #CC3333; font-weight: bold;}
+
+/* Altura de Linha */
+.line-height-0 {line-height: 9px;}
+.line-height-1 {line-height: 10px;}
+.line-height-2 {line-height: 13px;}
+.line-height-3 {line-height: 16px;}
+.line-height-4 {line-height: 18px;}
+.line-height-5 {line-height: 24px;}
+.line-height-6 {line-height: 32px;}
+.line-height-7 {line-height: 48px;}
+
+/* Backgrounds */
+.bg-none {background-image: none;}
+.bg-preto {background-color: #000000;}
+.bg-cinza-1 {background-color: #444444;}
+.bg-cinza-2 {background-color: #666666;}
+.bg-cinza-3 {background-color: #888888;}
+.bg-cinza-4 {background-color: #CCCCCC;}
+.bg-cinza-5 {background-color: #EEEEEE;}
+.bg-cinza-6 {background-color: #F7F7F7;}
+.bg-cor-0 {background-color: #FFFFFF;}
+.bg-cor-1 {background-color: #001061;}
+.bg-cor-2 {background-color: #FFFFE0;}
+.bg-cor-3 {background-color: #607C9F;}
+.bg-cor-4 {background-color: #3399CC;}
+/*
+.bg-cor-1 {background-color: #796F35;}
+.bg-cor-2 {background-color: #E7E3C4;}
+.bg-cor-3 {background-color: #D3CA94;}
+.bg-cor-4 {background-color: #BEB374;}
+*/
+
+/* Links */
+a {color: #001061; font-weight: normal; text-decoration: none;}
+a:link {color: #001061; font-weight: normal; text-decoration: underline}
+a:visited {color: #001061; font-weight: normal; text-decoration: underline;}
+a:active {color: #001061; font-weight: normal; text-decoration: underline;}
+a:hover {color: #999999; font-weight: normal; text-decoration: underline;}
+
+a.negativo {color: #8B2200; font-weight: normal; text-decoration: none;}
+a.negativo:link {color: #8B2200; font-weight: normal; text-decoration: underline}
+a.negativo:visited {color: #8B2200; font-weight: normal; text-decoration: underline;}
+a.negativo:active {color: #8B2200; font-weight: normal; text-decoration: underline;}
+a.negativo:hover {color: #999999; font-weight: normal; text-decoration: underline;}
+
+a.neutro {color: #FFFFFF; font-weight: normal; text-decoration: none;}
+a.neutro:link {color: #FFFFFF; font-weight: normal; text-decoration: underline}
+a.neutro:visited {color: #FFFFFF; font-weight: normal; text-decoration: underline;}
+a.neutro:active {color: #FFFFFF; font-weight: normal; text-decoration: underline;}
+a.neutro:hover {color: #999999; font-weight: normal; text-decoration: underline;}
+
+a.menu {color: #FFFFFF; font-weight: normal; text-decoration: none}
+a.menu:hover {color: #FFFFFF; font-weight: normal; text-decoration: none}
+a.menu:link {color: #FFFFFF; font-weight: normal; text-decoration: none}
+a.menu:visited {color: #FFFFFF; font-weight: normal; text-decoration: none}
+
+a.menu_h {color: #FFFFFF; font-size: 12px; font-weight: bold; text-decoration: none;}
+a.menu_h:visited {color: #FFFFFF; font-size: 12px; font-weight: bold; text-decoration: none;}
+a.menu_h:active {color: #FFFFFF; font-size: 12px; font-weight: bold; text-decoration: none;}
+a.menu_h:hover {color: #999999; font-size: 12px; font-weight: bold; text-decoration: none;}
+
+a.menu_r {color: white; font-weight: normal; text-decoration: none;}
+a.menu_r:visited {color: #00543F; font-weight: normal; text-decoration: none;}
+a.menu_r:active {color: #00543F; font-weight: normal; text-decoration: none;}
+a.menu_r:hover {color: #999999; font-weight: normal; text-decoration: none;}
+
+a.menu_m {color: #001061; font-weight: normal; text-decoration: underline; }
+a.menu_m:visited { color: #001061; font-weight: normal; text-decoration: underline;}
+a.menu_m:active {color: #001061; font-weight: normal; text-decoration: underline;}
+a.menu_m:hover { color: #999999; font-weight: normal; text-decoration: underline;}
+
+a.menu_r2 {color: #000000; font-weight: normal; text-decoration: none;}
+a.menu_r2:visited {color: #000000; font-weight: normal; text-decoration: none;}
+a.menu_r2:active {color: #000000; font-weight: normal; text-decoration: none;}
+a.menu_r2:hover {color: #999999; font-weight: normal; text-decoration: none;}
+
+a.menu_m2 {color: #000000; font-weight: normal; text-decoration: underline; }
+a.menu_m2:visited { color: #000000; font-weight: normal; text-decoration: underline;}
+a.menu_m2:active {color: #000000; font-weight: normal; text-decoration: underline;}
+a.menu_m2:hover { color: #999999; font-weight: normal; text-decoration: underline;}
+
+.tab {
+
+      margin-left :15px;
+    
+} 
+
+.item
+
+{     
+
+	  font-weight: bold;
+	  
+	  font-family:Tahoma;
+	  
+	  text-align:center;
+	  	
+      color: black; 
+     
+      padding-left:5px;
+
+      padding-right:5px;
+
+      padding-bottom: 5px;
+
+      padding-top: 5px; 
+      
+      border-right-style:ridge;           
+            
+      font-size:x-small;   
+                   
+}
+ 
+.selectedTab
+
+{     
+
+     font-weight: bold;
+      
+     font-family:Tahoma;
+     
+     text-align:center;
+
+     background:white;      
+          
+     border-style:outset;
+      
+     background-color:ButtonHighlight;
+      
+     border-bottom-color:ActiveCaption;	     
+           
+     border-left-style:inset;                
+     
+      font-size:x-small;  
+
+}
+
+
+.tabGraf {
+
+      margin-left :15px;
+    
+} 
+
+.itemGraf
+
+{     
+
+	  font-weight: bold;
+	  
+	  font-family:Tahoma;
+	  
+	  text-align:center;
+	  	
+      color: black; 
+     
+      padding-left:5px;
+
+      padding-right:5px;
+
+      padding-bottom: 5px;
+
+      padding-top: 5px; 
+      
+      border-right-style:ridge;           
+            
+      font-size:x-small;    
+                   
+}
+ 
+.selectedTabGraf
+
+{     
+
+     font-weight: bold;
+      
+     font-family:Tahoma;
+     
+     text-align:center;     
+          
+     border-style:outset;
+      
+     border-color:inherit;
+      
+     border-bottom-color:inherit;	     
+           
+     border-left-style:inset;                
+     
+     font-size:x-small;  
+
+}
+
+.GVFixedFooter
+ {
+   font-weight:bold; background-color: #006666; position:static;
+   bottom:expression(getScrollBottom(this.parentNode.parentNode.parentNode.parentNode));
+ }
+
+
+td.locked, th.locked
+{
+  position:relative;    
+  left:expression((this.parentElement.parentElement.parentElement.parentElement.scrollLeft-2)+'px');
+}   
+
+/* Keeps the header as the top most item. Important for top left item*/
+th.locked {z-index: 99;}
+
+/* DataGrid Item and AlternatingItem Style*/
+.GridRow {font-size: 10pt; color: black; font-family: Arial; 
+             background-color:#ffffff; height:35px;}
+.GridAltRow {font-size: 10pt; color: black; font-family: Arial; 
+             background-color:#eeeeee; height:35px;}
+
+
+.botaoCessao0
+{ 
+position: absolute; 
+top:132px; 
+left:130px;
+}
+.botaoCessao1
+{ 
+position: absolute; 
+top:132px; 
+left:260px; 
+}
+.botaoCessao2
+{ 
+position: absolute; 
+top:132px; 
+left:390px; 
+}
+.botaoCessao3
+{ 
+position: absolute; 
+top:132px; 
+left:520px; 
+}
+.botaoCessao4
+{ 
+position: absolute; 
+top:132px; 
+left:650px; 
+}
+.botaoCessao5
+{ 
+position: absolute; 
+top:132px; 
+left:780px; 
+}
+.botaoCessao6
+{ 
+position: absolute; 
+top:132px; 
+left:910px; 
+}
+.botaoCessao7
+{ 
+position: absolute; 
+top:132px; 
+left:1040px; 
+}
+.botaoCessao8
+{ 
+position: absolute; 
+top:132px; 
+left:1170px; 
+}
+.botaoCessao9
+{ 
+position: absolute; 
+top:132px; 
+left:1300px; 
+}
+.botaoCessao10
+{ 
+position: absolute; 
+top:132px; 
+left:1430px; 
+}
+.botaoCessao11
+{ 
+position: absolute; 
+top:132px; 
+left:1560px; 
+}
+.botaoCessao12
+{ 
+position: absolute; 
+top:132px; 
+left:1690px; 
+}
+.botaoCessao13
+{ 
+position: absolute; 
+top:132px; 
+left:1820px; 
+}
+.botaoCessao14
+{ 
+position: absolute; 
+top:132px; 
+left:1950px; 
+}
+.botaoCessao15
+{ 
+position: absolute; 
+top:132px; 
+left:2080px; 
+}
+
+
+
+.btnCessao0
+{ 
+position: absolute; 
+top:132px; 
+left:130px; 
+text-align:left;
+}
+.btnCessao1
+{ 
+position: absolute; 
+top:132px; 
+left:230px; 
+text-align:left;
+}
+.btnCessao2
+{ 
+position: absolute; 
+top:132px; 
+left:330px; 
+text-align:left;
+}
+.btnCessao3
+{ 
+position: absolute; 
+top:132px; 
+left:430px; 
+text-align:left;
+}
+.btnCessao4
+{ 
+position: absolute; 
+top:132px;
+left:530px;  
+text-align:left;
+}
+.btnCessao5
+{ 
+position: absolute; 
+top:132px; 
+left:630px; 
+text-align:left;
+}
+.btnCessao6
+{ 
+position: absolute; 
+top:132px; 
+left:730px; 
+text-align:left;
+
+}
+.btnCessao7
+{ 
+position: absolute; 
+top:132px; 
+left:830px; 
+text-align:left;
+}
+.btnCessao8
+{ 
+position: absolute; 
+top:132px; 
+left:930px; 
+text-align:left;
+}
+.btnCessao9
+{ 
+position: absolute; 
+top:132px; 
+left:1030px; 
+text-align:left;
+}
+.btnCessao10
+{ 
+position: absolute; 
+top:132px;
+left:760px;  
+text-align:left;
+}
+.btnCessao11
+{ 
+position: absolute; 
+top:132px; 
+left:1130px; 
+text-align:left;
+}
+.btnCessao12
+{ 
+position: absolute; 
+top:132px; 
+left:1230px; 
+text-align:left;
+}
+.btnCessao13
+{ 
+position: absolute; 
+top:132px; 
+left:1330px; 
+text-align:left;
+
+}
+.btnCessao14
+{ 
+position: absolute; 
+top:132px; 
+left:1430px; 
+text-align:left;
+}
+.btnCessao15
+{ 
+position: absolute; 
+top:132px; 
+left:1530px; 
+text-align:left;
+}
+
+
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top:0;
+    left:100%;
+    margin-top:-6px;
+    margin-left:-1px;
+    -webkit-border-radius:0 6px 6px 6px;
+    -moz-border-radius:0 6px 6px 6px;
+    border-radius:0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display:block;
+}
+.dropdown-submenu>a:after {
+    display:block;
+    content:" ";
+    float:right;
+    width:0;
+    height:0;
+    border-color:transparent;
+    border-style:solid;
+    border-width:5px 0 5px 5px;
+    border-left-color:#cccccc;
+    margin-top:5px;
+    margin-right:-10px;
+}
+.dropdown-submenu:hover>a:after {
+    border-left-color:#ffffff;
+}
+.dropdown-submenu.pull-left {
+    float:none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left:-100%;
+    margin-left:10px;
+    -webkit-border-radius:6px 0 6px 6px;
+    -moz-border-radius:6px 0 6px 6px;
+    border-radius:6px 0 6px 6px;
+}

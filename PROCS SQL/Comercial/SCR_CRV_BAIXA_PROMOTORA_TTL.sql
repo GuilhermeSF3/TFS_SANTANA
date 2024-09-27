@@ -1,0 +1,31 @@
+USE sig --[Santana]
+GO
+/****** Object:  StoredProcedure [dbo].[scr_graf_Rolag_Consolid]    Script Date: 05/01/2017 16:23:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- PROC CARGA FECHAMENTO  **********************************************************************************************************************************************************************************
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'SCR_CRV_BAIXA_PROMOTORA_TTL' AND type = 'P')
+   DROP PROCEDURE [dbo].[SCR_CRV_BAIXA_PROMOTORA_TTL] 
+GO   
+CREATE PROCEDURE SCR_CRV_BAIXA_PROMOTORA_TTL(  
+@DT_DE SMALLDATETIME,  
+@DT_ATE SMALLDATETIME,  
+@AGENTE VARCHAR(10)) AS  
+  
+BEGIN  
+  
+SELECT COUNT(*) AS TOTAL FROM CDCSANTANAMICROCREDITO..EPEND (NOLOCK)   
+INNER JOIN CDCSANTANAMICROCREDITO..COPER (NOLOCK) ON EPNROPER = OPNROPER  
+INNER JOIN CDCSANTANAMICROCREDITO..TORG3 (NOLOCK) ON OPCODORG3 = O3CODORG  
+WHERE EPDTLNCBX BETWEEN @DT_DE AND @DT_ATE  
+AND O3ATIVA IN ('S','A')
+AND 1= 0+ CASE WHEN  @AGENTE='99' THEN 1 -- TODOS OS AGENTES          
+      WHEN  @AGENTE<>'99' AND OPCODORG3 = @AGENTE  THEN 1          
+      ELSE  0   END   
+AND O3DESCR NOT LIKE 'SHOP%'  
+  
+END
