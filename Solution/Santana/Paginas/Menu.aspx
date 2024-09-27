@@ -619,7 +619,7 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cnab Renegociação</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Gerar Carga</a></li>
-                                        <li><a href="#">Gerar Cnab</a></li>
+                                        <li><a href="../Paginas/FundoQuata/RenegCnabGerar_R.aspx">Gerar Cnab</a></li>
                                         <li><a href="#">Inserir Faltante</a></li>
                                         <li><a href="#">Alterar</a></li>
                                         <li><a href="#">Relatório</a></li>

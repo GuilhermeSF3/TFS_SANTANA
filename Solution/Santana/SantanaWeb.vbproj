@@ -343,6 +343,7 @@
     <Content Include="Paginas\FundoQuata\Cnab550.aspx" />
     <Content Include="Paginas\FundoQuata\CnabAlter.aspx" />
     <Content Include="Paginas\FundoQuata\CnabBaixaInclusao.aspx" />
+    <Content Include="Paginas\FundoQuata\RenegCnabGerar_R.aspx" />
     <Content Include="Paginas\FundoQuata\GerarCnab.aspx" />
     <Content Include="Paginas\FundoQuata\GerarCnabAlter.aspx" />
     <Content Include="Paginas\FundoQuata\OrdinarioCarga_O.aspx" />
@@ -1689,6 +1690,13 @@
     </Compile>
     <Compile Include="Paginas\FundoQuata\CnabBaixaInclusao.aspx.vb">
       <DependentUpon>CnabBaixaInclusao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\RenegCnabGerar_R.aspx.designer.vb">
+      <DependentUpon>RenegCnabGerar_R.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\RenegCnabGerar_R.aspx.vb">
+      <DependentUpon>RenegCnabGerar_R.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\FundoQuata\GerarCnab.aspx.designer.vb">
