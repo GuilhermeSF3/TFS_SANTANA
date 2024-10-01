@@ -13,6 +13,10 @@ fieldset
 	margin: 5px;
 }
 
+.enabled-implement {
+	display: none;
+}
+
 .boldText
 {
 	font-weight: bold;

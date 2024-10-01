@@ -177,26 +177,29 @@ Namespace Paginas.FundoQuata
                 Response.Charset = ""
                 Response.ContentType = "application/octet-stream"
                 Response.AddHeader("Content-Disposition", "attachment; filename=" & nomeArquivo)
-                Using sw As New StringWriter()
 
+                Using sw As New StringWriter()
                     For Each row As DataRow In dt.Rows
+                        Dim linha As String = ""
                         For Each coluna As DataColumn In dt.Columns
-                            sw.Write(row(coluna.ColumnName).ToString() & vbTab)
+                            Dim valor As String = row(coluna.ColumnName).ToString().PadRight(10)
+                            linha &= valor
                         Next
-                        sw.WriteLine()
+                        linha = linha.PadRight(550).Substring(0, 550)
+                        sw.WriteLine(linha)
                     Next
+
                     Response.Output.Write(sw.ToString())
                 End Using
                 Response.Flush()
                 Response.Close()
             Catch ex As Exception
-
                 Debug.WriteLine("Exceção: " & ex.Message)
                 Debug.WriteLine("Stack Trace: " & ex.StackTrace)
-
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao gerar o arquivo.');", True)
             End Try
         End Sub
+
 
 
 

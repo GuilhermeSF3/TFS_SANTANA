@@ -5,6 +5,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Cnab Baixa Inclusao</title>
+    
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -27,56 +29,39 @@
                                 <div style="width: 15px" class="btn-group"></div>
                             </li>
                             <lidiv style="margin: 5px">
-                                <div style="height: 20px"></div>
+
                                 <div style="display: flex; flex-direction: row; gap: 30px;">
+
+
                                     <!-- Data de Referência -->
                                     <div style="display: flex; flex-direction: column; align-items: start; text-align: start;">
                                         <label class="navbar-text" style="float: none; margin: 0;">Data de Referência</label>
                                         <asp:TextBox ID="txtData" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 100px;"></asp:TextBox>
                                     </div>
 
+                                    <div  style="display: flex; align-items: flex-end !important; flex-direction: row; gap: 10px;">
+                                        <asp:Button ID="btnCarregaInv" runat="server" Text="Carregar" CssClass="btn btn-success navbar-btn"  OnClick="btnCarregar_Click"  />
+                                    </div>
+
                                     <!-- Contrato -->
-                                    <div style="display: flex; flex-direction: column; align-items: start; text-align: start;">
+                                    <div style=" display: flex;  flex-direction: column; align-items: start; text-align: start;">
                                         <label class="navbar-text" style="float: none; margin: 0;">Contrato</label>
-                                        <asp:TextBox ID="txtContract" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 150px;"></asp:TextBox>
+                                        <asp:TextBox ID="txtContract" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker"  Style="width: 150px;"></asp:TextBox>
                                     </div>
 
                                     <!-- Parcela -->
-                                    <div style="display: flex; flex-direction: column; align-items: start; text-align: start;">
+                                    <div style=" display:flex; flex-direction: column; align-items: start; text-align: start;">
                                         <label class="navbar-text" style="float: none; margin: 0;">Parcela</label>
                                         <asp:TextBox ID="TxtParcel" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 150px;"></asp:TextBox>
                                     </div>
 
                                     <!-- Botões -->
-                                    <div style="display: flex; align-items: flex-end !important; flex-direction: row; gap: 10px;">
+                                    <div style=" display:flex; align-items: flex-end !important; flex-direction: row; gap: 10px;">
                                         <asp:Button ID="btnCarregar" runat="server" Text="Incluir " CssClass="btn btn-warning navbar-btn" OnClick="btnCarregar_Click" />
-
-                                    </div>
-                                </div>
-                                <div style="display: flex; flex-direction: row; gap: 30px;">
-                                    <!-- Data de Referência excluir -->
-                                    <div style="display: flex; flex-direction: column; align-items: start; text-align: start;">
-                                        <label class="navbar-text" style="float: none; margin: 0;">Data de Referência</label>
-                                        <asp:TextBox ID="TxtDataDel" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 100px;"></asp:TextBox>
+                                        <asp:Button ID="btnCarregar2" runat="server" Text="Excluir" CssClass="btn btn-danger navbar-btn"  OnClick="btnCarregar_ClickDelete" />
                                     </div>
 
-                                    <!-- Contrato excluir -->
-                                    <div style="display: flex; flex-direction: column; align-items: start; text-align: start;">
-                                        <label class="navbar-text" style="float: none; margin: 0;">Contrato</label>
-                                        <asp:TextBox ID="TxtContractDel" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 150px;"></asp:TextBox>
-                                    </div>
 
-                                    <!-- Parcela excluir -->
-                                    <div style="display: flex; flex-direction: column; align-items: start; text-align: start;">
-                                        <label class="navbar-text" style="float: none; margin: 0;">Parcela</label>
-                                        <asp:TextBox ID="TxtParcelDel" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 150px;"></asp:TextBox>
-                                    </div>
-
-                                    <!-- Botões -->
-                                    <div style="display: flex; align-items: flex-end !important; flex-direction: row; gap: 9px;">
-                                        <asp:Button ID="btnCarregar2" runat="server" Text="Excluir" CssClass="btn btn-danger navbar-btn" OnClick="btnCarregar_ClickDelete" />
-
-                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -85,12 +70,13 @@
                                 <div style="margin: 5px">
                                     <div style="height: 20px">
                                     </div>
-                                    <div class="btn-group-sm  ">
+                                    <div class="btn-group-sm">
+                                        <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn w-300" OnClick="btnMenu_Click" />
                                         <asp:ImageButton ID="btnExcel" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnExcel_Click" ImageUrl="~/imagens/excel2424.png"></asp:ImageButton>
                                         <asp:ImageButton ID="btnImpressao" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnImpressao_Click" ImageUrl="~/imagens/printer2424.png"></asp:ImageButton>
                                         <asp:ImageButton ID="btnHelp" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnHelp_Click" ImageUrl="~/imagens/help2424.png"></asp:ImageButton>
                                     </div>
-                                    <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" />
+
                                 </div>
                             </li>
                         </ul>
@@ -181,6 +167,13 @@
             };
             $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
         });
+      
+            function habilitarCampos() {
+                document.getElementById('<%= txtContract.ClientID %>').disabled = false;
+        document.getElementById('<%= TxtParcel.ClientID %>').disabled = false;
+        document.getElementById('<%= btnCarregar.ClientID %>').disabled = false;
+        document.getElementById('<%= btnCarregar2.ClientID %>').disabled = false;
+    }
 
 
 
@@ -277,6 +270,7 @@
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+     
 
 
 </asp:Content>

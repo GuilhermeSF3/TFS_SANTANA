@@ -28,11 +28,6 @@ Namespace Paginas.FundoQuata
                 Dim previousDate As DateTime
 
                 txtData.Text = Now.ToString("dd/MM/yyyy")
-                TxtDataDel.Text = Now.ToString("dd/MM/yyyy")
-
-
-
-
 
                 If Session(HfGridView1Svid) IsNot Nothing Then
                     hfGridView1SV.Value = DirectCast(Session(HfGridView1Svid), String)
@@ -231,9 +226,9 @@ Namespace Paginas.FundoQuata
                 If ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") Is Nothing Then
 
                     Dim dataReferenciaDel As DateTime
-                    Dim contractDel As String = TxtContractDel.Text.Trim()
-                    Dim parcelDel As String = TxtParcelDel.Text.Trim()
-                    If DateTime.TryParse(TxtDataDel.Text, dataReferenciaDel) Then
+                    Dim contractDel As String = txtContract.Text.Trim()
+                    Dim parcelDel As String = TxtParcel.Text.Trim()
+                    If DateTime.TryParse(txtData.Text, dataReferenciaDel) Then
                         ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") = GetDataDelete(dataReferenciaDel, contractDel, parcelDel)
                     Else
                         Throw New Exception("Data inválida no ViewState")
@@ -270,9 +265,9 @@ Namespace Paginas.FundoQuata
         End Sub
         Protected Sub BindGridView1DataDelete()
             Dim dataReferenciaDel As DateTime
-            Dim contractDel As String = TxtContractDel.Text.Trim()
-            Dim parcelDel As String = TxtParcelDel.Text.Trim()
-            Dim dataStr As String = TxtDataDel.Text.Trim()
+            Dim contractDel As String = txtContract.Text.Trim()
+            Dim parcelDel As String = TxtParcel.Text.Trim()
+            Dim dataStr As String = txtData.Text.Trim()
 
             Debug.WriteLine("Valor de txtData.Text: " & dataStr)
 
@@ -293,10 +288,10 @@ Namespace Paginas.FundoQuata
 
 
         Protected Sub BindGridView1DataViewDelete()
-            Dim contractDel As String = TxtContractDel.Text.Trim()
-            Dim parcelDel As String = TxtParcelDel.Text.Trim()
+            Dim contractDel As String = txtContract.Text.Trim()
+            Dim parcelDel As String = TxtParcel.Text.Trim()
             Dim dataReferenciaDel As DateTime
-            Dim dataStr As String = TxtDataDel.Text.Trim()
+            Dim dataStr As String = txtData.Text.Trim()
 
             Debug.WriteLine("Valor de txtData.Text: " & dataStr)
 
@@ -550,6 +545,10 @@ Namespace Paginas.FundoQuata
             End Try
 
         End Sub
+
+
+
+
 
         Protected Sub btnCarregar_ClickDelete(sender As Object, e As EventArgs)
             Try

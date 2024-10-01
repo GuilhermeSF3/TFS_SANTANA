@@ -46,6 +46,13 @@ a.font-default-1:hover {color: #999999; font-weight: normal; text-decoration: un
 .tr-8 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 12px; color: #FFFFFF; background-color: #00543F;}
 .tr-9 {font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif; font-size: 9px; color: #001061; background-color: #5E9B56;}
 
+
+.enabled-implement {
+    display: none;
+}
+ 
+
+
 .tr-preto {
 	font-family: Verdana, Geneva, Arial, Helvetica, Sans-serif;
 	font-size: 9px;

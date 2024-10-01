@@ -33,6 +33,15 @@ Namespace Paginas.FundoQuata
         Protected WithEvents txtData As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
+        '''Controle btnCarregaInv.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnCarregaInv As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
         '''Controle txtContract.
         '''</summary>
         '''<remarks>
@@ -60,33 +69,6 @@ Namespace Paginas.FundoQuata
         Protected WithEvents btnCarregar As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
-        '''Controle TxtDataDel.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents TxtDataDel As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
-        '''Controle TxtContractDel.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents TxtContractDel As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
-        '''Controle TxtParcelDel.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents TxtParcelDel As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
         '''Controle btnCarregar2.
         '''</summary>
         '''<remarks>
@@ -94,6 +76,15 @@ Namespace Paginas.FundoQuata
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents btnCarregar2 As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle btnMenu.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnMenu As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
         '''Controle btnExcel.
@@ -121,15 +112,6 @@ Namespace Paginas.FundoQuata
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents btnHelp As Global.System.Web.UI.WebControls.ImageButton
-
-        '''<summary>
-        '''Controle btnMenu.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents btnMenu As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
         '''Controle UpdatePanel1.

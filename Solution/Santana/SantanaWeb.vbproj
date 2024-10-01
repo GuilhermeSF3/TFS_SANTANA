@@ -172,6 +172,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Controls\GridViewPaging.ascx" />
     <Content Include="css\GridviewScroll.css" />
+    <Content Include="css\FundoQuata.css" />
     <Content Include="css\Style.css" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
