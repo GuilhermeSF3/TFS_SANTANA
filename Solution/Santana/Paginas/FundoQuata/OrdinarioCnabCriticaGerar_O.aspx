@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="GerarCnabAlter.aspx.vb" Inherits="Santana.Paginas.FundoQuata.GerarCnabAlter" Title="Gerar Cnab Alterado" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="OrdinarioCnabCriticaGerar_O.aspx.vb" Inherits="Santana.Paginas.FundoQuata.OrdinarioCnabCriticaGerar_O" Title="Gerar Cnab Alterado Ordinario" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="Componentes" Namespace="Componentes" TagPrefix="cc1" %>
 

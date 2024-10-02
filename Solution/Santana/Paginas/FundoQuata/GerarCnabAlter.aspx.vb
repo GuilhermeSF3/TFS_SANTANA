@@ -71,6 +71,32 @@ Namespace Paginas.FundoQuata
             End Set
         End Property
 
+        Private Sub GravarLogExecucao(usuario As String, dataReferencia As String)
+            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+            Dim observ As String = "Cnab Gerado com sucesso e exportado"
+            Dim acao As String = "Extraordinario - Cnab - Tratamento de criticas - Gerar"
+
+            Try
+                Using con As New SqlConnection(strConn)
+                    Using cmd As New SqlCommand("INSERT INTO LogCnabExtraodinario (Usuario, DataReferencia, DataExecucao, Observacao, Acao) VALUES (@Usuario, @DataReferencia, @DataExecucao, @Observacao, @Acao)", con)
+                        cmd.Parameters.AddWithValue("@Usuario", usuario)
+                        cmd.Parameters.AddWithValue("@DataReferencia", dataReferencia)
+                        cmd.Parameters.AddWithValue("@DataExecucao", DateTime.Now)
+                        cmd.Parameters.AddWithValue("@Observacao", observ) '
+                        cmd.Parameters.AddWithValue("@Acao", acao)
+
+                        con.Open()
+                        cmd.ExecuteNonQuery()
+                    End Using
+                End Using
+
+
+
+            Catch ex As Exception
+                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao salvar o log.');", True)
+            End Try
+        End Sub
+
 
 
         Protected Sub BindGridView1Data(sender As Object, e As EventArgs)
@@ -95,8 +121,10 @@ Namespace Paginas.FundoQuata
         Private Function GetData(dataReferencia As String) As DataTable
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim resultTable As New DataTable()
+            Dim usuarioLogado As String = ContextoWeb.UsuarioLogado.Login
+
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"EXEC SCR_CNAB550_GERAR '{dataReferencia}'", con)
+                Using cmd As New SqlCommand($"EXEC SCR_CNAB550_GERAROP_ALTERADA '{dataReferencia}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -108,6 +136,7 @@ Namespace Paginas.FundoQuata
 
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", "alert('Sem movimentação para gerar o CNAB550 - BAIXAS');", True)
                 Return Nothing
+                GravarLogExecucao(UsuarioLogado, dataReferencia)
             End If
             Return resultTable
         End Function
@@ -120,14 +149,18 @@ Namespace Paginas.FundoQuata
                 Response.Charset = ""
                 Response.ContentType = "application/octet-stream"
                 Response.AddHeader("Content-Disposition", "attachment; filename=" & nomeArquivo)
-                Using sw As New StringWriter()
 
+                Using sw As New StringWriter()
                     For Each row As DataRow In dt.Rows
+                        Dim linha As String = ""
                         For Each coluna As DataColumn In dt.Columns
-                            sw.Write(row(coluna.ColumnName).ToString() & vbTab)
+                            Dim valor As String = row(coluna.ColumnName).ToString().PadRight(10)
+                            linha &= valor
                         Next
-                        sw.WriteLine()
+                        linha = linha.PadRight(550).Substring(0, 550)
+                        sw.WriteLine(linha)
                     Next
+
                     Response.Output.Write(sw.ToString())
                 End Using
                 Response.Flush()

@@ -12,7 +12,7 @@ Option Explicit On
 
 Namespace Paginas.FundoQuata
 
-    Partial Public Class CnabAlter
+    Partial Public Class OrdinarioCnabCriticaAtualizar_O
 
         '''<summary>
         '''Controle UpdatePanel.

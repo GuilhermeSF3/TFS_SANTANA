@@ -540,6 +540,9 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCarga_O.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabGerar_O.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/RenegCnabGerar_R.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabAtualizar_O.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabCriticaGerar_O.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabCriticaAtualizar_O.aspx", New List(Of Integer)({0, 1})))
 
 
 

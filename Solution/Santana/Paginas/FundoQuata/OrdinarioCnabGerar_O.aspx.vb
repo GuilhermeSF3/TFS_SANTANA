@@ -74,11 +74,11 @@ Namespace Paginas.FundoQuata
         Private Sub GravarLogExecucao(usuario As String, dataReferencia As String)
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim observ As String = $"Cnab Gerado com sucesso e exportado"
-            Dim acao As String = "Extraordinario - Cnab - Gerar"
+            Dim acao As String = "Ordinario - Cnab - Gerar"
 
             Try
                 Using con As New SqlConnection(strConn)
-                    Using cmd As New SqlCommand("INSERT INTO LogCnabExtraodinario (Usuario, DataReferencia, DataExecucao, Observacao, Acao) VALUES (@Usuario, @DataReferencia, @DataExecucao, @Observacao, @Acao)", con)
+                    Using cmd As New SqlCommand("INSERT INTO LogCnabOrdinario (Usuario, DataReferencia, DataExecucao, Observacao, Acao) VALUES (@Usuario, @DataReferencia, @DataExecucao, @Observacao, @Acao)", con)
                         cmd.Parameters.AddWithValue("@Usuario", usuario)
                         cmd.Parameters.AddWithValue("@DataReferencia", dataReferencia)
                         cmd.Parameters.AddWithValue("@DataExecucao", DateTime.Now)
@@ -119,31 +119,7 @@ Namespace Paginas.FundoQuata
         End Sub
 
 
-        Private Sub GravarLogExecucao(usuario As String, dataReferencia As String, totalValor As Decimal, totalPaseunro As Integer)
-            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
-            Dim observ As String = $"Carga executada com sucesso com o valor total de {totalValor} e {totalPaseunro} parcelas processadas."
-            Dim acao As String = "Extraordinario - Cnab - "
 
-            Try
-                Using con As New SqlConnection(strConn)
-                    Using cmd As New SqlCommand("INSERT INTO LogCnabExtraodinario (Usuario, DataReferencia, DataExecucao, Observacao, Acao) VALUES (@Usuario, @DataReferencia, @DataExecucao, @Observacao, @Acao)", con)
-                        cmd.Parameters.AddWithValue("@Usuario", usuario)
-                        cmd.Parameters.AddWithValue("@DataReferencia", dataReferencia)
-                        cmd.Parameters.AddWithValue("@DataExecucao", DateTime.Now)
-                        cmd.Parameters.AddWithValue("@Observacao", observ)
-                        cmd.Parameters.AddWithValue("@Acao", acao)
-
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                    End Using
-                End Using
-
-
-
-            Catch ex As Exception
-                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao salvar o log.');", True)
-            End Try
-        End Sub
 
 
         Private Function GetData(dataReferencia As String) As DataTable

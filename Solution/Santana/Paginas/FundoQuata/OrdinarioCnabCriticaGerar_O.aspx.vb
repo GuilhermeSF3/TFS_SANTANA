@@ -14,7 +14,7 @@ Imports Util
 
 Namespace Paginas.FundoQuata
 
-    Public Class GerarCnab
+    Public Class OrdinarioCnabCriticaGerar_O
 
         Inherits SantanaPage
 
@@ -73,12 +73,12 @@ Namespace Paginas.FundoQuata
 
         Private Sub GravarLogExecucao(usuario As String, dataReferencia As String)
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
-            Dim observ As String = $"Cnab Gerado com sucesso e exportado"
-            Dim acao As String = "Extraordinario - Cnab - Gerar"
+            Dim observ As String = "Cnab Gerado com sucesso e exportado"
+            Dim acao As String = "Ordinario - Cnab - Tratamento de criticas - Gerar"
 
             Try
                 Using con As New SqlConnection(strConn)
-                    Using cmd As New SqlCommand("INSERT INTO LogCnabExtraodinario (Usuario, DataReferencia, DataExecucao, Observacao, Acao) VALUES (@Usuario, @DataReferencia, @DataExecucao, @Observacao, @Acao)", con)
+                    Using cmd As New SqlCommand("INSERT INTO LogCnabOrdinario (Usuario, DataReferencia, DataExecucao, Observacao, Acao) VALUES (@Usuario, @DataReferencia, @DataExecucao, @Observacao, @Acao)", con)
                         cmd.Parameters.AddWithValue("@Usuario", usuario)
                         cmd.Parameters.AddWithValue("@DataReferencia", dataReferencia)
                         cmd.Parameters.AddWithValue("@DataExecucao", DateTime.Now)
@@ -118,16 +118,13 @@ Namespace Paginas.FundoQuata
             End If
         End Sub
 
-
-
-
-
         Private Function GetData(dataReferencia As String) As DataTable
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim resultTable As New DataTable()
             Dim usuarioLogado As String = ContextoWeb.UsuarioLogado.Login
+
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"EXEC SCR_CNAB550_GERAR '{dataReferencia}'", con)
+                Using cmd As New SqlCommand($"EXEC SCR_CNAB550_GERAROP_ALTERADA_O '{dataReferencia}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -138,7 +135,6 @@ Namespace Paginas.FundoQuata
             If resultTable.Rows.Count > 0 AndAlso resultTable.Rows(0)(0).ToString().Contains("Sem movimentação para gerar o CNAB550 - BAIXAS") Then
 
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", "alert('Sem movimentação para gerar o CNAB550 - BAIXAS');", True)
-
                 Return Nothing
                 GravarLogExecucao(usuarioLogado, dataReferencia)
             End If
@@ -147,7 +143,7 @@ Namespace Paginas.FundoQuata
 
         Private Sub ExportarParaTXT(dt As DataTable)
             Try
-                Dim nomeArquivo As String = "CB" & DateTime.Now.ToString("ddMM") & "01" & ".rem"
+                Dim nomeArquivo As String = "CB" & DateTime.Now.ToString("ddMM") & "02" & ".rem"
                 Response.Clear()
                 Response.Buffer = True
                 Response.Charset = ""
@@ -170,12 +166,13 @@ Namespace Paginas.FundoQuata
                 Response.Flush()
                 Response.Close()
             Catch ex As Exception
+
                 Debug.WriteLine("Exceção: " & ex.Message)
                 Debug.WriteLine("Stack Trace: " & ex.StackTrace)
+
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao gerar o arquivo.');", True)
             End Try
         End Sub
-
 
 
 

@@ -12,7 +12,7 @@ Option Explicit On
 
 Namespace Paginas.FundoQuata
 
-    Partial Public Class CnabAlter
+    Partial Public Class OrdinarioCnabAtualizar_O
 
         '''<summary>
         '''Controle UpdatePanel.
@@ -33,6 +33,24 @@ Namespace Paginas.FundoQuata
         Protected WithEvents txtData As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
+        '''Controle btnCarregaInv.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnCarregaInv As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle panelContrato.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents panelContrato As Global.System.Web.UI.WebControls.Panel
+
+        '''<summary>
         '''Controle txtContract.
         '''</summary>
         '''<remarks>
@@ -40,6 +58,15 @@ Namespace Paginas.FundoQuata
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents txtContract As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle panelParcela.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents panelParcela As Global.System.Web.UI.WebControls.Panel
 
         '''<summary>
         '''Controle TxtParcel.
@@ -51,22 +78,31 @@ Namespace Paginas.FundoQuata
         Protected WithEvents TxtParcel As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnIncluir.
+        '''Controle panelBotoes.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnIncluir As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents panelBotoes As Global.System.Web.UI.WebControls.Panel
 
         '''<summary>
-        '''Controle btnExcluir.
+        '''Controle btnCarregar.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnExcluir As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents btnCarregar As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle btnCarregar2.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnCarregar2 As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
         '''Controle btnMenu.

@@ -603,12 +603,12 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="../Paginas/FundoQuata/OrdinarioCarga_O.aspx">Cnab - Carga</a></li>
                                                 <li><a href="../Paginas/FundoQuata/OrdinarioCnabGerar_O.aspx">Cnab - Gerar</a></li>
-                                                <li><a href="../Paginas/FundoQuata/CnabBaixaInclusao.aspx">Cnab - Atualizar</a></li>
+                                                <li><a href="../Paginas/FundoQuata/OrdinarioCnabAtualizar_O.aspx">Cnab - Atualizar</a></li>
                                                 <li class="dropdown-submenu">
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contratos Inexistente</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#">Atualizar - Alterada</a></li>
-                                                        <li><a href="#">Gerar - Alterada</a></li>
+                                                        <li><a href="../Paginas/FundoQuata/OrdinarioCnabCriticaAtualizar_O.aspx">Atualizar - Alterada</a></li>
+                                                        <li><a href="../Paginas/FundoQuata/OrdinarioCnabCriticaGerar_O.aspx">Gerar - Alterada</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>

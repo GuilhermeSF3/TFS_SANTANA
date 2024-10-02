@@ -42,6 +42,15 @@ Namespace Paginas.FundoQuata
         Protected WithEvents btnCarregaInv As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
+        '''Controle panelContrato.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents panelContrato As Global.System.Web.UI.WebControls.Panel
+
+        '''<summary>
         '''Controle txtContract.
         '''</summary>
         '''<remarks>
@@ -51,6 +60,15 @@ Namespace Paginas.FundoQuata
         Protected WithEvents txtContract As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
+        '''Controle panelParcela.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents panelParcela As Global.System.Web.UI.WebControls.Panel
+
+        '''<summary>
         '''Controle TxtParcel.
         '''</summary>
         '''<remarks>
@@ -58,6 +76,15 @@ Namespace Paginas.FundoQuata
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents TxtParcel As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle panelBotoes.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents panelBotoes As Global.System.Web.UI.WebControls.Panel
 
         '''<summary>
         '''Controle btnCarregar.

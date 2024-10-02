@@ -14,7 +14,7 @@ Imports Util
 
 Namespace Paginas.FundoQuata
 
-    Public Class CnabBaixaInclusao
+    Public Class OrdinarioCnabCriticaAtualizar_O
 
         Inherits SantanaPage
 
@@ -27,8 +27,8 @@ Namespace Paginas.FundoQuata
                 Dim today As DateTime = DateTime.Now
                 Dim previousDate As DateTime
 
-
                 txtData.Text = Now.ToString("dd/MM/yyyy")
+
 
                 If Session(HfGridView1Svid) IsNot Nothing Then
                     hfGridView1SV.Value = DirectCast(Session(HfGridView1Svid), String)
@@ -118,70 +118,6 @@ Namespace Paginas.FundoQuata
         End Sub
 
 
-        Private Sub GravarLogExecucaoIncluir(usuario As String, dataReferencia As String)
-            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
-            Dim contract As String = txtContract.Text.Trim()
-            Dim parcel As String = TxtParcel.Text.Trim()
-            Dim dataStr As String = txtData.Text.Trim()
-            Dim acao As String = "Extraordinario - Cnab - Incluir"
-
-
-            Dim observ As String = $"Nova Parcela Adicionada: Contrato {contract}, Parcela {parcel}, Data {dataStr}"
-
-
-            Try
-                Using con As New SqlConnection(strConn)
-                    Using cmd As New SqlCommand("INSERT INTO LogCnabExtraodinario (Usuario, DataReferencia, DataExecucao, Observacao, Acao) VALUES (@Usuario, @DataReferencia, @DataExecucao, @Observacao, @Acao)", con)
-                        cmd.Parameters.AddWithValue("@Usuario", usuario)
-                        cmd.Parameters.AddWithValue("@DataReferencia", dataReferencia)
-                        cmd.Parameters.AddWithValue("@DataExecucao", DateTime.Now)
-                        cmd.Parameters.AddWithValue("@Observacao", observ) '
-                        cmd.Parameters.AddWithValue("@Acao", acao)
-
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                    End Using
-                End Using
-
-
-
-            Catch ex As Exception
-                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao salvar o log.');", True)
-            End Try
-        End Sub
-
-        Private Sub GravarLogExecucaoDeletar(usuario As String, dataReferenciaDel As String)
-            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
-            Dim contract As String = txtContract.Text.Trim()
-            Dim parcel As String = TxtParcel.Text.Trim()
-            Dim dataStr As String = txtData.Text.Trim()
-            Dim acao As String = "Extraordinario - Cnab - Deletar"
-
-
-            Dim observ As String = $"Parcela Deletada: Contrato {contract}, Parcela {parcel}, Data {dataStr}"
-
-
-            Try
-                Using con As New SqlConnection(strConn)
-                    Using cmd As New SqlCommand("INSERT INTO LogCnabExtraodinario (Usuario, DataReferencia, DataExecucao, Observacao, Acao) VALUES (@Usuario, @DataReferencia, @DataExecucao, @Observacao, @Acao)", con)
-                        cmd.Parameters.AddWithValue("@Usuario", usuario)
-                        cmd.Parameters.AddWithValue("@DataReferencia", dataReferenciaDel)
-                        cmd.Parameters.AddWithValue("@DataExecucao", DateTime.Now)
-                        cmd.Parameters.AddWithValue("@Observacao", observ) '
-                        cmd.Parameters.AddWithValue("@Acao", acao)
-
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                    End Using
-                End Using
-
-
-
-            Catch ex As Exception
-                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao salvar o log.');", True)
-            End Try
-        End Sub
-
 
         Protected Sub GridViewRiscoAnalitico_RowCreated(sender As Object, e As GridViewRowEventArgs)
             Try
@@ -259,7 +195,6 @@ Namespace Paginas.FundoQuata
                 GridViewRiscoAnalitico.DataSource = GetData(dataFormatada, parcel, contract)
                 GridViewRiscoAnalitico.DataBind()
                 GridViewRiscoAnalitico.AllowPaging = "True"
-
             Else
 
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Por favor, forneça uma data válida.');", True)
@@ -327,6 +262,8 @@ Namespace Paginas.FundoQuata
                 GridViewRiscoAnalitico.DataSource = GetData(dataFormatada, parcel, contract)
                 GridViewRiscoAnalitico.DataBind()
                 GridViewRiscoAnalitico.AllowPaging = "True"
+                btnExcluir.Visible = True
+
             Else
 
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Por favor, forneça uma data válida.');", True)
@@ -381,10 +318,9 @@ Namespace Paginas.FundoQuata
         Private Function GetData(dataReferencia As String, parcel As String, contract As String) As DataTable
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim resultTable As New DataTable()
-            Dim usuarioLogado As String = ContextoWeb.UsuarioLogado.Login
 
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"SCR_CNAB550_INSERIROP '{dataReferencia}','{contract}','{parcel}'", con)
+                Using cmd As New SqlCommand($"SCR_CNAB550_INSEREOP_ALTERADA_O '{dataReferencia}','{contract}','{parcel}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -414,8 +350,6 @@ Namespace Paginas.FundoQuata
                                     resultTable.Rows(i)("TotalPaseunro") = DBNull.Value
                                 Next
                             End If
-
-                            GravarLogExecucaoIncluir(usuarioLogado, dataReferencia)
                         Catch ex As Exception
                             ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao buscar os dados.');", True)
                         End Try
@@ -428,10 +362,9 @@ Namespace Paginas.FundoQuata
         Private Function GetDataDelete(dataReferenciaDel As String, parcelDel As String, contractDel As String) As DataTable
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim resultTable As New DataTable()
-            Dim usuarioLogado As String = ContextoWeb.UsuarioLogado.Login
 
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"SCR_CNAB550_REMOVEOP '{dataReferenciaDel}','{contractDel}','{parcelDel}'", con)
+                Using cmd As New SqlCommand($"SCR_CNAB550_REMOVEOP_ALTERADA_O '{dataReferenciaDel}','{contractDel}','{parcelDel}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -461,7 +394,6 @@ Namespace Paginas.FundoQuata
                                     resultTable.Rows(i)("TotalPaseunro") = DBNull.Value
                                 Next
                             End If
-                            GravarLogExecucaoDeletar(usuarioLogado, dataReferenciaDel)
                         Catch ex As Exception
                             ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao buscar os dados.');", True)
                         End Try
@@ -485,7 +417,6 @@ Namespace Paginas.FundoQuata
 
             GridViewRiscoAnalitico.PageIndex = IIf(e.NewPageIndex < 0, 0, e.NewPageIndex)
             BindGridView1DataViewDelete()
-
 
         End Sub
 
@@ -540,10 +471,6 @@ Namespace Paginas.FundoQuata
             Try
 
                 BindGridView1Data()
-                panelContrato.Visible = True
-                panelParcela.Visible = True
-                panelBotoes.Visible = True
-
 
 
             Catch ex As Exception
@@ -553,10 +480,6 @@ Namespace Paginas.FundoQuata
             End Try
 
         End Sub
-
-
-
-
 
         Protected Sub btnCarregar_ClickDelete(sender As Object, e As EventArgs)
             Try

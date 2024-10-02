@@ -14,7 +14,7 @@ Imports Util
 
 Namespace Paginas.FundoQuata
 
-    Public Class CnabBaixaInclusao
+    Public Class OrdinarioCnabAtualizar_O
 
         Inherits SantanaPage
 
@@ -384,7 +384,7 @@ Namespace Paginas.FundoQuata
             Dim usuarioLogado As String = ContextoWeb.UsuarioLogado.Login
 
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"SCR_CNAB550_INSERIROP '{dataReferencia}','{contract}','{parcel}'", con)
+                Using cmd As New SqlCommand($"SCR_CNAB550_INSERIROP_O '{dataReferencia}','{contract}','{parcel}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -431,7 +431,7 @@ Namespace Paginas.FundoQuata
             Dim usuarioLogado As String = ContextoWeb.UsuarioLogado.Login
 
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"SCR_CNAB550_REMOVEOP '{dataReferenciaDel}','{contractDel}','{parcelDel}'", con)
+                Using cmd As New SqlCommand($"SCR_CNAB550_REMOVEOP_O '{dataReferenciaDel}','{contractDel}','{parcelDel}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()

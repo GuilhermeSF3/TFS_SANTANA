@@ -1,10 +1,10 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="CnabBaixaInclusao.aspx.vb" Inherits="Santana.Paginas.FundoQuata.CnabBaixaInclusao" Title="Cnab Baixa Inclusao" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="OrdinarioCnabAtualizar_O.aspx.vb" Inherits="Santana.Paginas.FundoQuata.OrdinarioCnabAtualizar_O" Title="Cnab Atualizar Ordinario" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="Componentes" Namespace="Componentes" TagPrefix="cc1" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <title>Cnab Baixa Inclusao</title>
+    <title>OrdinarioCnabAtualizar_O</title>
     
 
 </asp:Content>
@@ -176,13 +176,7 @@
             $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
         });
       
-            function habilitarCampos() {
-                document.getElementById('<%= txtContract.ClientID %>').disabled = false;
-        document.getElementById('<%= TxtParcel.ClientID %>').disabled = false;
-        document.getElementById('<%= btnCarregar.ClientID %>').disabled = false;
-        document.getElementById('<%= btnCarregar2.ClientID %>').disabled = false;
-    }
-
+          
 
 
 

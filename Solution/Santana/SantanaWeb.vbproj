@@ -342,7 +342,10 @@
     <Content Include="Paginas\FechaComercial\ComissaoDinamo.aspx" />
     <Content Include="Paginas\FechaComercial\OpRealizadasAnalitica.aspx" />
     <Content Include="Paginas\FundoQuata\Cnab550.aspx" />
+    <Content Include="Paginas\FundoQuata\OrdinarioCnabCriticaAtualizar_O.aspx" />
     <Content Include="Paginas\FundoQuata\CnabAlter.aspx" />
+    <Content Include="Paginas\FundoQuata\OrdinarioCnabCriticaGerar_O.aspx" />
+    <Content Include="Paginas\FundoQuata\OrdinarioCnabAtualizar_O.aspx" />
     <Content Include="Paginas\FundoQuata\CnabBaixaInclusao.aspx" />
     <Content Include="Paginas\FundoQuata\RenegCnabGerar_R.aspx" />
     <Content Include="Paginas\FundoQuata\GerarCnab.aspx" />
@@ -1679,11 +1682,32 @@
       <DependentUpon>Cnab550.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Paginas\FundoQuata\OrdinarioCnabCriticaAtualizar_O.aspx.designer.vb">
+      <DependentUpon>OrdinarioCnabCriticaAtualizar_O.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\OrdinarioCnabCriticaAtualizar_O.aspx.vb">
+      <DependentUpon>OrdinarioCnabCriticaAtualizar_O.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Paginas\FundoQuata\CnabAlter.aspx.designer.vb">
       <DependentUpon>CnabAlter.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\FundoQuata\CnabAlter.aspx.vb">
       <DependentUpon>CnabAlter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\OrdinarioCnabCriticaGerar_O.aspx.designer.vb">
+      <DependentUpon>OrdinarioCnabCriticaGerar_O.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\OrdinarioCnabCriticaGerar_O.aspx.vb">
+      <DependentUpon>OrdinarioCnabCriticaGerar_O.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\OrdinarioCnabAtualizar_O.aspx.designer.vb">
+      <DependentUpon>OrdinarioCnabAtualizar_O.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\OrdinarioCnabAtualizar_O.aspx.vb">
+      <DependentUpon>OrdinarioCnabAtualizar_O.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\FundoQuata\CnabBaixaInclusao.aspx.designer.vb">
