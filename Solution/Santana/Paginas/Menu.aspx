@@ -222,6 +222,9 @@
                                         <li><a href="Cobranca/Relatorios/baseReneg.aspx">Renegociados</a></li>
                                         <li><a href="Cobranca/Relatorios/Ocorrencia.aspx">Ocorrencias</a></li>
                                         <li><a href="Cobranca/Relatorios/Repactuacao.aspx">Repactuação</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="Cobranca/Relatorios/Honorarios.aspx">Honorários</a></li>
+
                                     </ul>
                                 </li>
 

@@ -324,6 +324,7 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/Relatorios/ControleAcoes.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/Relatorios/ControleAcoesPJ.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/Relatorios/AjusteIP.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/Relatorios/Honorarios.aspx", New List(Of Integer)({0, 1})))
 
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/UraGerarArquivo.aspx", New List(Of Integer)({0, 1, 5})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Carteira3M.aspx", New List(Of Integer)({0, 1})))

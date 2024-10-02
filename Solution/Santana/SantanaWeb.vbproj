@@ -319,6 +319,7 @@
     <Content Include="Paginas\Cobranca\Relatorios\AjusteIP.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\ARs.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\baseReneg.aspx" />
+    <Content Include="Paginas\Cobranca\Relatorios\Honorarios.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\ControleAcoes.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\ControleAcoesPJ.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\IPAnalitico.aspx" />
@@ -1519,6 +1520,13 @@
     </Compile>
     <Compile Include="Paginas\Cobranca\Relatorios\baseReneg.aspx.vb">
       <DependentUpon>baseReneg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\Relatorios\Honorarios.aspx.designer.vb">
+      <DependentUpon>Honorarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\Relatorios\Honorarios.aspx.vb">
+      <DependentUpon>Honorarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Cobranca\Relatorios\ControleAcoes.aspx.designer.vb">
