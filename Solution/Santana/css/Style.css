@@ -800,6 +800,11 @@ background-image: url(http://www.shopcred.com.br/SCM/PRODLL_SMCVEIC.Dll/files/SM
 }
 
 
+.td-1-img {
+	background-image: url(../Imagens/logonovo.png)
+}
+
+
 .tr-1-r1-c1 {
     background-image: url('../Imagens/Layout/SMC-1_r1_c1.jpg');
 }

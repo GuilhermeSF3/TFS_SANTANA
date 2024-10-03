@@ -7,7 +7,7 @@
 
     <div id="dvMenu">
 
-        <div class="navbar navbar-default ">
+        <div class="navbar navbar-default" style="background-color: white; color: black !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
             <div class="container-full">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,7 +21,7 @@
                     <ul class="nav navbar-nav" id="MenuRoot" runat="server">
 
                         <li class="dropdown" id="Parametros" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Paramet<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i  class="bi bi-display-fill"></i> Paramet<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li class="menu-item dropdown dropdown-submenu" id="Usuarios" runat="server" visible="true">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários</a>
@@ -81,6 +81,7 @@
                                         <li class="divider"></li>
                                         <li><a href="../Paginas/Cadastro/Risco.aspx">Risco - Desconto</a></li>
                                         <li><a href="../Paginas/Cadastro/ComissaoDesconto.aspx">Comissão - Desconto</a></li>
+                                      
                                     </ul>
                                 </li>
 
@@ -179,7 +180,7 @@
                         </li>
 
                         <li class="dropdown" id="Cadastro" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-clipboard2-check-fill"></i> Cadastro<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../Paginas/Cadastro/Cadastro/Tabelas.aspx">Tabelas</a></li>
                                 <li><a href="../Paginas/Cadastro/Cadastro/Produtos.aspx">Produtos</a></li>
@@ -190,7 +191,7 @@
                         </li>
 
                         <li class="dropdown" id="Cobranca" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cobrança<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-headset"></i> Cobrança<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li class="menu-item dropdown dropdown-submenu" id="Relatorios" runat="server" visible="False">
 
@@ -274,7 +275,7 @@
                             </ul>
                         </li>
                         <li class="dropdown" id="RiscoCredito" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Risco<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-ban-fill"></i> Risco<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="RRMensalCUBO.aspx">Carteira / PDD</a></li>
                                 <li><a href="PDD_GERENCIAL.aspx">Carteira PDD - Risco x Safra</a></li>
@@ -331,7 +332,7 @@
                         </li>
 
                         <li class="dropdown" id="ComercialCredito" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Com.-Crédito<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-credit-card"></i> Com.-Crédito<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="FechaComercial/FechaComCreOpRealizadas.aspx">Operações Realizadas</a></li>
                                 <li><a href="FechaComercial/OpRealizadasAnalitica.aspx">Operações Realizadas - Analítico</a></li>
@@ -366,7 +367,7 @@
                         </li>
 
                         <li class="dropdown" id="Comercial" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Comercial<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-basket2-fill"></i> Comercial<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Comercial/MapaComercial.aspx">Mapa Comercial</a></li>
                                 <li><a href="Comercial/MapaPDV.aspx">Mapa PDV - PJ</a></li>
@@ -421,7 +422,7 @@
                         </li>
 
                         <li class="dropdown" id="Credito" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Crédito<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-credit-card-fill"></i> Crédito<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Credito/AnaliseAnalista.aspx">Análise Analista</a></li>
                                 <li><a href="Credito/ProducaoAnalista.aspx">Produção Analista</a></li>
@@ -453,7 +454,7 @@
                         </li>
 
                         <li class="dropdown" id="Gerencial" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerencial<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-file-bar-graph-fill"></i> Gerencial<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../Paginas/Cadastro/Gerencial/Cubo.aspx">Cubo</a></li>
                                 <li><a href="../Paginas/Cadastro/Gerencial/Balancete.aspx">Balancete</a></li>
@@ -470,7 +471,7 @@
                         </li>
 
                         <li class="dropdown" id="CETIP" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CETIP<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-diagram-3-fill"></i> CETIP<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Cetip/CETIPupload.aspx">Download Retorno</a></li>
                                 <li><a href="Cetip/CETIPGerarArquivo.aspx">Gerar Remessa</a></li>
@@ -481,7 +482,7 @@
                         </li>
 
                         <li class="dropdown" id="Li3" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Comissão PJ<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="bi bi-building-check"></i> Comissão PJ<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../Paginas/Cadastro/Comissao PJ/ComissaoPJ.aspx">Comissão PJ</a></li>
                                 <li><a href="../Paginas/Cadastro/Comissao PJ/ComissaoPJAnalitico.aspx">Comissão PJ Analítico</a></li>
@@ -489,7 +490,7 @@
                         </li>
 
                         <li class="dropdown" id="PJ" runat="server" visible="false">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">PJ<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-buildings"></i> PJ<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../Paginas/PJ/AssinaDigital.aspx">Assinatura Digital</a></li>
                             </ul>
@@ -508,7 +509,7 @@
                         </li>--%>
 
                         <li class="dropdown" id="DCO" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Formaliz<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-inboxes-fill"></i> Formaliz<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Comercial/PendenciasCRVsint.aspx">Pendências de CRV Sintético</a></li>
                                 <li><a href="Comercial/PendenciasFormalizacao.aspx">Pendências de Formalização</a></li>
@@ -551,7 +552,7 @@
 
 
                         <li class="dropdown" id="Financeiro" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Financeiro<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-bank2"></i> Financeiro<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Financeiro/OperacaoCaptacao.aspx">Operação Captação</a></li>
                                 <li><a href="Financeiro/BaseCaptacao.aspx">Base de Captação</a></li>
@@ -562,7 +563,7 @@
                         </li>
 
                         <li class="dropdown" id="RH" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">RH<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-people-fill"></i> RH<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="RH/CPColaboradores.aspx">CP Colaboradores</a></li>
                                 <li><a href="RH/CPColaboradoresSintetico.aspx">CP Colaboradores - Sintético</a></li>
@@ -570,7 +571,7 @@
                         </li>
 
                         <li class="dropdown" id="Desconto" runat="server" visible="false">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">PJ<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-buildings"></i> PJ<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../Paginas/Desconto/DescontoProducao.aspx">Produção</a></li>
                                 <li><a href="../Paginas/Desconto/Desconto8020.aspx">80 20</a></li>
@@ -581,7 +582,7 @@
                             </ul>
                         </li>
                         <li class="dropdown" id="FundoQuata" runat="server" visible="true">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fundo-Quata<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-wallet-fill"></i> Fundo-Quata<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cnab Baixa</a>
@@ -647,7 +648,7 @@
 
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" href="~/Paginas/Logon.aspx">Sair</a></li>
+                        <li><a runat="server" href="~/Paginas/Logon.aspx"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
                     </ul>
 
                 </div>
@@ -674,5 +675,6 @@
         }
         
     </script>
+
 </asp:Content>
 
