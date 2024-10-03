@@ -186,12 +186,14 @@
     <Content Include="imagens\Grafico.jpg" />
     <Content Include="imagens\help2424.png" />
     <Content Include="imagens\help3232.png" />
+    <Content Include="imagens\IMG-LOGIN.jpg" />
     <Content Include="imagens\info.png" />
     <Content Include="imagens\Layout\SMC-1_r1_c1.jpg" />
     <Content Include="imagens\Layout\Smc-1_r2_c1.jpg" />
     <Content Include="imagens\Layout\SMC-1_r2_c2.jpg" />
     <Content Include="imagens\Layout\Wait.gif" />
     <Content Include="imagens\list_add1616.png" />
+    <Content Include="imagens\LOGOESCURO.png" />
     <Content Include="imagens\pen.png" />
     <Content Include="imagens\printer2424.png" />
     <Content Include="imagens\printer3232.png" />

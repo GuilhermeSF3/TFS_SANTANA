@@ -69,86 +69,81 @@
 
 <body>
 
-    <div style="height: 200px">
-        <table border="0" cellpadding="0" cellspacing="0" style="height: 112px; width: 100%">
-            <tbody>
-                <tr class="tr-1-r1-c1">
-                    <td class="td-1-r1-c1" colspan="3">&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td  class ="td-1-r2-c1" style="width:387px; height:88px;">
-                        <div style="width:387px; height:88px;"></div>
-                    </td>
-
-                    <td class="td-1-r2-c2" style="width:100%; height:88px">
-                    </td>
-
-                </tr>
-                <tr>
-                    <td colspan="3">&nbsp;</td>
-                </tr>
-            </tbody>
-
-        </table>
-    </div>
-
     <form id="form1" action="Logon.aspx" runat="server">
+        <div style="display: flex; height: 100vh;">
 
-         <asp:Table ID="Table2" runat="server" Width="100%" CellPadding="0" CellSpacing="100" Height="400px">
-            <asp:TableRow ID="TableRow2" runat="server" HorizontalAlign="Center">
-                <asp:TableCell ID="TableCell1" Width="100%" Height="100%" runat="server" VerticalAlign="Top">
-                    <asp:Table runat="server" ID="Table3" HorizontalAlign="Center">
-                        <asp:TableRow>
-                            <asp:TableCell VerticalAlign="Middle" >
+            <!-- Coluna da Imagem à Esquerda -->
+            <div style="flex: 1; background-image: url('../Imagens/IMG-LOGIN.JPG'); border-radius:0px 67px 67px 0px; background-size: cover; background-position: center;">
+            </div>
 
-                              <asp:Table ID="Table4" runat="server" CellPadding="0" CellSpacing="0" BorderStyle="solid"
-                                    BorderColor="#636363" BorderWidth="0" HorizontalAlign="Center">
+            
+                   
+              
 
-                                        <asp:TableRow>
-                                            <asp:TableCell>
-                                                  <div style="height:360px; width:360px" class="panel panel-default" >
-                                                      <div class="panel-heading"><h3 class="panel-title">Seja Bem-Vindo(a)</h3></div>
-                                                      <div class="panel-body">
-                                                          <h4 class="page-header pa text-left">Efetue seu login</h4>
-                                                          <div class="control-group">
-                                                                <h5 class="text-left">Usuário</h5>
-                                                                <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>
-                                                          </div>
-                                                          <div class="control-group">
-                                                              <div><h5 class="text-left">Senha&nbsp;&nbsp;&nbsp;&nbsp;<small><asp:LinkButton ID="txtAlterarSenha" runat="server" Text="Alterar senha" CssClass="text-left" OnClick="txtAlterarSenha_Click" ></asp:LinkButton></small></h5>   </div> 
-                                                              <asp:TextBox ID="txtSenha" runat="server" CssClass="form-control" Width="300px" TextMode="Password"></asp:TextBox>
-                                                          </div> 
-                                                          
-                                                          <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success navbar-btn btn-lg" OnClick="btnLogin_Click" Height="50px" ></asp:Button>
-                                                            
-                                                          
-                                                      </div>
+             <div style="flex: 1; display: flex; margin  align-items: center; align-items:center; flex-direction:column; gap:30px;">
+      <img src="../Imagens/LOGOESCURO.png" alt="Logo" style="width: 300px; margin-top:100px; height: auto; text-align:center; justify-content:center;" />
+
+             <asp:Table ID="Table2" runat="server" Width="100%" CellPadding="0" CellSpacing="100" Height="400px">
+
+    <asp:TableRow ID="TableRow2" runat="server" HorizontalAlign="Center">
+        <asp:TableCell ID="TableCell1" Width="100%" Height="100%" runat="server" VerticalAlign="Top">
+            <asp:Table runat="server" ID="Table3" HorizontalAlign="Center">
+                <asp:TableRow>
+                    <asp:TableCell VerticalAlign="Middle" >
+
+                      <asp:Table ID="Table4" runat="server" CellPadding="0" CellSpacing="0" BorderStyle="solid"
+                            BorderColor="#636363" BorderWidth="0" HorizontalAlign="Center">
+
+                                <asp:TableRow>
+                                    <asp:TableCell>
+                                          <div style="height:360px; width:360px; align-items: center;  margin-left:40px;"  class="" >
+                                             
+                                              <div class="panel-body">
+                                                  <h4 class="page-header  text-left">Seja Bem-Vindo(a) ao SIG</h4>
+                                                  <div class="control-group">
+                                                        <h5 class="text-left">Usuário</h5>
+                                                        <asp:TextBox ID="txtUsuario" runat="server" style="" CssClass="form-control" Width="300px"></asp:TextBox>
+                                                  </div>
+                                                  <div class="control-group">
+                                                      <div><h5 class="text-left">Senha&nbsp;&nbsp;&nbsp;&nbsp;<small><asp:LinkButton ID="txtAlterarSenha" runat="server" Text="Alterar senha" CssClass="text-left" OnClick="txtAlterarSenha_Click" ></asp:LinkButton></small></h5>   </div> 
+                                                      <asp:TextBox ID="txtSenha" runat="server" CssClass="form-control" Width="300px" TextMode="Password"></asp:TextBox>
                                                   </div> 
-                                                </asp:TableCell>
-                                            </asp:TableRow>
-                                  
+                                                  
+                                                  <asp:Button ID="btnLogin" runat="server" Text="Login" style="width:300px ; font-style:bold; border: none; color:white; border-radius: 15px; background-color:#152B61; height:35px; margin-top: 50px;" OnClick="btnLogin_Click" Height="50px" ></asp:Button>
+                                                    
+                                                  
+                                              </div>
+                                          </div> 
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                          
 
-                                </asp:Table>
-                            </asp:TableCell>
-                            <asp:TableCell VerticalAlign="Top" HorizontalAlign="Center" RowSpan="2">
-                            <br />
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:Table>
-                </asp:TableCell>
-            </asp:TableRow>
-        </asp:Table>
-
+                        </asp:Table>
+                    </asp:TableCell>
+                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="Center" RowSpan="2">
+                    <br />
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </asp:TableCell>
+    </asp:TableRow>
+</asp:Table>
+                
+        </div>
+            </div>
+        <div class="container-full">
+    <hr />
+    <div style="font-family: Arial; font-size: small; color: darkgray; text-align: center;">
+        <p>&copy; <%: DateTime.Now.Year %> - Santana SA - Crédito Financiamento e Investimento.</p>
+    </div>
+</div>
     </form>
 
-        <div class="container-full">
-            <hr />
-            <div style="font-family: Arial; font-size: small; color: darkgray">
-                <p>&copy; <%: DateTime.Now.Year %> - Santana SA - Credito Financiamento e Investimento.</p>
-            </div>
-        </div>
+   
 
+    
+
+   
   
 </body>
 
