@@ -12,7 +12,7 @@ Option Explicit On
 
 Namespace Paginas.FundoQuata
 
-    Partial Public Class RenegCnabGerar_R
+    Partial Public Class EstornoCnabCarga_ES
 
         '''<summary>
         '''Controle UpdatePanel.
@@ -33,22 +33,13 @@ Namespace Paginas.FundoQuata
         Protected WithEvents txtData As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle UpdatePanel2.
+        '''Controle btnCarregar.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
-
-        '''<summary>
-        '''Controle btnDownload.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents btnDownload As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents btnCarregar As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
         '''Controle btnMenu.
@@ -58,6 +49,60 @@ Namespace Paginas.FundoQuata
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents btnMenu As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle btnExcel.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnExcel As Global.System.Web.UI.WebControls.ImageButton
+
+        '''<summary>
+        '''Controle btnImpressao.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnImpressao As Global.System.Web.UI.WebControls.ImageButton
+
+        '''<summary>
+        '''Controle btnHelp.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnHelp As Global.System.Web.UI.WebControls.ImageButton
+
+        '''<summary>
+        '''Controle UpdatePanel1.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+
+        '''<summary>
+        '''Controle dvRiscoAnalitico.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents dvRiscoAnalitico As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+        '''<summary>
+        '''Controle GridViewRiscoAnalitico.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents GridViewRiscoAnalitico As Global.System.Web.UI.WebControls.GridView
 
         '''<summary>
         '''Controle UpdateProgress1.

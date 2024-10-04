@@ -1,12 +1,14 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="RenegCnabGerar_R.aspx.vb" Inherits="Santana.Paginas.FundoQuata.RenegCnabGerar_R" Title="Gerar CNAB Reneg" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="EstornoCnabCarga_ES.aspx.vb" Inherits="Santana.Paginas.FundoQuata.EstornoCnabCarga_ES" Title="Carga Cnab de Estorno" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="Componentes" Namespace="Componentes" TagPrefix="cc1" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <title>Gerar CNAB de Reneg</title>
+    <title>Carga Cnab</title>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
     <asp:UpdatePanel ID="UpdatePanel" runat="server">
         <ContentTemplate>
             <nav class="navbar navbar-default" role="navigation">
@@ -19,46 +21,37 @@
                         </button>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
                         <ul class="nav navbar-nav">
                             <li>
                                 <div style="width: 15px" class="btn-group"></div>
                             </li>
                             <li>
-                                <div style="margin: 5px; display: flex; align-items: center;">
-                                    <!-- Data de Referência -->
-                                    <div style="margin-right: 15px;">
+                                <div style="margin: 5px">
+                                    <div style="height: 20px"></div>
+                                    <div>
                                         <p class="navbar-text" style="float: none; margin: 0px">Data de Referência</p>
-                                        <asp:TextBox ID="txtData" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 100px;"></asp:TextBox>
                                     </div>
+                                    <div class="btn-group" style="display: flex; flex-direction: row; gap: 5px;">
+                                        <span class="btn" style="padding: 0px; border-width: 0px;">
 
-                                    <!-- Código de Baixa -->
-                                    <div style="margin-right: 15px;">
-                                        <p></p>
-                                        <p></p>
-
+                                            <asp:TextBox ID="txtData" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 100px;"></asp:TextBox>
+                                        </span>
+                                        <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-success navbar-btn" OnClick="btnCarregar_Click" />
+                                        <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" />
                                     </div>
                                 </div>
                             </li>
                         </ul>
-
-                      
-
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <div style="margin: 5px">
-                                    <div style="height: 20px"></div>
-                                    <div class="btn-group-sm">
-                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                            <ContentTemplate>
-                                         
-                                                <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-warning" Text="Carregar" OnClick="BindGridView1Data" />
-                                                <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" />
-
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:PostBackTrigger ControlID="btnDownload" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
+                                    <div style="height: 20px">
+                                    </div>
+                                    <div class="btn-group-sm  ">
+                                        <asp:ImageButton ID="btnExcel" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnExcel_Click" ImageUrl="~/imagens/excel2424.png"></asp:ImageButton>
+                                        <asp:ImageButton ID="btnImpressao" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnImpressao_Click" ImageUrl="~/imagens/printer2424.png"></asp:ImageButton>
+                                        <asp:ImageButton ID="btnHelp" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnHelp_Click" ImageUrl="~/imagens/help2424.png"></asp:ImageButton>
                                     </div>
                                 </div>
                             </li>
@@ -68,8 +61,52 @@
                 </div>
             </nav>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnExcel" />
+        </Triggers>
     </asp:UpdatePanel>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div id="dvRiscoAnalitico" runat="server" style="height: 590px; width: 100%; overflow: auto; visibility: visible; margin-left: 50px; margin-top: 0px; text-align: center;">
+                <asp:GridView ID="GridViewRiscoAnalitico" runat="server"
+                    AutoGenerateColumns="false" GridLines="None" AllowSorting="false"
+                    AllowPaging="True" PageSize="30" OnPageIndexChanging="GridViewRiscoAnalitico_PageIndexChanging"
+                    OnRowCreated="GridViewRiscoAnalitico_RowCreated" ShowFooter="false"
+                    OnDataBound="GridViewRiscoAnalitico_DataBound" Font-Size="9pt">
+                    <RowStyle Height="28px" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="REMESSA" SortExpression="REMESSA">
+                            <ItemStyle Width="10%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="DESCRICAO" SortExpression="DESCRICAO">
+                            <ItemStyle Width="10%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="DATA DE MOVIMENTO" SortExpression="EFDTMOV">
+                            <ItemStyle Width="10%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="OPERACAO" SortExpression="OPERACAO">
+                            <ItemStyle Width="10%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="PARCELA" SortExpression="PARCELA">
+                            <ItemStyle Width="10%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="VALOR TITULO" SortExpression="VLR_TITULO">
+                            <ItemStyle Width="10%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="VALOR PAGO" SortExpression="VLR_PAGO">
+                            <ItemStyle Width="10%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                    </Columns>
+                    <HeaderStyle CssClass="GridviewScrollC3Header" />
+                    <RowStyle CssClass="GridviewScrollC3Item" />
+                    <PagerStyle CssClass="GridviewScrollC3Pager" />
+                    <FooterStyle CssClass="GridviewScrollC3Footer" />
+
+                </asp:GridView>
+            </div>
+        </ContentTemplate>
     </asp:UpdatePanel>
+
     <asp:UpdateProgress runat="server" ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel">
         <ProgressTemplate>
             <div class="overlay" />
@@ -77,22 +114,13 @@
                 <h2>Carregando</h2>
             </div>
         </ProgressTemplate>
-
-
-
-
-
-
     </asp:UpdateProgress>
-
 
 
 
     <asp:HiddenField ID="hfGridView1SV" runat="server" OnValueChanged="hfGridView1SV_ValueChanged" />
     <asp:HiddenField ID="hfGridView1SH" runat="server" OnValueChanged="hfGridView1SH_ValueChanged" />
     <script type="text/javascript" src="https://uxsolutions.github.io/bootstrap-datepicker/boot‌​strap-datepicker/js/‌​locales/bootstrap-da‌​tepicker.pt-BR.min.j‌​s"></script>
-
-
 
 
     <script type="text/javascript">
@@ -122,6 +150,31 @@
 
 
 
+
+        function pageLoad() {
+
+            $('#<%=GridViewRiscoAnalitico.ClientID%>').gridviewScroll({
+                width: 100 + "%",
+                height: 100 + "%",
+                freezesize: 1,
+                headerrowcount: 1,
+                startVertical: $("#<%=hfGridView1SV.ClientID%>").val(),
+                startHorizontal: $("#<%=hfGridView1SH.ClientID%>").val(),
+
+                onScrollVertical: function (delta) {
+                    $("#<%=hfGridView1SV.ClientID%>").val(delta);
+                },
+                onScrollHorizontal: function (delta) {
+                    $("#<%=hfGridView1SH.ClientID%>").val(delta);
+                },
+                arrowsize: 30,
+                varrowtopimg: "/imagens/arrowvt.png",
+                varrowbottomimg: "/imagens/arrowvb.png",
+                harrowleftimg: "/imagens/arrowhl.png",
+                harrowrightimg: "/imagens/arrowhr.png"
+            });
+
+        }
 
 
         $(document).ready(function () {
@@ -190,9 +243,6 @@
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 </asp:Content>

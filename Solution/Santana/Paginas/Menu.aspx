@@ -589,13 +589,15 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cnab Renegociação</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../Paginas/FundoQuata/RenegCnabGerar_R.aspx">Gerar Cnab</a></li>
+                                        <li><a href="../Paginas/FundoQuata/RenegCnabCarga_RN.aspx">Cnab - Carga</a></li>
+                                        <li><a href="../Paginas/FundoQuata/RenegCnabGerar_RN.aspx">Cnab - Gerar</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cnab Estorno</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../Paginas/FundoQuata/EstornoCnabGerar_ES.aspx">Gerar Cnab</a></li>
+                                        <li><a href="../Paginas/FundoQuata/EstornoCnabCarga_ES.aspx">Cnab - Carga</a></li>
+                                        <li><a href="../Paginas/FundoQuata/EstornoCnabGerar_ES.aspx">Cnab - Gerar</a></li>
                                     </ul>
                                 </li>
                             </ul>

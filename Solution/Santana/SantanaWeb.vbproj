@@ -347,13 +347,15 @@
     <Content Include="Paginas\FechaComercial\ComissaoDinamo.aspx" />
     <Content Include="Paginas\FechaComercial\OpRealizadasAnalitica.aspx" />
     <Content Include="Paginas\FundoQuata\Cnab550.aspx" />
+    <Content Include="Paginas\FundoQuata\RenegCnabCarga_RN.aspx" />
+    <Content Include="Paginas\FundoQuata\EstornoCnabCarga_ES.aspx" />
     <Content Include="Paginas\FundoQuata\OrdinarioCnabCriticaAtualizar_O.aspx" />
     <Content Include="Paginas\FundoQuata\CnabAlter.aspx" />
     <Content Include="Paginas\FundoQuata\OrdinarioCnabCriticaGerar_O.aspx" />
     <Content Include="Paginas\FundoQuata\OrdinarioCnabAtualizar_O.aspx" />
     <Content Include="Paginas\FundoQuata\CnabBaixaInclusao.aspx" />
     <Content Include="Paginas\FundoQuata\EstornoCnabGerar_ES.aspx" />
-    <Content Include="Paginas\FundoQuata\RenegCnabGerar_R.aspx" />
+    <Content Include="Paginas\FundoQuata\RenegCnabGerar_RN.aspx" />
     <Content Include="Paginas\FundoQuata\GerarCnab.aspx" />
     <Content Include="Paginas\FundoQuata\GerarCnabAlter.aspx" />
     <Content Include="Paginas\FundoQuata\OrdinarioCarga_O.aspx" />
@@ -1695,6 +1697,20 @@
       <DependentUpon>Cnab550.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Paginas\FundoQuata\RenegCnabCarga_RN.aspx.designer.vb">
+      <DependentUpon>RenegCnabCarga_RN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\RenegCnabCarga_RN.aspx.vb">
+      <DependentUpon>RenegCnabCarga_RN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\EstornoCnabCarga_ES.aspx.designer.vb">
+      <DependentUpon>EstornoCnabCarga_ES.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\FundoQuata\EstornoCnabCarga_ES.aspx.vb">
+      <DependentUpon>EstornoCnabCarga_ES.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Paginas\FundoQuata\OrdinarioCnabCriticaAtualizar_O.aspx.designer.vb">
       <DependentUpon>OrdinarioCnabCriticaAtualizar_O.aspx</DependentUpon>
     </Compile>
@@ -1737,11 +1753,11 @@
       <DependentUpon>EstornoCnabGerar_ES.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Paginas\FundoQuata\RenegCnabGerar_R.aspx.designer.vb">
-      <DependentUpon>RenegCnabGerar_R.aspx</DependentUpon>
+    <Compile Include="Paginas\FundoQuata\RenegCnabGerar_RN.aspx.designer.vb">
+      <DependentUpon>RenegCnabGerar_RN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\FundoQuata\RenegCnabGerar_R.aspx.vb">
-      <DependentUpon>RenegCnabGerar_R.aspx</DependentUpon>
+    <Compile Include="Paginas\FundoQuata\RenegCnabGerar_RN.aspx.vb">
+      <DependentUpon>RenegCnabGerar_RN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\FundoQuata\GerarCnab.aspx.designer.vb">
