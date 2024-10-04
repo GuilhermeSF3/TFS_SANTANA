@@ -594,7 +594,7 @@
                                                 <li><a href="../Paginas/FundoQuata/GerarCnab.aspx">Cnab - Gerar</a></li>
                                                 <li><a href="../Paginas/FundoQuata/CnabBaixaInclusao.aspx">Cnab - Atualizar</a></li>
                                                 <li class="dropdown-submenu">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tratamento de críticas</a>
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contratos Inexistente</a>
                                                     <ul class="dropdown-menu">
                                                         <li><a href="../Paginas/FundoQuata/CnabAlter.aspx">Atualizar - Alterada</a></li>
                                                         <li><a href="../Paginas/FundoQuata/GerarCnabAlter.aspx">Gerar - Alterada</a></li>
@@ -621,22 +621,14 @@
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cnab Renegociação</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Gerar Carga</a></li>
+                                    <ul class="dropdown-menu">                          
                                         <li><a href="../Paginas/FundoQuata/RenegCnabGerar_R.aspx">Gerar Cnab</a></li>
-                                        <li><a href="#">Inserir Faltante</a></li>
-                                        <li><a href="#">Alterar</a></li>
-                                        <li><a href="#">Relatório</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cnab Estorno</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Gerar Carga</a></li>
-                                        <li><a href="#">Gerar Cnab</a></li>
-                                        <li><a href="#">Inserir Faltante</a></li>
-                                        <li><a href="#">Alterar</a></li>
-                                        <li><a href="#">Relatório</a></li>
+                                        <li><a href="../Paginas/FundoQuata/EstornoCnabGerar_ES.aspx">Gerar Cnab</a></li>
                                     </ul>
                                 </li>
                             </ul>
