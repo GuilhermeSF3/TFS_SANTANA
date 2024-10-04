@@ -13,10 +13,9 @@
     <link rel="stylesheet" href="css/GridviewScroll.css" />
     <link rel="stylesheet" href="Content/themes/base/jquery-ui.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    
+
 
     <asp:ContentPlaceHolder ID="head" runat="server">
-
     </asp:ContentPlaceHolder>
 
 
@@ -39,39 +38,42 @@
 
                 <asp:ScriptReference Path="~/Scripts/gridviewScroll.js" />
                 <asp:ScriptReference Path="~/Scripts/bootstrap-growl.js" />
-                 
+
                 <asp:ScriptReference Path="~/Scripts/Spin.js" />
-                <asp:ScriptReference Path="~/Scripts/bootbox.min.js"/>
-                <asp:ScriptReference Path="~/Scripts/date.js"/>
-                <asp:ScriptReference Path="~/Scripts/jquery.validate.js"/>
+                <asp:ScriptReference Path="~/Scripts/bootbox.min.js" />
+                <asp:ScriptReference Path="~/Scripts/date.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery.validate.js" />
 
             </Scripts>
         </asp:ScriptManager>
 
 
-        <div style="height: auto">
-            <table border="0" style="height: 112px; width: 100%">
-                <!-- fwtable fwsrc="SMC" fwbase="SMC-1.gif" fwstyle="Dreamweaver" fwdocid = "742308039" fwnested="0" -->
-                <tbody>
-                    <tr class="tr-1-r1-c1">
-                        <td class="td-1-r1-c1" style="display:flex; flex-direction:column;" colspan="3">&nbsp; &nbsp;
-
-                           
-                              <img src="../Imagens/logonovo.png" alt="Logo" style="width: 150px; margin-left:20px; margin-top:7px; height: auto; text-align:center; justify-content:center;" />
-
-                        </td>
-                       
-                    </tr>
-
-                   
-                </tbody>
-
-            </table>
-
-        </div>
-
-
-        <div>
+       <div style="height: auto">
+    <table border="0" style="height: 65px; width: 100%; background-color: darkblue;">
+        <tbody>
+            <tr class="tr-1-r1-c1">
+                <td style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;" colspan="3">
+                    <div style="display: flex; align-items: center;">
+                        <img src="/Imagens/logonovo.png" alt="Logo" style="width: 100px; margin-left: 30px; margin-top: 12px; height: auto;" />
+                    </div>
+                    <div style="margin-right: 30px; margin-top: 12px; position: relative;">
+                        <asp:Label ID="lblUser" runat="server" Text="" style="margin-right:10px; color:white; font-size: 15px;"></asp:Label>
+                        <img src="/Imagens/do-utilizador.png" style="width: 40px; height: auto; cursor: pointer;" alt="User" onclick="toggleDropdown()" />
+                        
+                        <!-- Menu Dropdown -->
+                        <div id="dropdownMenu" style="display: none; position: absolute; background-color: white; border: 1px solid #ccc; z-index: 1; margin-top: 5px; right: -20px;">
+                            <a href="#" style="display: block; padding: 8px; text-decoration: none; color: black;">Perfil</a>
+                            <a href="#" style="display: block; padding: 8px; text-decoration: none; color: black;">Configurações</a>
+                              <a href="#" style="display: block; padding: 8px; text-decoration: none; color: black;">Dados Pessoais</a>
+                            <a href="#" style="display: block; padding: 8px; text-decoration: none; color: black;">Sair</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
@@ -80,95 +82,109 @@
         <div class="container-full">
             <%-- <hr />--%>
             <footer style="font-family: Arial; font-size: small; color: darkgray">
-<%--                <p> <%: DateTime.Now.Year%> - Santana SA - Credito Financiamento e Investimento.</p>--%>
-                <p> Santana SA - Credito Financiamento e Investimento.</p>
+                <%--                <p> <%: DateTime.Now.Year%> - Santana SA - Credito Financiamento e Investimento.</p>--%>
+                <p>Santana SA - Credito Financiamento e Investimento.</p>
             </footer>
         </div>
 
     </form>
 </body>
-    
-    
-    
- <script type="text/javascript">
-     
 
 
-     function Alerta(titulo, mensagem, type) {
-         $.growl({
-             icon: 'glyphicon glyphicon-info-sign',
-             title: titulo,
-             message: mensagem
-         },
-         {
-             template: { title_divider: '<hr class="separator" />' },
-             position: {
-                 from: "top",
-                 align: "center" //center, left, right
-             },
-             offset: 120,
-             pause_on_mouseover: true,
-             type: type //info, success, warning, danger
 
-         });
-     };
+<script type="text/javascript">
 
 
-     function NumericAllow() {
 
-         $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
-             //this.value = this.value.replace(/[^0-9\.]/g,'');
-             $(this).val($(this).val().replace(/[^0-9\,]/g, ""));
-             if ((event.which !== 44 || $(this).val().indexOf(',') !== -1) && (event.which < 48 || event.which > 57)) {
-                 event.preventDefault();
-             }
-         });
+    function Alerta(titulo, mensagem, type) {
+        $.growl({
+            icon: 'glyphicon glyphicon-info-sign',
+            title: titulo,
+            message: mensagem
+        },
+            {
+                template: { title_divider: '<hr class="separator" />' },
+                position: {
+                    from: "top",
+                    align: "center" //center, left, right
+                },
+                offset: 120,
+                pause_on_mouseover: true,
+                type: type //info, success, warning, danger
 
-         $(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
-             $(this).val($(this).val().replace(/[^\d].+/, ""));
-             if ((event.which < 48 || event.which > 57)) {
-                 event.preventDefault();
-             }
-         });
-     };
+            });
+    };
+   
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownMenu");
+        dropdown.style.display = (dropdown.style.display === "none" || dropdown.style.display === "") ? "block" : "none";
+    }
+
+ 
+    window.onclick = function (event) {
+        if (!event.target.matches('img')) {
+            var dropdown = document.getElementById("dropdownMenu");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            }
+        }
+    }
+
+    function NumericAllow() {
+
+        $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\,]/g, ""));
+            if ((event.which !== 44 || $(this).val().indexOf(',') !== -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
+        $(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
+            $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+    };
 
 
-     var spinner;
+    var spinner;
 
-     function StartSpin() {
+    function StartSpin() {
 
-         var opts = {
-             lines: 17, // The number of lines to draw
-             length: 10, // The length of each line
-             width: 7, // The line thickness
-             radius: 21, // The radius of the inner circle
-             corners: 1, // Corner roundness (0..1)
-             rotate: 0, // The rotation offset
-             direction: 1, // 1: clockwise, -1: counterclockwise
-             color: '#000', // #rgb or #rrggbb or array of colors
-             speed: 1, // Rounds per second
-             trail: 80, // Afterglow percentage
-             shadow: false, // Whether to render a shadow
-             hwaccel: false, // Whether to use hardware acceleration
-             className: 'spinner', // The CSS class to assign to the spinner
-             zIndex: 2e9, // The z-index (defaults to 2000000000)
-             top: '50%', // Top position relative to parent
-             left: '50%' // Left position relative to parent
-         };
+        var opts = {
+            lines: 17, // The number of lines to draw
+            length: 10, // The length of each line
+            width: 7, // The line thickness
+            radius: 21, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 0, // The rotation offset
+            direction: 1, // 1: clockwise, -1: counterclockwise
+            color: '#000', // #rgb or #rrggbb or array of colors
+            speed: 1, // Rounds per second
+            trail: 80, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: '50%', // Top position relative to parent
+            left: '50%' // Left position relative to parent
+        };
 
-         var target = document.getElementById('SpingLoad');
-         spinner = new Spinner(opts).spin(target);
+        var target = document.getElementById('SpingLoad');
+        spinner = new Spinner(opts).spin(target);
 
-     };
-
-
-     function StopSpin() {
-         spinner.stop();
-     };
+    };
 
 
- </script>
-     
+    function StopSpin() {
+        spinner.stop();
+    };
+
+
+</script>
+
 
 
 </html>

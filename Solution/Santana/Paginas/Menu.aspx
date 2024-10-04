@@ -21,7 +21,7 @@
                     <ul class="nav navbar-nav" id="MenuRoot" runat="server">
 
                         <li class="dropdown" id="Parametros" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i  class="bi bi-display-fill"></i> Paramet<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-display-fill"></i> Paramet<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li class="menu-item dropdown dropdown-submenu" id="Usuarios" runat="server" visible="true">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários</a>
@@ -81,7 +81,7 @@
                                         <li class="divider"></li>
                                         <li><a href="../Paginas/Cadastro/Risco.aspx">Risco - Desconto</a></li>
                                         <li><a href="../Paginas/Cadastro/ComissaoDesconto.aspx">Comissão - Desconto</a></li>
-                                      
+
                                     </ul>
                                 </li>
 
@@ -482,7 +482,7 @@
                         </li>
 
                         <li class="dropdown" id="Li3" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="bi bi-building-check"></i> Comissão PJ<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-building-check"></i> Comissão PJ<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../Paginas/Cadastro/Comissao PJ/ComissaoPJ.aspx">Comissão PJ</a></li>
                                 <li><a href="../Paginas/Cadastro/Comissao PJ/ComissaoPJAnalitico.aspx">Comissão PJ Analítico</a></li>
@@ -548,48 +548,15 @@
                                 <li><a href="Formaliz/RegistroGravame.aspx">Registro Contrato</a></li>
                             </ul>
                         </li>
-
-
-
-                        <li class="dropdown" id="Financeiro" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-bank2"></i> Financeiro<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="Financeiro/OperacaoCaptacao.aspx">Operação Captação</a></li>
-                                <li><a href="Financeiro/BaseCaptacao.aspx">Base de Captação</a></li>
-                                <li><a href="../Paginas/Cadastro/Financeiro/TaxaCDI.aspx">Cadastro de Taxa CDI</a></li>
-                                <li><a href="../Paginas/Cadastro/Financeiro/Caixa.aspx">Lançamento de Caixa</a></li>
-                                <li><a href="Financeiro/Remessa.aspx">Remessa</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown" id="RH" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-people-fill"></i> RH<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="RH/CPColaboradores.aspx">CP Colaboradores</a></li>
-                                <li><a href="RH/CPColaboradoresSintetico.aspx">CP Colaboradores - Sintético</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown" id="Desconto" runat="server" visible="false">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-buildings"></i> PJ<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="../Paginas/Desconto/DescontoProducao.aspx">Produção</a></li>
-                                <li><a href="../Paginas/Desconto/Desconto8020.aspx">80 20</a></li>
-                                <li><a href="../Paginas/Desconto/CobrancaPJ.aspx">Cobrança PJ</a></li>
-                                <li><a href="../Paginas/Desconto/ContratoOperador.aspx">Contratos por Operador</a></li>
-                                <li><a href="../Paginas/Desconto/Onboarding.aspx">Onboarding</a></li>
-                                <li><a href="../Paginas/Desconto/Assertiva.aspx">Assertiva</a></li>
-                            </ul>
-                        </li>
                         <li class="dropdown" id="FundoQuata" runat="server" visible="true">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-wallet-fill"></i> Fundo-Quata<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu ">
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cnab Baixa</a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extraordinário</a>
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu ">
                                                 <li><a href="../Paginas/FundoQuata/Cnab550.aspx">Cnab - Carga</a></li>
                                                 <li><a href="../Paginas/FundoQuata/GerarCnab.aspx">Cnab - Gerar</a></li>
                                                 <li><a href="../Paginas/FundoQuata/CnabBaixaInclusao.aspx">Cnab - Atualizar</a></li>
@@ -621,7 +588,7 @@
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cnab Renegociação</a>
-                                    <ul class="dropdown-menu">                          
+                                    <ul class="dropdown-menu">
                                         <li><a href="../Paginas/FundoQuata/RenegCnabGerar_R.aspx">Gerar Cnab</a></li>
                                     </ul>
                                 </li>
@@ -634,11 +601,37 @@
                             </ul>
                         </li>
 
+                        <li class="dropdown" id="Financeiro" runat="server" visible="False">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-bank2"></i> Financeiro<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Financeiro/OperacaoCaptacao.aspx">Operação Captação</a></li>
+                                <li><a href="Financeiro/BaseCaptacao.aspx">Base de Captação</a></li>
+                                <li><a href="../Paginas/Cadastro/Financeiro/TaxaCDI.aspx">Cadastro de Taxa CDI</a></li>
+                                <li><a href="../Paginas/Cadastro/Financeiro/Caixa.aspx">Lançamento de Caixa</a></li>
+                                <li><a href="Financeiro/Remessa.aspx">Remessa</a></li>
+                            </ul>
+                        </li>
 
+                        <li class="dropdown" id="RH" runat="server" visible="False">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-people-fill"></i> RH<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="RH/CPColaboradores.aspx">CP Colaboradores</a></li>
+                                <li><a href="RH/CPColaboradoresSintetico.aspx">CP Colaboradores - Sintético</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown" id="Desconto" runat="server" visible="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-buildings"></i> PJ<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../Paginas/Desconto/DescontoProducao.aspx">Produção</a></li>
+                                <li><a href="../Paginas/Desconto/Desconto8020.aspx">80 20</a></li>
+                                <li><a href="../Paginas/Desconto/CobrancaPJ.aspx">Cobrança PJ</a></li>
+                                <li><a href="../Paginas/Desconto/ContratoOperador.aspx">Contratos por Operador</a></li>
+                                <li><a href="../Paginas/Desconto/Onboarding.aspx">Onboarding</a></li>
+                                <li><a href="../Paginas/Desconto/Assertiva.aspx">Assertiva</a></li>
+                            </ul>
+                        </li>
                     </ul>
-
-
-
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~/Paginas/Logon.aspx"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
                     </ul>
@@ -657,15 +650,17 @@
 
     </div>
 
+    <style>
+    </style>
+
 
     <script>
-
 
         function manutencao() {
 
             alert("Módulo em desenvolvimento")
         }
-        
+
     </script>
 
 </asp:Content>

@@ -143,7 +143,7 @@ Namespace Paginas.FundoQuata
 
         Private Sub ExportarParaTXT(dt As DataTable)
             Try
-                Dim nomeArquivo As String = "CB" & DateTime.Now.ToString("ddMM") & "02" & ".rem"
+                Dim nomeArquivo As String = "CB" & DateTime.Now.ToString("ddMM") & "02" & "_O" & ".rem"
                 Response.Clear()
                 Response.Buffer = True
                 Response.Charset = ""

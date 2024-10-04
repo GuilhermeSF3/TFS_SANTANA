@@ -86,15 +86,6 @@ Partial Public Class Logon
     Protected WithEvents txtUsuario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Controle txtAlterarSenha.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txtAlterarSenha As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''Controle txtSenha.
     '''</summary>
     '''<remarks>
@@ -102,6 +93,15 @@ Partial Public Class Logon
     '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txtSenha As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Controle txtAlterarSenha.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents txtAlterarSenha As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Controle btnLogin.

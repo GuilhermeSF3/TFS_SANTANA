@@ -6,6 +6,8 @@ Public Class SantanaWeb
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Dim contexto = New Contexto
+        lblUser.Text = contexto.UsuarioLogado.Login
+
 
     End Sub
 
