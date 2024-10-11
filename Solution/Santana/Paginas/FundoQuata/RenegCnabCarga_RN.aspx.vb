@@ -269,7 +269,7 @@ Namespace Paginas.FundoQuata
             Dim usuarioLogado As String = ContextoWeb.UsuarioLogado.Login
 
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"EXEC SCR_CNAB550_CARGA_ESTORNO '{dataReferencia}'", con)
+                Using cmd As New SqlCommand($"EXEC SCR_CNAB550_CARGA_RENEG  '{dataReferencia}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()

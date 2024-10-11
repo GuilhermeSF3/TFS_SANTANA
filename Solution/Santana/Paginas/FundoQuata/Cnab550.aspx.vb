@@ -23,6 +23,7 @@ Namespace Paginas.FundoQuata
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+
             If Not IsPostBack Then
                 Dim today As DateTime = DateTime.Now
                 Dim previousDate As DateTime
@@ -53,19 +54,9 @@ Namespace Paginas.FundoQuata
 
         End Sub
 
-
-
-
-
-
-
-
-
-
         Private Sub GridViewRiscoAnalitico_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridViewRiscoAnalitico.RowDataBound
 
             Try
-
                 If e.Row.RowType = DataControlRowType.DataRow Then
 
                     If Not e.Row.DataItem Is Nothing Then

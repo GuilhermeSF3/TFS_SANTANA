@@ -49,9 +49,9 @@
 
 
        <div style="height: auto">
-    <table border="0" style="height: 65px; width: 100%; background-color: darkblue;">
+    <table border="0" style="height: 65px; width: 100%; background: radial-gradient(circle, rgba(64,114,179,1) 0%, rgba(21,44,97,1) 100%);">
         <tbody>
-            <tr class="tr-1-r1-c1">
+            <tr class="">
                 <td style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;" colspan="3">
                     <div style="display: flex; align-items: center;">
                         <img src="/Imagens/logonovo.png" alt="Logo" style="width: 100px; margin-left: 30px; margin-top: 12px; height: auto;" />
@@ -62,10 +62,7 @@
                         
                         <!-- Menu Dropdown -->
                         <div id="dropdownMenu" style="display: none; position: absolute; background-color: white; border: 1px solid #ccc; z-index: 1; margin-top: 5px; right: -20px;">
-                            <a href="#" style="display: block; padding: 8px; text-decoration: none; color: black;">Perfil</a>
-                            <a href="#" style="display: block; padding: 8px; text-decoration: none; color: black;">Configurações</a>
-                              <a href="#" style="display: block; padding: 8px; text-decoration: none; color: black;">Dados Pessoais</a>
-                            <a href="#" style="display: block; padding: 8px; text-decoration: none; color: black;">Sair</a>
+                              <a href="/Paginas/PerfilConfiguracoes/DadosPessoais.aspx" style="display: block; padding: 8px; text-decoration: none; color: black;">Dados Pessoais</a>                        
                         </div>
                     </div>
                 </td>

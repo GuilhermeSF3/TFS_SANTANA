@@ -27,6 +27,8 @@ Namespace Paginas.FundoQuata
                 Dim today As DateTime = DateTime.Now
                 Dim previousDate As DateTime
 
+
+
                 txtData.Text = Now.ToString("dd/MM/yyyy")
 
 
@@ -55,14 +57,6 @@ Namespace Paginas.FundoQuata
             ScriptManager.RegisterStartupScript(Me, GetType(String), "selectpicker", script, True)
 
         End Sub
-
-
-
-
-
-
-
-
 
 
         Private Sub GridViewRiscoAnalitico_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridViewRiscoAnalitico.RowDataBound

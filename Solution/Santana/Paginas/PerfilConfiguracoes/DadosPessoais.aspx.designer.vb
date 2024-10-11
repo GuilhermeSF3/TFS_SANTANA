@@ -10,9 +10,9 @@
 Option Strict On
 Option Explicit On
 
-Namespace Paginas.FundoQuata
+Namespace Paginas.PerfilConfiguracoes
 
-    Partial Public Class Cnab550
+    Partial Public Class DadosPessoais
 
         '''<summary>
         '''Controle UpdatePanel.
@@ -24,24 +24,6 @@ Namespace Paginas.FundoQuata
         Protected WithEvents UpdatePanel As Global.System.Web.UI.UpdatePanel
 
         '''<summary>
-        '''Controle txtData.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents txtData As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
-        '''Controle btnCarregar.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents btnCarregar As Global.System.Web.UI.WebControls.Button
-
-        '''<summary>
         '''Controle btnMenu.
         '''</summary>
         '''<remarks>
@@ -51,67 +33,49 @@ Namespace Paginas.FundoQuata
         Protected WithEvents btnMenu As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
-        '''Controle txtNomeFavorito.
+        '''Controle txtNomeUsuario.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtNomeFavorito As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents txtNomeUsuario As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnSalvarFavorito.
+        '''Controle txtEmail.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnSalvarFavorito As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnExcluirFavorito.
+        '''Controle txtNomeCompleto.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnExcluirFavorito As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtNomeCompleto As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnExcel.
+        '''Controle txtCPF.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnExcel As Global.System.Web.UI.WebControls.ImageButton
+        Protected WithEvents txtCPF As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle UpdatePanel1.
+        '''Controle Button1.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
-        '''<summary>
-        '''Controle dvRiscoAnalitico.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents dvRiscoAnalitico As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-        '''<summary>
-        '''Controle GridViewRiscoAnalitico.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents GridViewRiscoAnalitico As Global.System.Web.UI.WebControls.GridView
+        Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
         '''Controle UpdateProgress1.
