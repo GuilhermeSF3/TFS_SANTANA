@@ -30,7 +30,6 @@ Namespace Paginas.PerfilConfiguracoes
                 txtNomeUsuario.Text = ContextoWeb.UsuarioLogado.NomeUsuario
                 txtEmail.Text = ContextoWeb.UsuarioLogado.EMail
                 txtNomeCompleto.Text = ContextoWeb.UsuarioLogado.NomeCompleto
-                txtCPF.Text = ContextoWeb.UsuarioLogado.Cpf
 
 
             End If
@@ -61,19 +60,18 @@ Namespace Paginas.PerfilConfiguracoes
             Dim nomeUsuario As String = txtNomeUsuario.Text
             Dim email As String = txtEmail.Text
             Dim nomeCompleto As String = txtNomeCompleto.Text
-            Dim cpf As String = txtCPF.Text
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+
 
             Try
                 Using conn As New SqlConnection(strConn)
                     conn.Open()
 
-                    Dim query As String = "UPDATE USUARIO SET NomeUsuario = @NomeUsuario, EMail = @Email, NomeCompleto = @NomeCompleto, CPF = @Cpf WHERE Login = @Login"
+                    Dim query As String = "UPDATE USUARIO SET NomeUsuario = @NomeUsuario, EMail = @Email, NomeCompleto = @NomeCompleto WHERE Login = @Login"
                     Using cmd As New SqlCommand(query, conn)
                         cmd.Parameters.AddWithValue("@NomeUsuario", nomeUsuario)
                         cmd.Parameters.AddWithValue("@Email", email)
                         cmd.Parameters.AddWithValue("@NomeCompleto", nomeCompleto)
-                        cmd.Parameters.AddWithValue("@Cpf", cpf)
                         cmd.Parameters.AddWithValue("@Login", ContextoWeb.UsuarioLogado.Login)
 
                         cmd.ExecuteNonQuery()

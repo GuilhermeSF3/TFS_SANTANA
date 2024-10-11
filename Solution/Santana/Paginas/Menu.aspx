@@ -1048,32 +1048,29 @@
                             <label for="ddlPaginas">Fundo Quata</label>
                             <asp:DropDownList ID="ddlPaginas10" runat="server" CssClass="form-control">
                                 <asp:ListItem Text="Selecione uma página" Value="" />
-                                <asp:ListItem Text="--------Fundo-Quata--------" Value="" />
-
-                                <asp:ListItem Text="Cnab Baixa" Value="" />
-                                <asp:ListItem Text="Extraordinário" Value="" />
+                                <asp:ListItem Text="--------Extraordinário--------" Value="" />
                                 <asp:ListItem Text="Cnab - Carga" Value="../Paginas/FundoQuata/Cnab550.aspx" />
                                 <asp:ListItem Text="Cnab - Gerar" Value="../Paginas/FundoQuata/GerarCnab.aspx" />
                                 <asp:ListItem Text="Cnab - Atualizar" Value="../Paginas/FundoQuata/CnabBaixaInclusao.aspx" />
 
-                                <asp:ListItem Text="Contratos Inexistente" Value="" />
+                                <asp:ListItem Text="--------Contratos Inexistente--------" Value="" />
                                 <asp:ListItem Text="Atualizar - Alterada" Value="../Paginas/FundoQuata/CnabAlter.aspx" />
                                 <asp:ListItem Text="Gerar - Alterada" Value="../Paginas/FundoQuata/GerarCnabAlter.aspx" />
 
-                                <asp:ListItem Text="Ordinário" Value="" />
+                                <asp:ListItem Text="--------Ordinário--------" Value="" />
                                 <asp:ListItem Text="Cnab - Carga" Value="../Paginas/FundoQuata/OrdinarioCarga_O.aspx" />
                                 <asp:ListItem Text="Cnab - Gerar" Value="../Paginas/FundoQuata/OrdinarioCnabGerar_O.aspx" />
                                 <asp:ListItem Text="Cnab - Atualizar" Value="../Paginas/FundoQuata/OrdinarioCnabAtualizar_O.aspx" />
 
-                                <asp:ListItem Text="Contratos Inexistente" Value="" />
+                                <asp:ListItem Text="--------Contratos Inexistente--------" Value="" />
                                 <asp:ListItem Text="Atualizar - Alterada" Value="../Paginas/FundoQuata/OrdinarioCnabCriticaAtualizar_O.aspx" />
                                 <asp:ListItem Text="Gerar - Alterada" Value="../Paginas/FundoQuata/OrdinarioCnabCriticaGerar_O.aspx" />
 
-                                <asp:ListItem Text="Cnab Renegociação" Value="" />
+                                <asp:ListItem Text="--------Cnab Renegociação--------" Value="" />
                                 <asp:ListItem Text="Cnab - Carga" Value="../Paginas/FundoQuata/RenegCnabCarga_RN.aspx" />
                                 <asp:ListItem Text="Cnab - Gerar" Value="../Paginas/FundoQuata/RenegCnabGerar_RN.aspx" />
 
-                                <asp:ListItem Text="Cnab Estorno" Value="" />
+                                <asp:ListItem Text="--------Cnab Estorno--------" Value="" />
                                 <asp:ListItem Text="Cnab - Carga" Value="../Paginas/FundoQuata/EstornoCnabCarga_ES.aspx" />
                                 <asp:ListItem Text="Cnab - Gerar" Value="../Paginas/FundoQuata/EstornoCnabGerar_ES.aspx" />
 
@@ -1145,7 +1142,7 @@
                 <h2>Seções Favoritas</h2>
                 <p>Organize as páginas mais usadas como favoritas para acessar de forma mais rápida e melhorar sua eficiência no sistema. </p>
                 <button type="button"  style="width:180px ; margin-bottom:10px; font-style:bold; border: none; color:white; border-radius: 5px; background-color:#152B61; height:35px; " data-toggle="modal";" data-target="#favoritoModal">
-    Adicionar Favorito
+    Gerenciar Favoritos
 </button>
                 <div>
                     <asp:Literal ID="litFavoritos" runat="server"></asp:Literal>
@@ -1156,8 +1153,7 @@
                 <img src="/imagens/SIG 1.png" style="max-width: 100%; height: auto;" />
             </div>
         </div>
-        <asp:Table ID="TbGeral" runat="server" Width="100%" CellPadding="0" CellSpacing="100"
-            Height="510px">
+        <asp:Table ID="TbGeral" runat="server" Width="100%" CellPadding="0" CellSpacing="100">
             <asp:TableRow ID="TableRow1" runat="server" HorizontalAlign="Center">
                 <asp:TableCell ID="TableCell2" Width="100%" Height="100%" runat="server" VerticalAlign="Top">
                 </asp:TableCell>

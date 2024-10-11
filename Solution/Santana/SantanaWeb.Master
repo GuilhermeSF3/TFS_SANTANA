@@ -75,17 +75,14 @@
             </asp:ContentPlaceHolder>
         </div>
 
-
-        <div class="container-full">
-            <%-- <hr />--%>
-            <footer style="font-family: Arial; font-size: small; color: darkgray">
-                <%--                <p> <%: DateTime.Now.Year%> - Santana SA - Credito Financiamento e Investimento.</p>--%>
-                <p>Santana SA - Credito Financiamento e Investimento.</p>
-            </footer>
-        </div>
-
     </form>
 </body>
+
+    <style>
+        body{
+            height: 100vh;
+        }
+    </style>
 
 
 

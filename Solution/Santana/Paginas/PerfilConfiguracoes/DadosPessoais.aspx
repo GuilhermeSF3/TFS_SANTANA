@@ -4,7 +4,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <title>Ordinario Carga</title>
+    <title>Dados pessoais</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
    <asp:UpdatePanel ID="UpdatePanel" runat="server">
@@ -33,10 +33,6 @@
                 <asp:TextBox ID="txtNomeCompleto" runat="server" CssClass="form-control" style="width:22%; margin-left:30px;" Text='<%# ContextoWeb.UsuarioLogado.NomeCompleto %>' />
             </div>
 
-            <div class="form-group">
-                <label for="txtCPF"  style="margin-left:30px;">CPF:</label>
-                <asp:TextBox ID="txtCPF" runat="server" CssClass="form-control" style="width:22%; margin-left:30px;" Text='<%# ContextoWeb.UsuarioLogado.Cpf %>' />
-            </div>
             <asp:Button style="margin-left:30px;" ID="Button1" runat="server" Text="Salvar" CssClass="btn btn-success" OnClick= "btnSalvar_Click" />
             
 

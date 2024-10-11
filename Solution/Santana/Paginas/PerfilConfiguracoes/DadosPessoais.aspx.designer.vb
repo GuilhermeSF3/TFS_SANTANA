@@ -60,15 +60,6 @@ Namespace Paginas.PerfilConfiguracoes
         Protected WithEvents txtNomeCompleto As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle txtCPF.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents txtCPF As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
         '''Controle Button1.
         '''</summary>
         '''<remarks>
