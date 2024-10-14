@@ -39,30 +39,6 @@
                                         </span>
                                         <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-success navbar-btn" OnClick="btnCarregar_Click" />
                                         <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" />
-
-                                        <div class="modal fade" id="favoritoModal" tabindex="-1" role="dialog" aria-labelledby="favoritoModalLabel">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="favoritoModalLabel">Nomear Favorito</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <label for="txtNomeFavorito">Nome do Favorito:</label>
-                                                            <asp:TextBox ID="txtNomeFavorito" runat="server" CssClass="form-control"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <asp:Button ID="btnSalvarFavorito" runat="server" Text="Salvar" CssClass="btn btn-primary" OnClick="btnFavoritar_Click" />
-                                                        <asp:Button ID="btnExcluirFavorito" runat="server" Text="Excluir" CssClass="btn btn-danger" OnClick="btnExcluirFavorito_Click" />
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
                                     </div>
                                 </div>
                             </li>
