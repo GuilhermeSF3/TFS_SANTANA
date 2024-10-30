@@ -270,6 +270,8 @@
                                         <li><a href="Cobranca/Relatorios/IPAnalitico.aspx">IP Analítico</a></li>
                                         <li class="divider"></li>
                                         <li><a href="Cobranca/Relatorios/AjusteIP.aspx">Ajuste IP</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="Cobranca/Relatorios/ForcarICM.aspx">Forçar ICM</a></li>
                                     </ul>
                                 </li>
                             </ul>
