@@ -34,7 +34,7 @@
                                    <asp:Button ID="Incluir"  runat="server" Text="Adicionar"  CssClass="btn btn-primary navbar-btn" data-toggle="modal" data-target="#exampleModal" />
                                     <asp:Button ID="Button2"  runat="server" Text="Alterar"  CssClass="btn btn-primary navbar-btn" data-toggle="modal" data-target="#exampleModalAlterar" />
                                     <asp:Button ID="ExcluirInv"  runat="server" Text="Excluir"  CssClass="btn btn-danger navbar-btn" data-toggle="modal" data-target="#exampleModalDelete" />
-                                    <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" class="btn btn-default navbar-btn" OnClick="btnMenu_Click"></asp:Button>
+                                    <asp:Button ID="btnMenu" runat="server" Text="Menu Principal." class="btn btn-default navbar-btn" OnClick="btnMenu_Click"></asp:Button>
 
                                 </div>
                             </li>
