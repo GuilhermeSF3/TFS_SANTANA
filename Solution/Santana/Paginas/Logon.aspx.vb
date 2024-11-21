@@ -196,6 +196,7 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Financeiro", New List(Of Integer)({0, 1, 11})))   ' 11= FINANC
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("RH", New List(Of Integer)({0, 12})))   ' 12= RH
 
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("TI", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("DCO", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Desconto", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Cadastro", New List(Of Integer)({0, 1, 8})))
@@ -551,6 +552,9 @@ Partial Class Logon
         'PERFILCONFIGURACOES
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/PerfilConfiguracoes/DadosPessoais.aspx", New List(Of Integer)({0, 1})))
 
+
+        'Tecnologia'
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Inventario2.aspx", New List(Of Integer)({0, 1})))
 
 
 

@@ -633,7 +633,21 @@
                                 <li><a href="../Paginas/Desconto/Assertiva.aspx">Assertiva</a></li>
                             </ul>
                         </li>
+
+                         <li class="dropdown" id="TI" runat="server" visible="False">
+     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-browser-edge"></i> TI<b class="caret"></b></a>
+     <ul class="dropdown-menu">
+         <li><a href="../Paginas/TI/Inventario2.aspx">Inventario</a></li>
+     </ul>
+ </li>
                     </ul>
+
+
+
+
+
+
+
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~/Paginas/Logon.aspx"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
                     </ul>
@@ -1142,8 +1156,8 @@
                 <h2>Seções Favoritas</h2>
                 <p>Organize as páginas mais usadas como favoritas para acessar de forma mais rápida e melhorar sua eficiência no sistema. </p>
                 <button type="button"  style="width:180px ; margin-bottom:10px; font-style:bold; border: none; color:white; border-radius: 5px; background-color:#152B61; height:35px; " data-toggle="modal";" data-target="#favoritoModal">
-    Gerenciar Favoritos
-</button>
+                           Gerenciar Favoritos
+                 </button>
                 <div>
                     <asp:Literal ID="litFavoritos" runat="server"></asp:Literal>
                 </div>
@@ -1210,7 +1224,7 @@
 </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      
+
         document.querySelector('button[data-toggle="modal"]').addEventListener('click', function (event) {
             event.preventDefault(); // Evita a submissão do formulário
         });
@@ -1230,7 +1244,7 @@
             }
         }
 
-    
+
         let activeButton = null;
         function parametativ(contentId, event) {
             event.preventDefault();
@@ -1256,7 +1270,7 @@
             }
         }
 
-</script>
+    </script>
 
 
 
