@@ -166,6 +166,7 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Parametros", New List(Of Integer)({0, 1, 8})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("ParametrosGerencial", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Cobranca", New List(Of Integer)({0, 1, 5})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("ICM", New List(Of Integer)({0, 1, 5})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("CobrancaP123", New List(Of Integer)({0, 1, 3, 4, 6, 7, 8})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("RiscoGerencial", New List(Of Integer)({0, 1, 8})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Relatorios", New List(Of Integer)({0, 1, 5})))
@@ -325,7 +326,8 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/Relatorios/ControleAcoesPJ.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/Relatorios/AjusteIP.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/Relatorios/Honorarios.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/Relatorios/ForcarICM.aspx", New List(Of Integer)({0, 1})))
+
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cobranca/ICM/ForcarICM.aspx", New List(Of Integer)({0, 1})))
 
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/UraGerarArquivo.aspx", New List(Of Integer)({0, 1, 5})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Carteira3M.aspx", New List(Of Integer)({0, 1})))

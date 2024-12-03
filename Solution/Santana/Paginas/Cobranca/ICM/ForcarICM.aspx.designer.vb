@@ -10,7 +10,7 @@
 Option Strict On
 Option Explicit On
 
-Namespace Paginas.Cobranca.Relatorios
+Namespace Paginas.Cobranca.ICM
 
     Partial Public Class ForcarICM
 
@@ -42,22 +42,31 @@ Namespace Paginas.Cobranca.Relatorios
         Protected WithEvents txtContract As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle TxtParcel.
+        '''Controle txtParcel.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents TxtParcel As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents txtParcel As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle TxtCodCobr.
+        '''Controle txtCodCobr.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents TxtCodCobr As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents txtCodCobr As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle btnConsultar.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnConsultar As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
         '''Controle btnIncluir.
@@ -103,24 +112,6 @@ Namespace Paginas.Cobranca.Relatorios
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents btnExcel As Global.System.Web.UI.WebControls.ImageButton
-
-        '''<summary>
-        '''Controle btnImpressao.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents btnImpressao As Global.System.Web.UI.WebControls.ImageButton
-
-        '''<summary>
-        '''Controle btnHelp.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents btnHelp As Global.System.Web.UI.WebControls.ImageButton
 
         '''<summary>
         '''Controle UpdatePanel1.

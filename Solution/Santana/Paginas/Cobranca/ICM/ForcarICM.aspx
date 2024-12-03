@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="ForcarICM.aspx.vb" Inherits="Santana.Paginas.Cobranca.Relatorios.ForcarICM" Title="Forçar ICM" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="ForcarICM.aspx.vb" Inherits="Santana.Paginas.Cobranca.ICM.ForcarICM" Title="Forçar ICM" EnableEventValidation="false" %>
 
 <%@ Register Assembly="Componentes" Namespace="Componentes" TagPrefix="cc1" %>
 
@@ -49,28 +49,27 @@
           
       <div  style=" display:flex; flex-direction: column; align-items: start; text-align: start;" >
           <label class="navbar-text" style="float: none; margin: 0;">Parcela</label>
-          <asp:TextBox ID="TxtParcel" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 150px;" ></asp:TextBox>
+          <asp:TextBox ID="txtParcel" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 150px;" ></asp:TextBox>
       </div>
 
       <!-- Cod cobradora -->
           
       <div  style=" display:flex; flex-direction: column; align-items: start; text-align: start;" >
           <label class="navbar-text" style="float: none; margin: 0;">Código da cobradora</label>
-          <asp:TextBox ID="TxtCodCobr" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 150px;" ></asp:TextBox>
+          <asp:TextBox ID="txtCodCobr" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 150px;" ></asp:TextBox>
       </div>
              
 
       <!-- Botões -->
         
-      <div style=" display:flex; align-items: flex-end !important; flex-direction: row; gap: 10px;" >
-          <asp:Button ID="btnIncluir" runat="server" Text="Incluir " CssClass="btn btn-warning navbar-btn" OnClick="btnCarregar_Click"   />
+      <div style=" display:flex; align-items: flex-end !important; flex-direction: row; gap: 10px;">    
+          <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary navbar-btn" OnClick="btnConsultar_Click"/>
+          <asp:Button ID="btnIncluir" runat="server" Text="Incluir " CssClass="btn btn-primary navbar-btn" OnClick="btnInserir_Click"   />
           <asp:Button ID="btnExcluir" runat="server" Text="Excluir" CssClass="btn btn-danger navbar-btn"  OnClick="btnCarregar_ClickDelete"   />
-          <asp:Button ID="btnProcessar" runat="server" Text="Processar" CssClass="btn btn-danger navbar-btn"  OnClick="btnProcessar_Click"   />
+          <asp:Button ID="btnProcessar" runat="server" Text="Processar" CssClass="btn btn-success navbar-btn"  OnClick="btnProcessar_Click"   />
       </div>               
             
            </div>
-    
-
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -81,8 +80,6 @@
                                     <div class="btn-group-sm  ">
                                         <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn w-300" OnClick="btnMenu_Click" />
                                         <asp:ImageButton ID="btnExcel" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnExcel_Click" ImageUrl="~/imagens/excel2424.png"></asp:ImageButton>
-                                        <asp:ImageButton ID="btnImpressao" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnImpressao_Click" ImageUrl="~/imagens/printer2424.png"></asp:ImageButton>
-                                        <asp:ImageButton ID="btnHelp" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnHelp_Click" ImageUrl="~/imagens/help2424.png"></asp:ImageButton>
                                     </div>
                      
                                 </div>
@@ -107,17 +104,20 @@
                     OnDataBound="GridViewRiscoAnalitico_DataBound" Font-Size="9pt">
                     <RowStyle Height="28px" />
                     <Columns>
+                        <asp:TemplateField HeaderText="STATUS" SortExpression="STATUS">
+                            <ItemStyle Width="5%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="CONTRATO" SortExpression="CONTRATO">
                             <ItemStyle Width="5%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="PARCELA" SortExpression="PARCELA">
-                            <ItemStyle Width="3%" HorizontalAlign="Center" />
+                            <ItemStyle Width="4%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="VALOR DA PARCELA" SortExpression="VLR_PARCELA">
                             <ItemStyle Width="7%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="DATA DO PAGAMENTO" SortExpression="DATA_PAGAMENTO">
-                            <ItemStyle Width="7%" HorizontalAlign="Center" />
+                            <ItemStyle Width="8%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ATRASO" SortExpression="ATRASO">
                             <ItemStyle Width="3%" HorizontalAlign="Center" />
@@ -126,7 +126,7 @@
                             <ItemStyle Width="3%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="FAIXA" SortExpression="FAIXA">
-                            <ItemStyle Width="4%" HorizontalAlign="Center" />
+                            <ItemStyle Width="5%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="FAIXA RATING" SortExpression="FAIXA_RATING">
                             <ItemStyle Width="5%" HorizontalAlign="Center" />
@@ -135,16 +135,16 @@
                             <ItemStyle Width="15%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="CPF / CNPJ" SortExpression="CPF_CNPJ">
-                            <ItemStyle Width="7%" HorizontalAlign="Center" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="CODIGO DA COBRADORA" SortExpression="CODCOBRADORA">
-                            <ItemStyle Width="8%" HorizontalAlign="Center" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="COBRADORA" SortExpression="COBRADORA">
                             <ItemStyle Width="6%" HorizontalAlign="Center" />
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="CODIGO DA COBRADORA" SortExpression="CODCOBRADORA">
+                            <ItemStyle Width="9%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="COBRADORA" SortExpression="COBRADORA">
+                            <ItemStyle Width="9%" HorizontalAlign="Center" />
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="AGENTE" SortExpression="AGENTE">
-                            <ItemStyle Width="7%" HorizontalAlign="Center" />
+                            <ItemStyle Width="5%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                     </Columns>
                     <HeaderStyle CssClass="GridviewScrollC3Header" />

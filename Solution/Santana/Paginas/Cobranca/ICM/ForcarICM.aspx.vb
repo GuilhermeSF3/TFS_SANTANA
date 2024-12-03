@@ -12,7 +12,7 @@ Imports Microsoft.VisualBasic
 Imports Santana.Seguranca
 Imports Util
 
-Namespace Paginas.Cobranca.Relatorios
+Namespace Paginas.Cobranca.ICM
 
     Public Class ForcarICM
 
@@ -41,11 +41,11 @@ Namespace Paginas.Cobranca.Relatorios
                 End If
 
                 If ContextoWeb.DadosTransferencia.CodAnalista <> 0 Then
-                    BindGridView1Data()
+                    BindGridViewConsultar()
                     ContextoWeb.DadosTransferencia.CodAnalista = 0
                 End If
                 If ContextoWeb.DadosTransferencia.CodAnalista <> 0 Then
-                    BindGridView1DataDelete()
+                    BindGridViewDeletar()
                     ContextoWeb.DadosTransferencia.CodAnalista = 0
                 End If
 
@@ -56,15 +56,6 @@ Namespace Paginas.Cobranca.Relatorios
 
         End Sub
 
-
-
-
-
-
-
-
-
-
         Private Sub GridViewRiscoAnalitico_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridViewRiscoAnalitico.RowDataBound
 
             Try
@@ -74,75 +65,80 @@ Namespace Paginas.Cobranca.Relatorios
                     If Not e.Row.DataItem Is Nothing Then
 
                         Dim drow As Data.DataRow = CType(e.Row.DataItem, System.Data.DataRowView).Row
-
-                        If IsDBNull(drow("CONTRATO")) Then
+                        If IsDBNull(drow("STATUS")) Then
                             e.Row.Cells(0).Text = ""
                         Else
-                            e.Row.Cells(0).Text = drow("CONTRATO")
+                            e.Row.Cells(0).Text = drow("STATUS")
+                        End If
+
+                        If IsDBNull(drow("CONTRATO")) Then
+                            e.Row.Cells(1).Text = ""
+                        Else
+                            e.Row.Cells(1).Text = drow("CONTRATO")
                         End If
 
                         If IsDBNull(drow("PARCELA")) Then
-                            e.Row.Cells(1).Text = ""
+                            e.Row.Cells(2).Text = ""
                         Else
-                            e.Row.Cells(1).Text = drow("PARCELA")
+                            e.Row.Cells(2).Text = drow("PARCELA")
                         End If
 
                         If IsDBNull(drow("VLR_PARCELA")) Then
-                            e.Row.Cells(2).Text = ""
+                            e.Row.Cells(3).Text = ""
                         Else
-                            e.Row.Cells(2).Text = "R$ " & drow("VLR_PARCELA")
+                            e.Row.Cells(3).Text = "R$ " & drow("VLR_PARCELA")
                         End If
 
                         If IsDBNull(drow("DATA_PAGAMENTO")) Then
-                            e.Row.Cells(3).Text = ""
+                            e.Row.Cells(4).Text = ""
                         Else
-                            e.Row.Cells(3).Text = drow("DATA_PAGAMENTO")
+                            e.Row.Cells(4).Text = drow("DATA_PAGAMENTO")
                         End If
 
                         If IsDBNull(drow("ATRASO")) Then
-                            e.Row.Cells(4).Text = ""
-                        Else
-                            e.Row.Cells(4).Text = drow("ATRASO")
-                        End If
-                        If IsDBNull(drow("RATING")) Then
                             e.Row.Cells(5).Text = ""
                         Else
-                            e.Row.Cells(5).Text = drow("RATING")
+                            e.Row.Cells(5).Text = drow("ATRASO")
                         End If
-                        If IsDBNull(drow("FAIXA")) Then
+                        If IsDBNull(drow("RATING")) Then
                             e.Row.Cells(6).Text = ""
                         Else
-                            e.Row.Cells(6).Text = drow("FAIXA")
+                            e.Row.Cells(6).Text = drow("RATING")
                         End If
-                        If IsDBNull(drow("FAIXA_RATING")) Then
+                        If IsDBNull(drow("FAIXA")) Then
                             e.Row.Cells(7).Text = ""
                         Else
-                            e.Row.Cells(7).Text = drow("FAIXA_RATING")
+                            e.Row.Cells(7).Text = drow("FAIXA")
                         End If
-                        If IsDBNull(drow("NOME_CLIENTE")) Then
+                        If IsDBNull(drow("FAIXA_RATING")) Then
                             e.Row.Cells(8).Text = ""
                         Else
-                            e.Row.Cells(8).Text = drow("NOME_CLIENTE")
+                            e.Row.Cells(8).Text = drow("FAIXA_RATING")
                         End If
-                        If IsDBNull(drow("CPF_CNPJ")) Then
+                        If IsDBNull(drow("NOME_CLIENTE")) Then
                             e.Row.Cells(9).Text = ""
                         Else
-                            e.Row.Cells(9).Text = drow("CPF_CNPJ")
+                            e.Row.Cells(9).Text = drow("NOME_CLIENTE")
                         End If
-                        If IsDBNull(drow("CODCOBRADORA")) Then
+                        If IsDBNull(drow("CPF_CNPJ")) Then
                             e.Row.Cells(10).Text = ""
                         Else
-                            e.Row.Cells(10).Text = drow("CODCOBRADORA")
+                            e.Row.Cells(10).Text = drow("CPF_CNPJ")
                         End If
-                        If IsDBNull(drow("COBRADORA")) Then
+                        If IsDBNull(drow("CODCOBRADORA")) Then
                             e.Row.Cells(11).Text = ""
                         Else
-                            e.Row.Cells(11).Text = drow("COBRADORA")
+                            e.Row.Cells(11).Text = drow("CODCOBRADORA")
                         End If
-                        If IsDBNull(drow("AGENTE")) Then
+                        If IsDBNull(drow("COBRADORA")) Then
                             e.Row.Cells(12).Text = ""
                         Else
-                            e.Row.Cells(12).Text = drow("AGENTE")
+                            e.Row.Cells(12).Text = drow("COBRADORA")
+                        End If
+                        If IsDBNull(drow("AGENTE")) Then
+                            e.Row.Cells(13).Text = ""
+                        Else
+                            e.Row.Cells(13).Text = drow("AGENTE")
                         End If
 
                     End If
@@ -153,8 +149,6 @@ Namespace Paginas.Cobranca.Relatorios
 
             End Try
         End Sub
-
-
 
         Protected Sub GridViewRiscoAnalitico_RowCreated(sender As Object, e As GridViewRowEventArgs)
             Try
@@ -173,7 +167,6 @@ Namespace Paginas.Cobranca.Relatorios
             End Try
         End Sub
 
-
         Public Property DataGridView As DataTable
             Get
                 If ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") Is Nothing Then
@@ -183,7 +176,7 @@ Namespace Paginas.Cobranca.Relatorios
                     Dim parcel As String = TxtParcel.Text.Trim()
                     Dim codCobr As String = TxtCodCobr.Text.Trim()
                     If DateTime.TryParse(txtData.Text, dataReferencia) Then
-                        ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") = GetData(dataReferencia, contract, parcel, codCobr)
+                        ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") = Inserir(dataReferencia, contract, parcel, codCobr)
                     Else
                         Throw New Exception("Data inválida no ViewState")
                     End If
@@ -196,32 +189,10 @@ Namespace Paginas.Cobranca.Relatorios
             End Set
         End Property
 
-        Public Property DataGridViewDel As DataTable
-            Get
-                If ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") Is Nothing Then
-
-                    Dim dataReferenciaDel As DateTime
-                    Dim contractDel As String = txtContract.Text.Trim()
-                    Dim parcelDel As String = TxtParcel.Text.Trim()
-                    If DateTime.TryParse(txtData.Text, dataReferenciaDel) Then
-                        ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") = GetDataDelete(dataReferenciaDel, contractDel, parcelDel)
-                    Else
-                        Throw New Exception("Data inválida no ViewState")
-                    End If
-                End If
-
-                Return DirectCast(ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C"), DataTable)
-            End Get
-            Set(value As DataTable)
-                ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") = value
-            End Set
-        End Property
-
-
-        Protected Sub BindGridView1Data()
-            Dim dataReferencia As DateTime
+        Protected Sub BindGridView1DataView()
             Dim contract As String = txtContract.Text.Trim()
             Dim parcel As String = TxtParcel.Text.Trim()
+            Dim dataReferencia As DateTime
             Dim dataStr As String = txtData.Text.Trim()
             Dim codCobr As String = TxtCodCobr.Text.Trim()
 
@@ -231,33 +202,38 @@ Namespace Paginas.Cobranca.Relatorios
 
                 Debug.WriteLine("Data convertida: " & dataReferencia.ToString("yyyyMMdd"))
                 Dim dataFormatada As String = dataReferencia.ToString("yyyyMMdd")
-                GridViewRiscoAnalitico.DataSource = GetData(dataFormatada, parcel, contract, codCobr)
+                GridViewRiscoAnalitico.DataSource = Inserir(dataFormatada, parcel, contract, codCobr)
                 GridViewRiscoAnalitico.DataBind()
                 GridViewRiscoAnalitico.AllowPaging = "True"
+                btnExcluir.Visible = True
+
             Else
 
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Por favor, forneça uma data válida.');", True)
             End If
+
         End Sub
-        Protected Sub BindGridView1DataDelete()
-            Dim dataReferenciaDel As DateTime
-            Dim contractDel As String = txtContract.Text.Trim()
-            Dim parcelDel As String = TxtParcel.Text.Trim()
-            Dim dataStr As String = txtData.Text.Trim()
 
-            Debug.WriteLine("Valor de txtData.Text: " & dataStr)
+        Protected Sub GridViewRiscoAnalitico_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
 
-            If DateTime.TryParseExact(dataStr, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, dataReferenciaDel) Then
+            GridViewRiscoAnalitico.PageIndex = IIf(e.NewPageIndex < 0, 0, e.NewPageIndex)
+            BindGridView1DataView()
 
-                Debug.WriteLine("Data convertida: " & dataReferenciaDel.ToString("yyyyMMdd"))
-                Dim dataFormatada As String = dataReferenciaDel.ToString("yyyyMMdd")
-                GridViewRiscoAnalitico.DataSource = GetDataDelete(dataFormatada, parcelDel, contractDel)
-                GridViewRiscoAnalitico.DataBind()
-                GridViewRiscoAnalitico.AllowPaging = "True"
-            Else
+        End Sub
 
-                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Por favor, forneça uma data válida.');", True)
-            End If
+
+        ' Processar
+        Protected Sub btnProcessar_Click(sender As Object, e As EventArgs)
+            Try
+
+                BindGridView1DataProcessar()
+
+            Catch ex As Exception
+
+            Finally
+                GC.Collect()
+            End Try
+
         End Sub
 
         Protected Sub BindGridView1DataProcessar()
@@ -277,36 +253,50 @@ Namespace Paginas.Cobranca.Relatorios
 
         End Sub
 
+        Public Function GetDataProcessar(dataReferenciaDel As String) As DataTable
+            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+            Dim resultTable As New DataTable()
+            Dim contract As String = txtContract.Text.Trim()
 
-        Protected Sub BindGridView1DataViewDelete()
-            Dim contractDel As String = txtContract.Text.Trim()
-            Dim parcelDel As String = TxtParcel.Text.Trim()
-            Dim dataReferenciaDel As DateTime
-            Dim dataStr As String = txtData.Text.Trim()
+            Using con As New SqlConnection(strConn)
+                Try
+                    Using cmd As New SqlCommand($"SCR_PROCESSAR_ICM_SIG_BKP '{dataReferenciaDel}'", con)
+                        cmd.CommandType = CommandType.Text
+                        con.Open()
+                        Using reader As SqlDataReader = cmd.ExecuteReader()
+                        End Using
+                    End Using
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", $"Alerta ('Sucesso', 'Mês, processado com sucesso!');", True)
+                Catch ex As Exception
 
-            Debug.WriteLine("Valor de txtData.Text: " & dataStr)
+                End Try
 
-            If DateTime.TryParseExact(dataStr, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, dataReferenciaDel) Then
+            End Using
+            Return resultTable
+        End Function
 
-                Debug.WriteLine("Data convertida: " & dataReferenciaDel.ToString("yyyyMMdd"))
-                Dim dataFormatada As String = dataReferenciaDel.ToString("yyyyMMdd")
-                GridViewRiscoAnalitico.DataSource = GetDataDelete(dataFormatada, parcelDel, contractDel)
-                GridViewRiscoAnalitico.DataBind()
-                GridViewRiscoAnalitico.AllowPaging = "True"
-            Else
+        ' End processar
 
-                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Por favor, forneça uma data válida.');", True)
-            End If
+        ' Deletar
+        Protected Sub btnCarregar_ClickDelete(sender As Object, e As EventArgs)
+            Try
+
+                BindGridViewDeletar()
+
+            Catch ex As Exception
+
+            Finally
+                GC.Collect()
+            End Try
 
         End Sub
 
-
-        Protected Sub BindGridView1DataView()
-            Dim contract As String = txtContract.Text.Trim()
-            Dim parcel As String = TxtParcel.Text.Trim()
+        Protected Sub BindGridViewDeletar()
             Dim dataReferencia As DateTime
+            Dim contract As String = txtContract.Text.Trim()
+            Dim parcel As String = txtParcel.Text.Trim()
+            Dim codCobr As String = txtCodCobr.Text.Trim()
             Dim dataStr As String = txtData.Text.Trim()
-            Dim codCobr As String = TxtCodCobr.Text.Trim()
 
             Debug.WriteLine("Valor de txtData.Text: " & dataStr)
 
@@ -314,68 +304,21 @@ Namespace Paginas.Cobranca.Relatorios
 
                 Debug.WriteLine("Data convertida: " & dataReferencia.ToString("yyyyMMdd"))
                 Dim dataFormatada As String = dataReferencia.ToString("yyyyMMdd")
-                GridViewRiscoAnalitico.DataSource = GetData(dataFormatada, parcel, contract, codCobr)
+                GridViewRiscoAnalitico.DataSource = Deletar(dataFormatada, contract, parcel)
                 GridViewRiscoAnalitico.DataBind()
                 GridViewRiscoAnalitico.AllowPaging = "True"
-                btnExcluir.Visible = True
-
             Else
 
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Por favor, forneça uma data válida.');", True)
             End If
-
         End Sub
 
-
-
-
-        'Private Function GetData() As DataTable
-
-        '    Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
-        '    Dim table As DataTable
-
-        '    table = Util.ClassBD.GetExibirGrid("[SCR_CP_COLAB_AGENTES]", "SCR_CP_COLAB_AGENTES", strConn)
-
-        '    Return table
-
-        'End Function
-
-
-
-        'Private Function GetData(dataReferencia As String) As DataTable
-        '    Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
-        '    Dim table As New DataTable()
-
-
-        '    Using con As New SqlConnection(strConn)
-        '        Using cmd As New SqlCommand($"EXEC SCR_CNAB550_CARGA '{dataReferencia}'", con)
-        '            cmd.CommandType = CommandType.Text
-
-        '            Using sda As New SqlDataAdapter(cmd)
-        '                Try
-        '                    sda.Fill(table)
-        '                    If table.Rows.Count = 0 Then
-
-        '                        ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Sem Resposta' ,'Nenhum arquivo encontrado na data informada.');", True)
-        '                    End If
-        '                Catch ex As Exception
-
-        '                    ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Sem Resposta' ,'Nenhum arquivo encontrado na data informada.');", True)
-        '                End Try
-        '            End Using
-        '        End Using
-        '    End Using
-
-        '    Return table
-        'End Function
-
-
-        Private Function GetData(dataReferencia As String, parcel As String, contract As String, codCobr As String) As DataTable
+        Private Function Deletar(dataStr As String, contract As String, parcel As String) As DataTable
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim resultTable As New DataTable()
 
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"SCR_INSERIR_ICM_SIG '{dataReferencia}','{contract}','{parcel}','{codCobr}'", con)
+                Using cmd As New SqlCommand($"SCR_REMOVER_ICM_SIG  '{dataStr}','{contract}','{parcel}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -393,17 +336,58 @@ Namespace Paginas.Cobranca.Relatorios
             Return resultTable
         End Function
 
-        Private Function GetDataDelete(dataReferenciaDel As String, parcelDel As String, contractDel As String) As DataTable
+        ' End deletar
+
+        ' Inserir 
+        Protected Sub btnInserir_Click(sender As Object, e As EventArgs)
+            Try
+
+                BindGridViewInserir()
+
+            Catch ex As Exception
+
+            Finally
+                GC.Collect()
+            End Try
+
+        End Sub
+
+        Protected Sub BindGridViewInserir()
+            Dim dataReferencia As DateTime
+            Dim contract As String = txtContract.Text.Trim()
+            Dim parcel As String = txtParcel.Text.Trim()
+            Dim codCobr As String = txtCodCobr.Text.Trim()
+            Dim dataStr As String = txtData.Text.Trim()
+
+            Debug.WriteLine("Valor de txtData.Text: " & dataStr)
+
+            If DateTime.TryParseExact(dataStr, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, dataReferencia) Then
+
+                Debug.WriteLine("Data convertida: " & dataReferencia.ToString("yyyyMMdd"))
+                Dim dataFormatada As String = dataReferencia.ToString("yyyyMMdd")
+                GridViewRiscoAnalitico.DataSource = Inserir(dataFormatada, contract, parcel, codCobr)
+                GridViewRiscoAnalitico.DataBind()
+                GridViewRiscoAnalitico.AllowPaging = "True"
+            Else
+
+                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Por favor, forneça uma data válida.');", True)
+            End If
+        End Sub
+
+        Private Function Inserir(dataStr As String, contract As String, parcel As String, codCobr As String) As DataTable
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim resultTable As New DataTable()
 
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"SCR_REMOVER_ICM_SIG '{dataReferenciaDel}','{contractDel}','{parcelDel}'", con)
+                Using cmd As New SqlCommand($"SCR_INSERIR_ICM_SIG '{dataStr}','{contract}','{parcel}','{codCobr}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         Try
                             resultTable.Load(reader)
+                            If resultTable.Rows.Count = 0 Then
+                                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Sem Resposta', 'Nenhum arquivo encontrado na data informada.');", True)
+                            End If
                         Catch ex As Exception
                             ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao buscar os dados.');", True)
                         End Try
@@ -413,155 +397,62 @@ Namespace Paginas.Cobranca.Relatorios
             Return resultTable
         End Function
 
-        Public Function GetDataProcessar(dataReferenciaDel As String) As DataTable
+        ' End inserir
+
+        ' Consultar
+        Protected Sub btnConsultar_Click(sender As Object, e As EventArgs)
+            Try
+
+                BindGridViewConsultar()
+
+            Catch ex As Exception
+
+            Finally
+                GC.Collect()
+            End Try
+
+        End Sub
+
+        Protected Sub BindGridViewConsultar()
+            Dim contract As String = txtContract.Text.Trim()
+            Dim parcel As String = txtParcel.Text.Trim()
+
+            ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") = Nothing
+            GridViewRiscoAnalitico.DataSource = Consultar(contract, parcel)
+            GridViewRiscoAnalitico.PageIndex = 0
+            GridViewRiscoAnalitico.DataBind()
+
+        End Sub
+
+        Private Function Consultar(contract As String, parcel As String) As DataTable
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim resultTable As New DataTable()
-            Dim contract As String = txtContract.Text.Trim()
 
             Using con As New SqlConnection(strConn)
-                Try
-                    Using cmd As New SqlCommand($"SCR_PROCESSAR_ICM_SIG_BKP '{dataReferenciaDel}'", con)
-                        cmd.CommandType = CommandType.Text
-                        con.Open()
-                        Using reader As SqlDataReader = cmd.ExecuteReader()
-                        End Using
+                Using cmd As New SqlCommand($"SCR_CONSULTAR_ICM_SIG '{contract}','{parcel}'", con)
+                    cmd.CommandType = CommandType.Text
+                    con.Open()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        Try
+                            resultTable.Load(reader)
+                            If resultTable.Rows.Count = 0 Then
+                                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Sem Resposta', 'Nenhum arquivo encontrado na data informada.');", True)
+                            End If
+                        Catch ex As Exception
+                            ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao buscar os dados.');", True)
+                        End Try
                     End Using
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", $"Alerta ('Sucesso', 'Contrato: {contract}, processado com sucesso!');", True)
-                Catch ex As Exception
-
-                End Try
-
+                End Using
             End Using
             Return resultTable
         End Function
 
-
-        Protected Sub GridViewRiscoAnalitico_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
-
-            GridViewRiscoAnalitico.PageIndex = IIf(e.NewPageIndex < 0, 0, e.NewPageIndex)
-            BindGridView1DataView()
-
-        End Sub
-
-        Protected Sub GridViewRiscoAnalitico_PageIndexChangingDel(sender As Object, e As GridViewPageEventArgs)
-
-            GridViewRiscoAnalitico.PageIndex = IIf(e.NewPageIndex < 0, 0, e.NewPageIndex)
-            BindGridView1DataViewDelete()
-
-        End Sub
-
-
-
-
-        Protected Sub btnImpressao_Click(sender As Object, e As EventArgs)
-
-
-            'ContextoWeb.DadosTransferencia.CodAgente = ddlAnalista.SelectedValue
-            'ContextoWeb.DadosTransferencia.Agente = ddlAnalista.SelectedItem.ToString()
-
-            'ContextoWeb.DadosTransferencia.CodCobradora = ddlProduto.SelectedValue
-            'ContextoWeb.DadosTransferencia.Cobradora = ddlProduto.SelectedItem.ToString()
-
-
-            'Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
-
-            'Dim ds As dsRollrateMensal
-            'Dim cmd As New SqlCommand("[scr_RR_mensal] '" & Convert.ToDateTime(txtData.Text).ToString("MM/dd/yy") & "', '" & ddlAnalista.SelectedValue & "','" & ddlProduto.SelectedValue & "'")
-            'Using con As New SqlConnection(strConn)
-            '    Using sda As New SqlDataAdapter()
-            '        cmd.Connection = con
-            '        sda.SelectCommand = cmd
-            '        ds = New dsRollrateMensal()
-            '        sda.Fill(ds, "RR_ROLLRATE_RPT")
-            '    End Using
-            'End Using
-
-            '' ContextoWeb.NewReportContext()
-            'ContextoWeb.Relatorio.reportFileName = "~/Relatorios/rptRollrateMensal.rpt"
-            'ContextoWeb.Relatorio.reportDatas.Add(New reportData(ds))
-
-            'ContextoWeb.Navegacao.LinkPaginaAnteriorRelatorio = Me.AppRelativeVirtualPath
-            '' ContextoWeb.Navegacao.TituloPaginaAtual = Me.Title
-            'Response.Redirect("Relatorio.aspx")
-
-            ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Em construção!' ,'Esta funcionalidade esta em desenvolvimento.');", True)
-        End Sub
-
-
-        Protected Sub btnHelp_Click(sender As Object, e As EventArgs)
-            ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Em construção!' ,'Esta funcionalidade esta em desenvolvimento.');", True)
-        End Sub
+        ' End consultar
 
 
         Protected Sub btnMenu_Click(sender As Object, e As EventArgs)
             Response.Redirect("../../Menu.aspx")
         End Sub
-
-        Protected Sub btnCarregar_Click(sender As Object, e As EventArgs)
-            Try
-
-                BindGridView1Data()
-
-
-            Catch ex As Exception
-
-            Finally
-                GC.Collect()
-            End Try
-
-        End Sub
-
-        Protected Sub btnCarregar_ClickDelete(sender As Object, e As EventArgs)
-            Try
-
-                GetDataProcessar(sender)
-
-            Catch ex As Exception
-
-            Finally
-                GC.Collect()
-            End Try
-
-        End Sub
-        Protected Sub btnProcessar_Click(sender As Object, e As EventArgs)
-            Try
-
-                BindGridView1DataProcessar()
-
-            Catch ex As Exception
-
-            Finally
-                GC.Collect()
-            End Try
-
-        End Sub
-
-        Protected Sub btnCarregarProd_Click(sender As Object, e As EventArgs)
-            Try
-
-                BindGridView1Data()
-
-            Catch ex As Exception
-
-            Finally
-                GC.Collect()
-            End Try
-
-        End Sub
-
-        Protected Sub btnCarregarProd_ClickDelete(sender As Object, e As EventArgs)
-            Try
-
-                BindGridView1Data()
-
-            Catch ex As Exception
-
-            Finally
-                GC.Collect()
-            End Try
-
-        End Sub
-
 
         Public Overrides Sub VerifyRenderingInServerForm(control As Control)
             'Not Remove
@@ -570,12 +461,10 @@ Namespace Paginas.Cobranca.Relatorios
 
         End Sub
 
-
         Protected Sub btnExcel_Click(sender As Object, e As EventArgs)
 
             Try
                 GridViewRiscoAnalitico.AllowPaging = False
-                BindGridView1Data()
                 ExportExcel(GridViewRiscoAnalitico)
 
             Catch ex As Exception
