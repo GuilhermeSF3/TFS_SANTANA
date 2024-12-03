@@ -221,6 +221,66 @@ Namespace Paginas.Cobranca.ICM
 
         End Sub
 
+        ' Alterar
+        Protected Sub btnAlterar_Click(sender As Object, e As EventArgs)
+            Try
+
+                BindGridViewAlterar()
+
+            Catch ex As Exception
+
+            Finally
+                GC.Collect()
+            End Try
+
+        End Sub
+
+        Protected Sub BindGridViewAlterar()
+            Dim dataReferencia As DateTime
+            Dim contract As String = txtContract.Text.Trim()
+            Dim parcel As String = txtParcel.Text.Trim()
+            Dim codCobr As String = txtCodCobr.Text.Trim()
+            Dim dataStr As String = txtData.Text.Trim()
+
+            Debug.WriteLine("Valor de txtData.Text: " & dataStr)
+
+            If DateTime.TryParseExact(dataStr, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, dataReferencia) Then
+
+                Debug.WriteLine("Data convertida: " & dataReferencia.ToString("yyyyMMdd"))
+                Dim dataFormatada As String = dataReferencia.ToString("yyyyMMdd")
+                GridViewRiscoAnalitico.DataSource = Alterar(contract, parcel, codCobr)
+                GridViewRiscoAnalitico.DataBind()
+                GridViewRiscoAnalitico.AllowPaging = "True"
+            Else
+
+                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Por favor, forneça uma data válida.');", True)
+            End If
+        End Sub
+
+        Private Function Alterar(contract As String, parcel As String, codCobr As String) As DataTable
+            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+            Dim resultTable As New DataTable()
+
+            Using con As New SqlConnection(strConn)
+                Using cmd As New SqlCommand($"SCR_ALTERAR_COBRADORA_ICM_SIG'{contract}','{parcel}','{codCobr}'", con)
+                    cmd.CommandType = CommandType.Text
+                    con.Open()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        Try
+                            resultTable.Load(reader)
+                            If resultTable.Rows.Count = 0 Then
+                                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Sem Resposta', 'Nenhum arquivo encontrado na data informada.');", True)
+                            End If
+                        Catch ex As Exception
+                            ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Erro', 'Ocorreu um erro ao buscar os dados.');", True)
+                        End Try
+                    End Using
+                End Using
+            End Using
+            Return resultTable
+        End Function
+
+        ' End alterar
 
         ' Processar
         Protected Sub btnProcessar_Click(sender As Object, e As EventArgs)
@@ -253,20 +313,20 @@ Namespace Paginas.Cobranca.ICM
 
         End Sub
 
-        Public Function GetDataProcessar(dataReferenciaDel As String) As DataTable
+        Public Function GetDataProcessar(dataReferencia As String) As DataTable
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Dim resultTable As New DataTable()
             Dim contract As String = txtContract.Text.Trim()
 
             Using con As New SqlConnection(strConn)
                 Try
-                    Using cmd As New SqlCommand($"SCR_PROCESSAR_ICM_SIG_BKP '{dataReferenciaDel}'", con)
+                    Using cmd As New SqlCommand($"SCR_PROCESSAR_ICM_SIG_BKP '{dataReferencia}'", con)
                         cmd.CommandType = CommandType.Text
                         con.Open()
                         Using reader As SqlDataReader = cmd.ExecuteReader()
                         End Using
                     End Using
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", $"Alerta ('Sucesso', 'Mês, processado com sucesso!');", True)
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", $"Alerta ('Aviso', 'Processado com sucesso!');", True)
                 Catch ex As Exception
 
                 End Try
@@ -449,7 +509,6 @@ Namespace Paginas.Cobranca.ICM
 
         ' End consultar
 
-
         Protected Sub btnMenu_Click(sender As Object, e As EventArgs)
             Response.Redirect("../../Menu.aspx")
         End Sub
@@ -557,7 +616,7 @@ Namespace Paginas.Cobranca.ICM
                         Dim style As String = "<html><head><style type='text/css'>" & sb.ToString() & "</style><head>"
                         Response.Write(style)
 
-                        Response.Write("Cnab - Arquivo de Baixa </p> ")
+                        Response.Write("ICM - Forçados </p> ")
 
                         Response.Output.Write(sw.ToString())
 
@@ -578,7 +637,6 @@ Namespace Paginas.Cobranca.ICM
             End If
             Return value
         End Function
-
 
         Protected Sub hfGridView1SV_ValueChanged(sender As Object, e As EventArgs)
             Session(HfGridView1Svid) = hfGridView1SV.Value
