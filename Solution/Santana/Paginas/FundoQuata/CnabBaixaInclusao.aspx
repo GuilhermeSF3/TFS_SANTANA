@@ -41,7 +41,7 @@
                                     
                                        <div style="display: flex; flex-direction: row ;margin-right:30px;">
                                     <div  style="display: flex; align-items: flex-end !important; flex-direction: row; gap: 10px;">
-                                        <asp:Button ID="btnCarregaInv" runat="server" Text="Carregar" CssClass="btn btn-success navbar-btn"  OnClick="btnCarregar_Click" AutoPostBack="true"  />
+                                        <asp:Button ID="btnCarregaInv" runat="server" Text="Carregar" CssClass="btn btn-primary navbar-btn"  OnClick="btnCarregar_Click" AutoPostBack="true"  />
                                     </div>
                                            </div>
                                     <div style="display: flex; flex-direction: row; gap: 30px;">

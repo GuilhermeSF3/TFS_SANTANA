@@ -37,7 +37,7 @@
 
                                             <asp:TextBox ID="txtData" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 100px;"></asp:TextBox>
                                         </span>
-                                        <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-success navbar-btn" OnClick="btnCarregar_Click" />
+                                        <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-primary navbar-btn" OnClick="btnCarregar_Click" />
                                         <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" />
                                     </div>
                                 </div>
@@ -48,10 +48,10 @@
                                 <div style="margin: 5px">
                                     <div style="height: 20px">
                                     </div>
-                                    <div class="btn-group-sm  ">
+                                    <div class="btn-group-sm  " >
                                         <asp:ImageButton ID="btnExcel" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnExcel_Click" ImageUrl="~/imagens/excel2424.png"></asp:ImageButton>
-                                        <asp:ImageButton ID="btnImpressao" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnImpressao_Click" ImageUrl="~/imagens/printer2424.png"></asp:ImageButton>
-                                        <asp:ImageButton ID="btnHelp" runat="server" CssClass="btn btn-default navbar-btn" OnClick="btnHelp_Click" ImageUrl="~/imagens/help2424.png"></asp:ImageButton>
+                                       
+
                                     </div>
                                 </div>
                             </li>
@@ -103,7 +103,11 @@
                 </asp:GridView>
             </div>
         </ContentTemplate>
+
+
     </asp:UpdatePanel>
+
+
 
     <asp:UpdateProgress runat="server" ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel">
         <ProgressTemplate>
@@ -120,33 +124,40 @@
     <asp:HiddenField ID="hfGridView1SH" runat="server" OnValueChanged="hfGridView1SH_ValueChanged" />
     <script type="text/javascript" src="https://uxsolutions.github.io/bootstrap-datepicker/boot‌​strap-datepicker/js/‌​locales/bootstrap-da‌​tepicker.pt-BR.min.j‌​s"></script>
 
+    <style>
+        #heart-icon {
+            color: gray;
+        }
+
+            #heart-icon.favorited {
+                color: red;
+            }
+    </style>
+
 
     <script type="text/javascript">
 
-        jQuery(function ($) {
-            $.datepicker.regional['pt-BR'] = {
-                closeText: 'Fechar',
-                prevText: '&#x3c;Anterior',
-                nextText: 'Pr&oacute;ximo&#x3e;',
-                currentText: 'Hoje',
-                monthNames: ['Janeiro', 'Fevereiro', 'Mar&ccedil;o', 'Abril', 'Maio', 'Junho',
-                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-                    'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                dayNames: ['Domingo', 'Segunda-feira', 'Ter&ccedil;a-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sabado'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-                dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-                weekHeader: 'Sm',
-                dateFormat: 'dd/mm/yy',
-                firstDay: 0,
-                isRTL: false,
-                showMonthAfterYear: false,
-                yearSuffix: ''
-            };
-            $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
-        });
 
 
+        function favoritarPagina() {
+            $.ajax({
+                type: "POST",
+                url: 'Favoritar.aspx/AdicionarFavorito',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (response) {
+                    alert("Página favoritada com sucesso!");
+
+                    // Alterar o ícone para o coração preenchido
+                    document.getElementById('heart-icon').classList.add('favorited');
+                    document.getElementById('heart-icon').classList.remove('bi-heart');
+                    document.getElementById('heart-icon').classList.add('bi-heart-fill');
+                },
+                error: function (response) {
+                    alert("Erro ao favoritar a página!");
+                }
+            });
+        }
 
 
         function pageLoad() {

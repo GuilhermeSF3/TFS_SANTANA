@@ -51,7 +51,7 @@
                                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                             <ContentTemplate>
                                          
-                                                <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-warning" Text="Carregar" OnClick="BindGridView1Data" />
+                                                <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-primary navbar-btn" Text="Carregar" OnClick="BindGridView1Data" />
                                                 <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" />
 
                                             </ContentTemplate>

@@ -53,15 +53,6 @@ Namespace Paginas.FundoQuata
 
         End Sub
 
-
-
-
-
-
-
-
-
-
         Public Sub GridViewRiscoAnalitico_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridViewRiscoAnalitico.RowDataBound
 
             Try
@@ -269,14 +260,14 @@ Namespace Paginas.FundoQuata
             Dim usuarioLogado As String = ContextoWeb.UsuarioLogado.Login
 
             Using con As New SqlConnection(strConn)
-                Using cmd As New SqlCommand($"EXEC SCR_CNAB550_CARGA_ESTORNO '{dataReferencia}'", con)
+                Using cmd As New SqlCommand($"EXEC SCR_CNAB550_CARGA_RENEG  '{dataReferencia}'", con)
                     cmd.CommandType = CommandType.Text
                     con.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         Try
                             resultTable.Load(reader)
                             If resultTable.Rows.Count = 0 Then
-
+                                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Sem Resposta', 'Nenhum arquivo encontrado na data informada.');", True)
                                 GravarLogExecucao(usuarioLogado, dataReferencia)
                             End If
                         Catch ex As Exception
@@ -287,9 +278,6 @@ Namespace Paginas.FundoQuata
             End Using
             Return resultTable
         End Function
-
-
-
 
 
         Public Sub GridViewRiscoAnalitico_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)

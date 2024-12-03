@@ -37,7 +37,7 @@
 
                                             <asp:TextBox ID="txtData" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 100px;"></asp:TextBox>
                                         </span>
-                                        <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-success navbar-btn" OnClick="btnCarregar_Click" />
+                                        <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-primary navbar-btn" OnClick="btnCarregar_Click" />
                                         <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" />
                                     </div>
                                 </div>

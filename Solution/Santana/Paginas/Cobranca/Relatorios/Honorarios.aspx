@@ -30,14 +30,14 @@
                                 <div style="margin: 5px">
                                     <div style="height: 20px"></div>
                                     <div>
-                                        <p class="navbar-text" style="float: none; margin: 0px">Data de Referência</p>
+                                        <p class="navbar-text" style="float: none; margin: 0px>Data de Referência</p>
                                     </div>
                                     <div class="btn-group" style="display: flex; flex-direction: row; gap: 5px;">
                                         <span class="btn" style="padding: 0px; border-width: 0px;">
 
                                             <asp:TextBox ID="txtData" runat="server" MaxLength="10" CssClass="form-control navbar-btn datepicker" Style="width: 100px;"></asp:TextBox>
                                         </span>
-                                        <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-success navbar-btn" OnClick="btnCarregar_Click" />
+                                        <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-primary navbar-btn" OnClick="btnCarregar_Click" />
                                         <asp:Button ID="btnMenu" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" />
                                     </div>
                                 </div>

@@ -176,6 +176,7 @@
     <Content Include="css\Style.css" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="imagens\6222537.jpg" />
     <Content Include="imagens\arrowhl.png" />
     <Content Include="imagens\arrowhr.png" />
     <Content Include="imagens\arrowvb.png" />
@@ -201,6 +202,7 @@
     <Content Include="imagens\printer3232.png" />
     <Content Include="imagens\seek_backward2424.png" />
     <Content Include="imagens\seek_forward2424.png" />
+    <Content Include="imagens\SIG 1.png" />
     <Content Include="imagens\skip_backward2424.png" />
     <Content Include="imagens\skip_forward2424.png" />
     <Content Include="imagens\txt2424.png" />
@@ -328,6 +330,7 @@
     <Content Include="Paginas\Cobranca\Relatorios\ControleAcoesPJ.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\IPAnalitico.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\Ocorrencia.aspx" />
+    <Content Include="Paginas\Cobranca\ICM\ForcarICM.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\ParcelaPulada.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\ParcelaVcto.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\PosCob.aspx" />
@@ -362,8 +365,10 @@
     <Content Include="Paginas\FundoQuata\OrdinarioCnabGerar_O.aspx" />
     <Content Include="Paginas\Graficos\P123AnaliseMicrocredito.aspx" />
     <Content Include="Paginas\P123OperadorMicrocredito.aspx" />
+    <Content Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx" />
     <Content Include="Paginas\RH\CPColaboradoresSintetico.aspx" />
     <Content Include="Paginas\SpreadCapitalDeGiro.aspx" />
+    <Content Include="Paginas\TI\Inventario2.aspx" />
     <Content Include="Paginas\UploadArquivoExcel.aspx" />
     <Content Include="Paginas\Comercial\AcionamentoCliente.aspx" />
     <Content Include="Paginas\Comercial\AniversariantesPJ.aspx" />
@@ -1564,6 +1569,13 @@
       <DependentUpon>Ocorrencia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Paginas\Cobranca\ICM\ForcarICM.aspx.designer.vb">
+      <DependentUpon>ForcarICM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\ICM\ForcarICM.aspx.vb">
+      <DependentUpon>ForcarICM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Paginas\Cobranca\Relatorios\ParcelaPulada.aspx.designer.vb">
       <DependentUpon>ParcelaPulada.aspx</DependentUpon>
     </Compile>
@@ -1802,6 +1814,13 @@
       <DependentUpon>P123OperadorMicrocredito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx.designer.vb">
+      <DependentUpon>DadosPessoais.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx.vb">
+      <DependentUpon>DadosPessoais.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Paginas\RH\CPColaboradoresSintetico.aspx.designer.vb">
       <DependentUpon>CPColaboradoresSintetico.aspx</DependentUpon>
     </Compile>
@@ -1814,6 +1833,13 @@
     </Compile>
     <Compile Include="Paginas\SpreadCapitalDeGiro.aspx.vb">
       <DependentUpon>SpreadCapitalDeGiro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\Inventario2.aspx.designer.vb">
+      <DependentUpon>Inventario2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\Inventario2.aspx.vb">
+      <DependentUpon>Inventario2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\UploadArquivoExcel.aspx.designer.vb">

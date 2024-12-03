@@ -203,6 +203,15 @@ Partial Public Class Menu
     Protected WithEvents IP As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''Controle ICM.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ICM As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''Controle RiscoCredito.
     '''</summary>
     '''<remarks>
@@ -417,6 +426,168 @@ Partial Public Class Menu
     '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents Desconto As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Controle TI.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents TI As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Controle txtNomeFavorito.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents txtNomeFavorito As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Controle ddlPaginas1.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas1 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas2.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas2 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas3.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas3 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas4.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas4 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas5.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas5 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas6.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas6 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas7.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas7 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas8.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas8 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas9.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas9 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas10.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas10 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas11.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas11 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas12.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas12 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle ddlPaginas13.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents ddlPaginas13 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Controle btnFavoritar.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents btnFavoritar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Controle btnExcluirFavorito.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents btnExcluirFavorito As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Controle litFavoritos.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents litFavoritos As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
     '''Controle TbGeral.

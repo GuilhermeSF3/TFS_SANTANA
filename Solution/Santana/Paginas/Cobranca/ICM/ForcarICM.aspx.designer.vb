@@ -10,9 +10,9 @@
 Option Strict On
 Option Explicit On
 
-Namespace Paginas.FundoQuata
+Namespace Paginas.Cobranca.ICM
 
-    Partial Public Class Cnab550Remessa
+    Partial Public Class ForcarICM
 
         '''<summary>
         '''Controle UpdatePanel.
@@ -21,88 +21,79 @@ Namespace Paginas.FundoQuata
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents UpdatePanel As Global.System.Web.UI.WebControls.UpdatePanel
+        Protected WithEvents UpdatePanel As Global.System.Web.UI.UpdatePanel
 
         '''<summary>
-        '''Controle btnDataAnterior1.
+        '''Controle txtData.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnDataAnterior1 As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtData As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle txtDataDe.
+        '''Controle txtContract.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtDataDe As Global.Componentes.Datax
+        Protected WithEvents txtContract As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnProximaData1.
+        '''Controle txtParcel.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnProximaData1 As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtParcel As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnDataAnterior2.
+        '''Controle txtCodCobr.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnDataAnterior2 As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtCodCobr As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle txtDataAte.
+        '''Controle btnConsultar.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtDataAte As Global.Componentes.Datax
+        Protected WithEvents btnConsultar As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
-        '''Controle btnProximaData2.
+        '''Controle btnIncluir.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnProximaData2 As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents btnIncluir As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
-        '''Controle ddlDatas.
+        '''Controle btnExcluir.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents ddlDatas As Global.System.Web.UI.WebControls.DropDownList
+        Protected WithEvents btnExcluir As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
-        '''Controle ddlAnalista.
+        '''Controle btnProcessar.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents ddlAnalista As Global.System.Web.UI.WebControls.DropDownList
-
-        '''<summary>
-        '''Controle btnCarregar.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents btnCarregar As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents btnProcessar As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
         '''Controle btnMenu.
@@ -123,31 +114,13 @@ Namespace Paginas.FundoQuata
         Protected WithEvents btnExcel As Global.System.Web.UI.WebControls.ImageButton
 
         '''<summary>
-        '''Controle btnImpressao.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents btnImpressao As Global.System.Web.UI.WebControls.ImageButton
-
-        '''<summary>
-        '''Controle btnHelp.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents btnHelp As Global.System.Web.UI.WebControls.ImageButton
-
-        '''<summary>
         '''Controle UpdatePanel1.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents UpdatePanel1 As Global.System.Web.UI.WebControls.UpdatePanel
+        Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
 
         '''<summary>
         '''Controle dvRiscoAnalitico.
@@ -174,6 +147,24 @@ Namespace Paginas.FundoQuata
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents UpdateProgress1 As Global.System.Web.UI.WebControls.UpdateProgress
+        Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
+
+        '''<summary>
+        '''Controle hfGridView1SV.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents hfGridView1SV As Global.System.Web.UI.WebControls.HiddenField
+
+        '''<summary>
+        '''Controle hfGridView1SH.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents hfGridView1SH As Global.System.Web.UI.WebControls.HiddenField
     End Class
 End Namespace

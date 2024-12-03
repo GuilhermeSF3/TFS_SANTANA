@@ -328,9 +328,8 @@ Namespace Paginas.Cobranca.Relatorios
             ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Em construção!' ,'Esta funcionalidade esta em desenvolvimento.');", True)
         End Sub
 
-
         Protected Sub btnMenu_Click(sender As Object, e As EventArgs)
-            Response.Redirect("../Menu.aspx")
+            Response.Redirect("../../Menu.aspx")
         End Sub
 
         Protected Sub btnCarregar_Click(sender As Object, e As EventArgs)
