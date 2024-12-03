@@ -367,7 +367,6 @@
     <Content Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx" />
     <Content Include="Paginas\RH\CPColaboradoresSintetico.aspx" />
     <Content Include="Paginas\SpreadCapitalDeGiro.aspx" />
-    <Content Include="Paginas\TI\Inventario.aspx" />
     <Content Include="Paginas\TI\Inventario2.aspx" />
     <Content Include="Paginas\UploadArquivoExcel.aspx" />
     <Content Include="Paginas\Comercial\AcionamentoCliente.aspx" />
@@ -1826,13 +1825,6 @@
     </Compile>
     <Compile Include="Paginas\SpreadCapitalDeGiro.aspx.vb">
       <DependentUpon>SpreadCapitalDeGiro.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\TI\Inventario.aspx.designer.vb">
-      <DependentUpon>Inventario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\TI\Inventario.aspx.vb">
-      <DependentUpon>Inventario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\TI\Inventario2.aspx.designer.vb">

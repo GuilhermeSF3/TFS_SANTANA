@@ -1,10 +1,10 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="Inventario2.aspx.vb" Inherits="Santana.Paginas.TI.Inventario2" Title="Inventario2" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/SantanaWeb.master" AutoEventWireup="true" CodeBehind="Inventario2.aspx.vb" Inherits="Santana.Paginas.TI.Inventario2" Title="Inventario" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="Componentes" Namespace="Componentes" TagPrefix="cc1" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <title>Parcela Pulada </title>
+    <title>Inventário</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -28,7 +28,7 @@
 
                             <li>
                                 <div style="margin: 5px">
-                                    <p style="font-size:16px;">Gerenciamento de Inventário</p>
+                                    <p style="font-size:16px; font-weight:500;">Gerenciamento de Inventário</p>
                                     <div style="height: 20px">
                                     </div>
                                    <asp:Button ID="Incluir"  runat="server" Text="Adicionar"  CssClass="btn btn-primary navbar-btn" data-toggle="modal" data-target="#exampleModal" />

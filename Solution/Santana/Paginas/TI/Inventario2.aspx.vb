@@ -471,7 +471,7 @@ Namespace Paginas.TI
 
 
         Protected Sub btnMenu_Click(sender As Object, e As EventArgs)
-            Response.Redirect("../../Menu.aspx")
+            Response.Redirect("~/menu.aspx")
         End Sub
 
 
