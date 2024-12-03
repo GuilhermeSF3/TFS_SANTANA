@@ -225,10 +225,8 @@
                                         <li><a href="Cobranca/Relatorios/Repactuacao.aspx">Repactuação</a></li>
                                         <li class="divider"></li>
                                         <li><a href="Cobranca/Relatorios/Honorarios.aspx">Honorários</a></li>
-
                                     </ul>
                                 </li>
-
                                 <li class="menu-item dropdown dropdown-submenu" id="Graficos" runat="server" visible="False">
 
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gráficos</a>
@@ -269,7 +267,13 @@
                                         <li><a href="IPSafraDiaria.aspx">IP Safra Diário</a></li>
                                         <li><a href="Cobranca/Relatorios/IPAnalitico.aspx">IP Analítico</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="Cobranca/Relatorios/AjusteIP.aspx">Ajuste IP</a></li>
+                                        <li><a href="Paginas/Cobranca/Relatorios/AjusteIP.aspx">Ajuste IP</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item dropdown dropdown-submenu" id="ICM" runat="server" visible="false">
+                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forçar ICM</a>
+                                   <ul class="dropdown-menu">
+                                     <li><a href="Cobranca/ICM/ForcarICM.aspx">Forçar ICM</a></li>
                                     </ul>
                                 </li>
                             </ul>

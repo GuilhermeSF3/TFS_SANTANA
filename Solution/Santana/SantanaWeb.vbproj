@@ -330,6 +330,7 @@
     <Content Include="Paginas\Cobranca\Relatorios\ControleAcoesPJ.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\IPAnalitico.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\Ocorrencia.aspx" />
+    <Content Include="Paginas\Cobranca\ICM\ForcarICM.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\ParcelaPulada.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\ParcelaVcto.aspx" />
     <Content Include="Paginas\Cobranca\Relatorios\PosCob.aspx" />
@@ -1566,6 +1567,13 @@
     </Compile>
     <Compile Include="Paginas\Cobranca\Relatorios\Ocorrencia.aspx.vb">
       <DependentUpon>Ocorrencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\ICM\ForcarICM.aspx.designer.vb">
+      <DependentUpon>ForcarICM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\ICM\ForcarICM.aspx.vb">
+      <DependentUpon>ForcarICM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Cobranca\Relatorios\ParcelaPulada.aspx.designer.vb">
