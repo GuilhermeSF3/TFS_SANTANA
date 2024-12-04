@@ -320,7 +320,7 @@ Namespace Paginas.Cobranca.ICM
 
             Using con As New SqlConnection(strConn)
                 Try
-                    Using cmd As New SqlCommand($"SCR_PROCESSAR_ICM_SIG_BKP '{dataReferencia}'", con)
+                    Using cmd As New SqlCommand($"SCR_PROCESSAR_ICM_SIG '{dataReferencia}'", con)
                         cmd.CommandType = CommandType.Text
                         con.Open()
                         Using reader As SqlDataReader = cmd.ExecuteReader()
