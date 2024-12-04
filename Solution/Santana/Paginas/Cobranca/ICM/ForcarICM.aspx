@@ -64,8 +64,9 @@
         
       <div style=" display:flex; align-items: flex-end !important; flex-direction: row; gap: 10px;">    
           <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary navbar-btn" OnClick="btnConsultar_Click"/>
-          <asp:Button ID="btnIncluir" runat="server" Text="Incluir " CssClass="btn btn-primary navbar-btn" OnClick="btnInserir_Click"   />
-          <asp:Button ID="btnExcluir" runat="server" Text="Excluir" CssClass="btn btn-danger navbar-btn"  OnClick="btnCarregar_ClickDelete"   />
+          <asp:Button ID="btnIncluir" runat="server" Text="Inserir " CssClass="btn btn-primary navbar-btn" OnClick="btnInserir_Click"   />
+          <asp:Button ID="btnAlterar" runat="server" Text="Alterar" CssClass="btn btn-primary navbar-btn" OnClick="btnAlterar_Click"/>
+          <asp:Button ID="btnExcluir" runat="server" Text="Excluir" CssClass="btn btn-primary navbar-btn"  OnClick="btnCarregar_ClickDelete"   />
           <asp:Button ID="btnProcessar" runat="server" Text="Processar" CssClass="btn btn-success navbar-btn"  OnClick="btnProcessar_Click"   />
       </div>               
             
@@ -137,14 +138,14 @@
                         <asp:TemplateField HeaderText="CPF / CNPJ" SortExpression="CPF_CNPJ">
                             <ItemStyle Width="6%" HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="CODIGO DA COBRADORA" SortExpression="CODCOBRADORA">
-                            <ItemStyle Width="9%" HorizontalAlign="Center" />
+                        <asp:TemplateField HeaderText="CODIGO" SortExpression="CODCOBRADORA">
+                            <ItemStyle Width="4%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="COBRADORA" SortExpression="COBRADORA">
                             <ItemStyle Width="9%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="AGENTE" SortExpression="AGENTE">
-                            <ItemStyle Width="5%" HorizontalAlign="Center" />
+                            <ItemStyle Width="10%" HorizontalAlign="Center" />
                         </asp:TemplateField>
                     </Columns>
                     <HeaderStyle CssClass="GridviewScrollC3Header" />
