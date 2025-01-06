@@ -271,7 +271,7 @@
                                     </ul>
                                 </li>
                                 <li class="menu-item dropdown dropdown-submenu" id="ICM" runat="server" visible="false">
-                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forçar ICM</a>
+                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">ICM</a>
                                    <ul class="dropdown-menu">
                                      <li><a href="Cobranca/ICM/ForcarICM.aspx">Forçar ICM</a></li>
                                     </ul>
