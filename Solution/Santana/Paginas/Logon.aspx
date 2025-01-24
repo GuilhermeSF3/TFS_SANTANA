@@ -74,7 +74,7 @@
         <div style="display: flex; height: 100vh;">
 
             <!-- Coluna da Imagem à Esquerda -->
-            <div style="flex: 1; background-image: url('../Imagens/White And Blue Modern 2025 Happy New Year.png'); border-radius:0px 67px 67px 0px; background-size: cover; background-position: center;">
+            <div style="flex: 1; background-image: url('../Imagens/IMG-LOGIN.jpg'); border-radius:0px 67px 67px 0px; background-size: cover; background-position: center;">
             </div>
 
             
