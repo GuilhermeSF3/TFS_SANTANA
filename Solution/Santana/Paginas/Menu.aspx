@@ -830,6 +830,10 @@
                                 <asp:ListItem Text="Repactuação" Value="Cobranca/Relatorios/Repactuacao.aspx" />
                                 <asp:ListItem Text="--------Honorários--------" Value="" />
                                 <asp:ListItem Text="Honorários" Value="Cobranca/Relatorios/Honorarios.aspx" />
+                                <asp:ListItem Text="--------ICM--------" Value="" />
+                                <asp:ListItem Text="Forçar ICM" Value="Cobranca/ICM/ForcarICM.aspx" />
+                                <asp:ListItem Text="--------FOP--------" Value="" />
+                                <asp:ListItem Text="Arquivo FOP" Value="Cobranca/FOP/ArquivoFOP.aspx" />
                             </asp:DropDownList>
                         </div>
 
