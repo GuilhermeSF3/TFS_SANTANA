@@ -58,7 +58,7 @@ Namespace Paginas.Cobranca.FOP
                 ExportarParaTXT(resultTable)
             Else
 
-                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Sem Resposta', 'Nenhuma movimentação de renegociação.');", True)
+                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Sem Resposta', 'Sem movimentação de renegociação para gerar o arquivo FOP.');", True)
             End If
         End Sub
 
@@ -76,9 +76,9 @@ Namespace Paginas.Cobranca.FOP
                     End Using
                 End Using
             End Using
-            If resultTable.Rows.Count > 0 AndAlso resultTable.Rows(0)(0).ToString().Contains("Sem movimentação para de renegociação para gerar o arquivo FOP") Then
+            If resultTable.Rows.Count > 0 AndAlso resultTable.Rows(0)(0).ToString().Contains("Sem movimentação de renegociação para gerar o arquivo FOP") Then
 
-                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", "alert('Sem movimentação para de renegociação para gerar o arquivo FOP');", True)
+                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", "alert('Sem movimentação de renegociação para gerar o arquivo FOP');", True)
 
                 Return Nothing
             End If
