@@ -173,8 +173,8 @@ Namespace Paginas.Cobranca.ICM
 
                     Dim dataReferencia As DateTime
                     Dim contract As String = txtContract.Text.Trim()
-                    Dim parcel As String = TxtParcel.Text.Trim()
-                    Dim codCobr As String = TxtCodCobr.Text.Trim()
+                    Dim parcel As String = txtParcel.Text.Trim()
+                    Dim codCobr As String = txtCodCobr.Text.Trim()
                     If DateTime.TryParse(txtData.Text, dataReferencia) Then
                         ViewState("CC67EF01-E08F-4AD1-B1B9-3CF591164A8C") = Inserir(dataReferencia, contract, parcel, codCobr)
                     Else
@@ -191,10 +191,10 @@ Namespace Paginas.Cobranca.ICM
 
         Protected Sub BindGridView1DataView()
             Dim contract As String = txtContract.Text.Trim()
-            Dim parcel As String = TxtParcel.Text.Trim()
+            Dim parcel As String = txtParcel.Text.Trim()
             Dim dataReferencia As DateTime
             Dim dataStr As String = txtData.Text.Trim()
-            Dim codCobr As String = TxtCodCobr.Text.Trim()
+            Dim codCobr As String = txtCodCobr.Text.Trim()
 
             Debug.WriteLine("Valor de txtData.Text: " & dataStr)
 

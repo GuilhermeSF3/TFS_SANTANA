@@ -207,7 +207,6 @@
     <Content Include="imagens\skip_forward2424.png" />
     <Content Include="imagens\txt2424.png" />
     <Content Include="imagens\wait.gif" />
-    <Content Include="imagens\White And Blue Modern 2025 Happy New Year.png" />
     <Content Include="javascripts\jquery.growl.js" />
     <Content Include="Paginas\AlteraSenha.aspx" />
     <Content Include="Paginas\BankFacil\CnabGerarArquivo.aspx" />
@@ -319,6 +318,7 @@
     <Content Include="Paginas\CETIP\CETIPSintetico.aspx" />
     <Content Include="Paginas\CETIP\CETIPUpload.aspx" />
     <Content Include="Paginas\Cobranca\Consolidado\GraficoRolagemConsolidado.aspx" />
+    <Content Include="Paginas\Cobranca\FOP\ArquivoFOP.aspx" />
     <Content Include="Paginas\Cobranca\P123Gerencial\Inadimplencia.aspx" />
     <Content Include="Paginas\Cobranca\P123Gerencial\P123Gerencia13Meses.aspx" />
     <Content Include="Paginas\Cobranca\P123Gerencial\P123Gerencial.aspx" />
@@ -1484,6 +1484,13 @@
     </Compile>
     <Compile Include="Paginas\Cobranca\Consolidado\GraficoRolagemConsolidado.aspx.vb">
       <DependentUpon>GraficoRolagemConsolidado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\FOP\ArquivoFOP.aspx.designer.vb">
+      <DependentUpon>ArquivoFOP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\FOP\ArquivoFOP.aspx.vb">
+      <DependentUpon>ArquivoFOP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Cobranca\P123Gerencial\Inadimplencia.aspx.designer.vb">

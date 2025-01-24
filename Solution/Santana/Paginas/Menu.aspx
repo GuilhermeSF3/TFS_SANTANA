@@ -276,6 +276,12 @@
                                      <li><a href="Cobranca/ICM/ForcarICM.aspx">Forçar ICM</a></li>
                                     </ul>
                                 </li>
+                                <li class="menu-item dropdown dropdown-submenu" id="FOP" runat="server" visible="false">
+                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">FOP</a>
+                                   <ul class="dropdown-menu">
+                                     <li><a href="Cobranca/FOP/ArquivoFOP.aspx">Arquivo FOP</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown" id="RiscoCredito" runat="server" visible="False">
