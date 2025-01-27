@@ -87,7 +87,7 @@ Namespace Paginas.Cobranca.FOP
 
         Private Sub ExportarParaTXT(dt As DataTable)
             Try
-                Dim nomeArquivo As String = "FOP" & DateTime.Now.ToString("ddmmyy") & "01" & ".EXT"
+                Dim nomeArquivo As String = "FOP" & DateTime.Now.ToString("ddMMyy") & "01" & ".EXT"
                 Response.Clear()
                 Response.Buffer = True
                 Response.Charset = ""
