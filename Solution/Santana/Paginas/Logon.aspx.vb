@@ -490,11 +490,11 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Lastro.aspx", New List(Of Integer)({0, 1, 9})))
 
         'FINANCEIRO
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Financeiro/OperacaoCaptacao.aspx", New List(Of Integer)({1, 11})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Financeiro/BaseCaptacao.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Financeiro/OperacaoCaptacao.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Financeiro/BaseCaptacao.aspx", New List(Of Integer)({1, 11})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cadastro/Financeiro/TaxaCDI.aspx", New List(Of Integer)({1, 11})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cadastro/Financeiro/Caixa.aspx", New List(Of Integer)({1, 11})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Financeiro/Remessa.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Financeiro/Remessa.aspx", New List(Of Integer)({0, 1, 11})))
 
         'RH
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/RH/CPColaboradores.aspx", New List(Of Integer)({0, 12})))

@@ -616,11 +616,11 @@
                         <li class="dropdown" id="Financeiro" runat="server" visible="False">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-bank2"></i> Financeiro<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="Financeiro/OperacaoCaptacao.aspx">Operação Captação</a></li>
-                                <li><a href="Financeiro/BaseCaptacao.aspx">Base de Captação</a></li>
+                                <li><a href="../Paginas/Financeiro/OperacaoCaptacao.aspx">Operação Captação</a></li>
+                                <li><a href="../Paginas/Financeiro/BaseCaptacao.aspx">Base de Captação</a></li>
                                 <li><a href="../Paginas/Cadastro/Financeiro/TaxaCDI.aspx">Cadastro de Taxa CDI</a></li>
                                 <li><a href="../Paginas/Cadastro/Financeiro/Caixa.aspx">Lançamento de Caixa</a></li>
-                                <li><a href="Financeiro/Remessa.aspx">Remessa</a></li>
+                                <li><a href="../Paginas/Financeiro/Remessa.aspx">Remessa</a></li>
                             </ul>
                         </li>
 
