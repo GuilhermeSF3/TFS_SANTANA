@@ -56,6 +56,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.16.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.16.0\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -318,6 +321,7 @@
     <Content Include="Paginas\CETIP\CETIPSintetico.aspx" />
     <Content Include="Paginas\CETIP\CETIPUpload.aspx" />
     <Content Include="Paginas\Cobranca\Consolidado\GraficoRolagemConsolidado.aspx" />
+    <Content Include="Paginas\Cobranca\FechamentoCobranca\FechamentoCobranca.aspx" />
     <Content Include="Paginas\Cobranca\FOP\ArquivoFOP.aspx" />
     <Content Include="Paginas\Cobranca\P123Gerencial\Inadimplencia.aspx" />
     <Content Include="Paginas\Cobranca\P123Gerencial\P123Gerencia13Meses.aspx" />
@@ -369,6 +373,7 @@
     <Content Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx" />
     <Content Include="Paginas\RH\CPColaboradoresSintetico.aspx" />
     <Content Include="Paginas\SpreadCapitalDeGiro.aspx" />
+    <Content Include="Paginas\TI\Agendador.aspx" />
     <Content Include="Paginas\TI\Inventario2.aspx" />
     <Content Include="Paginas\UploadArquivoExcel.aspx" />
     <Content Include="Paginas\Comercial\AcionamentoCliente.aspx" />
@@ -1486,6 +1491,13 @@
       <DependentUpon>GraficoRolagemConsolidado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Paginas\Cobranca\FechamentoCobranca\FechamentoCobranca.aspx.designer.vb">
+      <DependentUpon>FechamentoCobranca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\FechamentoCobranca\FechamentoCobranca.aspx.vb">
+      <DependentUpon>FechamentoCobranca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Paginas\Cobranca\FOP\ArquivoFOP.aspx.designer.vb">
       <DependentUpon>ArquivoFOP.aspx</DependentUpon>
     </Compile>
@@ -1841,6 +1853,13 @@
     </Compile>
     <Compile Include="Paginas\SpreadCapitalDeGiro.aspx.vb">
       <DependentUpon>SpreadCapitalDeGiro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\Agendador.aspx.designer.vb">
+      <DependentUpon>Agendador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\Agendador.aspx.vb">
+      <DependentUpon>Agendador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\TI\Inventario2.aspx.designer.vb">
@@ -2861,6 +2880,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\localization\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

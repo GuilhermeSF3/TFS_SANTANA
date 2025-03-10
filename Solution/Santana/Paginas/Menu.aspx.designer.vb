@@ -203,6 +203,15 @@ Partial Public Class Menu
     Protected WithEvents IP As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''Controle Fechamento.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents Fechamento As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''Controle ICM.
     '''</summary>
     '''<remarks>

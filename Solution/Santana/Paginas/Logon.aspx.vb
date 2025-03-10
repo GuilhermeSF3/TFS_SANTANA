@@ -202,6 +202,7 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("DCO", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Desconto", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Cadastro", New List(Of Integer)({0, 1, 8})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Fechamento", New List(Of Integer)({0, 1})))
 
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Menu.aspx", New List(Of Integer)({0, 1, 3, 4, 5, 6, 7, 8, 9, 11, 12})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/UploadArquivoExcel.aspx", New List(Of Integer)({0, 1})))
@@ -560,7 +561,12 @@ Partial Class Logon
 
         'Tecnologia'
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Inventario2.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Agendador.aspx", New List(Of Integer)({0, 1})))
 
+
+
+        'FECHAMENTO DE COBRAÇA'
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cobranca/FechamentoCobranca/FechamentoCobranca.aspx", New List(Of Integer)({0, 1})))
 
 
     End Sub

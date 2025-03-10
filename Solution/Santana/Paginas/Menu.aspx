@@ -270,6 +270,12 @@
                                         <li><a href="Paginas/Cobranca/Relatorios/AjusteIP.aspx">Ajuste IP</a></li>
                                     </ul>
                                 </li>
+                                 <li class="menu-item dropdown dropdown-submenu" id="Fechamento" runat="server" visible="false">
+                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fechamento</a>
+                                     <ul class="dropdown-menu">
+                                     <li><a href="Cobranca/FechamentoCobranca/FechamentoCobranca.aspx">Cobrança</a></li>
+                                     </ul>
+                                </li>
                                 <li class="menu-item dropdown dropdown-submenu" id="ICM" runat="server" visible="false">
                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">ICM</a>
                                    <ul class="dropdown-menu">
@@ -648,6 +654,7 @@
      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-browser-edge"></i> TI<b class="caret"></b></a>
      <ul class="dropdown-menu">
          <li><a href="../Paginas/TI/Inventario2.aspx">Inventario</a></li>
+                  <li><a href="../Paginas/TI/Agendador.aspx">Agendador</a></li>
      </ul>
  </li>
                     </ul>
