@@ -649,14 +649,22 @@
                                 <li><a href="../Paginas/Desconto/Assertiva.aspx">Assertiva</a></li>
                             </ul>
                         </li>
-
-                         <li class="dropdown" id="TI" runat="server" visible="False">
-     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-browser-edge"></i> TI<b class="caret"></b></a>
-     <ul class="dropdown-menu">
-         <li><a href="../Paginas/TI/Inventario2.aspx">Inventario</a></li>
-                  <li><a href="../Paginas/TI/Agendador.aspx">Agendador</a></li>
-     </ul>
- </li>
+<li class="dropdown" id="TI" runat="server" visible="False">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="bi bi-browser-edge"></i> TI <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="../Paginas/TI/Inventario2.aspx">Inventário</a></li>
+        
+        <li class="dropdown-submenu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamento</a>
+            <ul class="dropdown-menu">
+                <li><a href="../Paginas/TI/Agendador.aspx">Agendador</a></li>
+                <li><a href="../Paginas/TI/CadastroHistorico.aspx">Cadastro Histórico</a></li>
+            </ul>
+        </li>
+    </ul>
+</li>
                     </ul>
 
 

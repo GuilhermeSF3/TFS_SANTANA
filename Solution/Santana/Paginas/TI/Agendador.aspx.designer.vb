@@ -33,6 +33,15 @@ Namespace Paginas.TI
         Protected WithEvents btnMenu As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
+        '''Controle DropDownList1.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
+
+        '''<summary>
         '''Controle ddlHistorico.
         '''</summary>
         '''<remarks>
@@ -40,15 +49,6 @@ Namespace Paginas.TI
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents ddlHistorico As Global.System.Web.UI.WebControls.DropDownList
-
-        '''<summary>
-        '''Controle txtDataPagamento.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents txtDataPagamento As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
         '''Controle txtDescricao.
@@ -132,15 +132,6 @@ Namespace Paginas.TI
         Protected WithEvents txtContaCorrente As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle ddlAprovador.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents ddlAprovador As Global.System.Web.UI.WebControls.DropDownList
-
-        '''<summary>
         '''Controle UpdatePanel1.
         '''</summary>
         '''<remarks>
@@ -166,6 +157,60 @@ Namespace Paginas.TI
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents hdnArquivosRemovidos As Global.System.Web.UI.WebControls.HiddenField
+
+        '''<summary>
+        '''Controle btnSalvarAgenda.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnSalvarAgenda As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle btnReiniciar.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnReiniciar As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle upAgendas.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents upAgendas As Global.System.Web.UI.UpdatePanel
+
+        '''<summary>
+        '''Controle gvAgendas.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents gvAgendas As Global.System.Web.UI.WebControls.GridView
+
+        '''<summary>
+        '''Controle txtDataPagamento.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents txtDataPagamento As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle ddlAprovador.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents ddlAprovador As Global.System.Web.UI.WebControls.DropDownList
 
         '''<summary>
         '''Controle btnEnviarEmail.

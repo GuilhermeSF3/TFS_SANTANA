@@ -562,6 +562,7 @@ Partial Class Logon
         'Tecnologia'
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Inventario2.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Agendador.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/CadastroHistorico.aspx", New List(Of Integer)({0, 1})))
 
 
 
