@@ -661,6 +661,7 @@
             <ul class="dropdown-menu">
                 <li><a href="../Paginas/TI/Agendador.aspx">Agendador</a></li>
                 <li><a href="../Paginas/TI/CadastroHistorico.aspx">Cadastro Histórico</a></li>
+                <li><a href="../Paginas/TI/RelatorioDespesas.aspx">Relatório de Despesas</a></li>
             </ul>
         </li>
     </ul>

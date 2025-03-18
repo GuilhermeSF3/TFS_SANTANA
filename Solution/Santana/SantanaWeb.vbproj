@@ -373,6 +373,7 @@
     <Content Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx" />
     <Content Include="Paginas\RH\CPColaboradoresSintetico.aspx" />
     <Content Include="Paginas\SpreadCapitalDeGiro.aspx" />
+    <Content Include="Paginas\TI\RelatorioDespesas.aspx" />
     <Content Include="Paginas\TI\CadastroHistorico.aspx" />
     <Content Include="Paginas\TI\Agendador.aspx" />
     <Content Include="Paginas\TI\Inventario2.aspx" />
@@ -1854,6 +1855,13 @@
     </Compile>
     <Compile Include="Paginas\SpreadCapitalDeGiro.aspx.vb">
       <DependentUpon>SpreadCapitalDeGiro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\RelatorioDespesas.aspx.designer.vb">
+      <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\RelatorioDespesas.aspx.vb">
+      <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\TI\CadastroHistorico.aspx.designer.vb">
