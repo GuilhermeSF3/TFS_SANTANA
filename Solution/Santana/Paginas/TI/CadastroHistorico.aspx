@@ -86,12 +86,64 @@
                                     <asp:Button ID="btnCadastrarHistorico" runat="server" CssClass="btn btn-primary" Text="Cadastrar" OnClick="btnSalvarhistorico_Click" />
                                     <asp:Button ID="btnEditarHistorico" runat="server" CssClass="btn btn-warning" Text="Editar" OnClick="btnEditarhistorico_Click" />
                                     <asp:Button ID="btnExcluirHistorico" runat="server" CssClass="btn btn-danger" Text="Excluir" OnClick="btnExcluirhistorico_Click" />
-                                    <asp:Button ID="btnNovoHistorico" runat="server" CssClass="btn btn-light" Text="Novo Historico" />
+                                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">Novo Histórico</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Novo Histórico</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                                            <div style="margin-bottom: 10px;" class="col-md-6 mb-3">
+                                                <label for="txtNovoHistorico" class="form-label">Histórico</label>
+                                                <asp:TextBox ID="txtNovoHistorico" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <asp:UpdatePanel runat="server">
+                                                <ContentTemplate>
+                                                    <div style="margin-bottom: 10px;" class="col-md-6 ">
+                                                        <label for="ddlDepartamento" class="form-label">Departamento</label>
+                                                        <asp:DropDownList ID="Departamentoddl" runat="server" CssClass="form-control">
+                                                            <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
+                                                            <asp:ListItem Text="RECURSOS HUMANOS (RH)" Value="RH"></asp:ListItem>
+                                                            <asp:ListItem Text="FINANCEIRO" Value="Financeiro"></asp:ListItem>
+                                                            <asp:ListItem Text="TECNOLOGIA" Value="TI"></asp:ListItem>
+                                                            <asp:ListItem Text="JURIDICO" Value="Jurídico"></asp:ListItem>
+                                                            <asp:ListItem Text="RECUPERAÇÃO" Value="Recuperação"></asp:ListItem>
+                                                            <asp:ListItem Text="CONTABILIDADE" Value="Contabilidade"></asp:ListItem>
+                                                            <asp:ListItem Text="FORMALIZAÇÃO" Value="Formalização"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" style="display:flex; justify-content:end; flex-direction:row; gap:10px;" >
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                        <asp:UpdatePanel runat="server">
+                                            <ContentTemplate>
+                                                <asp:Button ID="btnSalvarHistorico" runat="server" CssClass="btn btn-primary"
+                                                    Text="Salvar" OnClick="btnSalvarNovoHistorico" />
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:PostBackTrigger ControlID="btnSalvarHistorico" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </ContentTemplate>
 
@@ -110,6 +162,10 @@
             hdnRemovidos.value = removidos.join(",");
 
             atualizarLista();
+        }
+
+        function fecharModal() {
+            $('#exampleModalCenter').modal('hide'); // Fecha o modal após o postback
         }
 
         function formatarDocumento(input) {

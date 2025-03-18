@@ -78,6 +78,7 @@
                                     <asp:ListItem Text="PIX" Value="PIX"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
+           
                             <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
                                 <label for="txtBanco" class="form-label">Banco</label>
                                 <asp:TextBox ID="txtBanco" runat="server" CssClass="form-control"></asp:TextBox>
@@ -92,8 +93,7 @@
                                 <asp:TextBox ID="txtContaCorrente" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
 
-                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                <ContentTemplate>
+              
                                     <div class="col-md-6 mb-3">
                                         <label for="FileUpload1" style="color: #363636" class="form-label">Anexar Arquivos</label>
                                         <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" class="form-control" />
@@ -110,8 +110,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <asp:UpdatePanel ID="upAgendas" runat="server">
-                                        <ContentTemplate>
+        
+                                 
                                             <asp:GridView ID="gvAgendas" runat="server" AutoGenerateColumns="False" Style="margin-bottom: 30px;" CssClass="table table-bordered ">
                                                 <Columns>
                                                     <asp:BoundField DataField="Descricao" HeaderText="Descrição" />
@@ -126,8 +126,7 @@
                                                     </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
+                                      
 
                                     <div class="col-md-12" style="display: flex; margin-top: 10px; flex-direction: column;">
 
@@ -135,7 +134,7 @@
                                             <label for="txtDataPagamento" class="form-label">Data de Pagamento</label>
                                             <asp:TextBox ID="txtDataPagamento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                                         </div>
-                                        <div class="col-md-4" style="margin-bottom: 10px; margin-top: 20px;">
+                                        <div class="col-md-5" style="margin-bottom: 10px; margin-top: 20px;">
                                             <label for="ddlAprovador" class="form-label">Aprovador</label>
                                             <asp:DropDownList ID="ddlAprovador" runat="server" Style="margin-bottom: 30px;" CssClass="form-control" onchange="verificarAprovador()">
                                                 <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
@@ -147,7 +146,7 @@
                                             </asp:DropDownList>
                                             <asp:Button ID="btnEnviarEmail" runat="server" CssClass="btn btn-primary" Text="Enviar Agenda" OnClick="btnEnviarEmail_Click" />
                                         </div>
-                                    </div>
+                                    </div> 
 
                                 </ContentTemplate>
                                 <Triggers>
@@ -157,6 +156,8 @@
                             </asp:UpdatePanel>
                             <!-- END CONTAINER -->
                         </div>
+                  
+
                     </div>
         </ContentTemplate>
 
@@ -168,15 +169,21 @@
         let removidos = [];
         let input = document.getElementById('<%= FileUpload1.ClientID %>');
         let hdnRemovidos = document.getElementById('<%= hdnArquivosRemovidos.ClientID %>');
-
+        let lista = document.getElementById("listaArquivos");
 
         input.addEventListener('change', function () {
             mostrarArquivos(input);
         });
 
         function mostrarArquivos(fileInput) {
+            let novosArquivos = Array.from(fileInput.files);
 
-            arquivos = Array.from(fileInput.files);
+            novosArquivos.forEach(novoArquivo => {
+                if (!arquivos.some(arquivo => arquivo.name === novoArquivo.name)) {
+                    arquivos.push(novoArquivo);
+                }
+            });
+
             atualizarLista();
         }
 
@@ -195,6 +202,18 @@
         `;
                 lista.appendChild(div);
             });
+        }
+
+        function removerArquivo(index) {
+            arquivos.splice(index, 1);
+            atualizarInput();
+            atualizarLista();
+        }
+
+        function atualizarInput() {
+            const dataTransfer = new DataTransfer();
+            arquivos.forEach(arquivo => dataTransfer.items.add(arquivo));
+            input.files = dataTransfer.files;
         }
 
 

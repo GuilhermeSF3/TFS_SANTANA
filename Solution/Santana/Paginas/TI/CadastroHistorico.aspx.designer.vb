@@ -141,12 +141,30 @@ Namespace Paginas.TI
         Protected WithEvents btnExcluirHistorico As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
-        '''Controle btnNovoHistorico.
+        '''Controle txtNovoHistorico.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnNovoHistorico As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtNovoHistorico As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle Departamentoddl.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents Departamentoddl As Global.System.Web.UI.WebControls.DropDownList
+
+        '''<summary>
+        '''Controle btnSalvarHistorico.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnSalvarHistorico As Global.System.Web.UI.WebControls.Button
     End Class
 End Namespace
