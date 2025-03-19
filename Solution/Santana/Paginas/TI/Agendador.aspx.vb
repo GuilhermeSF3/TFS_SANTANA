@@ -181,7 +181,7 @@ Namespace Paginas.TI
             .ContaCorrente = txtContaCorrente.Text,
             .ArquivoZip = ""
         }
-                Dim uploadPath As String = Server.MapPath("~/Uploads/")
+                Dim uploadPath As String = "\\192.168.0.230\dados\Agendador\ARQUIVOS"
                 If Not Directory.Exists(uploadPath) Then
                     Directory.CreateDirectory(uploadPath)
                 End If
@@ -246,18 +246,19 @@ Namespace Paginas.TI
             Try
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
                 Dim email As New MailMessage()
+                Dim empresa As String = ddlEmpresa.SelectedValue
                 Dim contexto = New Contexto
                 Dim dataPagamento As String = txtDataPagamento.Text
-                email.From = New MailAddress("menoti@sf3.com.br")
+                email.From = New MailAddress("contasapagar@santanafinanceira.onmicrosoft.com")
                 email.To.Add(ddlAprovador.SelectedItem.Value)
-                email.Subject = $"SOLICITAÇÃO DE PAGAMENTO SHOPCRED - {dataPagamento} "
+                email.Subject = $"SOLICITAÇÃO DE PAGAMENTO {empresa} - {dataPagamento} "
                 email.IsBodyHtml = True
                 Dim listaAgendas As List(Of Agenda) = TryCast(Session("Agendas"), List(Of Agenda))
                 For Each agenda In listaAgendas
                     agenda.DataPagamento = dataPagamento
                 Next
                 Dim body As String = "<h3>Informações de Despesas</h3>"
-                body &= "<table border='1' cellpadding='10' cellspacing='0' style='border-collapse:collapse;'>"
+                body &= "<table border='1' cellpadding='5' cellspacing='0' style='border-collapse:collapse;'>"
                 body &= "<tr><th>Data Pagamento</th><th>Descrição</th><th>Valor Bruto</th><th>Valor Líquido</th><th>Favorecido</th><th>CPF/CNPJ</th><th>Forma de Pagamento</th><th>Banco</th><th>Agência</th><th>Conta Corrente</th> </tr>"
                 For Each agenda In listaAgendas
                     body &= $"<tr><td>{agenda.DataPagamento}</td><td>{agenda.Descricao}</td><td>R$ {agenda.ValorBruto}</td><td>R$ {agenda.ValorLiquido}</td><td>{agenda.Favorecido}</td><td>{agenda.CpfCnpj}</td><td>{agenda.FormaPagamento}</td><td>{agenda.Banco}</td><td>{agenda.Agencia}</td><td>{agenda.ContaCorrente}</td></tr>"
@@ -265,6 +266,8 @@ Namespace Paginas.TI
                 body &= "</br>"
                 body &= "</table>"
                 body &= $"Digitador: {contexto.UsuarioLogado.NomeUsuario}"
+                body &= "</br>"
+                body &= $"Empresa: {empresa}"
                 Dim av As AlternateView = AlternateView.CreateAlternateViewFromString(body, Encoding.UTF8, "text/html")
                 email.AlternateViews.Add(av)
                 Dim anexosAdicionados As Integer = 0
@@ -276,7 +279,7 @@ Namespace Paginas.TI
                 Next
                 Dim smtp As New SmtpClient("smtp.office365.com")
                 smtp.Port = 587
-                smtp.Credentials = New Net.NetworkCredential("menoti@sf3.com.br", "Huq99291")
+                smtp.Credentials = New Net.NetworkCredential("contasapagar@santanafinanceira.onmicrosoft.com", "Xay16092")
                 smtp.EnableSsl = True
                 smtp.Send(email)
                 Session("Agendas") = Nothing
