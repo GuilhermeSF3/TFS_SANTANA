@@ -174,6 +174,32 @@ Namespace Paginas.TI
             txtContaCorrente.Text = ""
         End Sub
 
+        Protected Sub btnSalvarNovoHistorico(ByVal sender As Object, ByVal e As EventArgs)
+            Dim srtConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+
+            Using conn As New SqlConnection(srtConn)
+                Dim query As String = "INSERT INTO TB_HISTORICOS (NOME_HISTORICO, DEPARTAMENTO) VALUES (@Historico, @Departamento)"
+
+                Using cmd As New SqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@Departamento", Departamentoddl.SelectedValue)
+                    cmd.Parameters.AddWithValue("@Historico", txtNovoHistorico.Text)
+                    conn.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+
+                Try
+
+
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "FecharModal",
+                    "alert('Histórico incluído com sucesso!'); $('#exampleModalCenter').modal('hide');", True)
+                Catch ex As Exception
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alert", "alert('Erro ao atualizar o equipamento: " & ex.Message & "');", True)
+                Finally
+                    conn.Close()
+                End Try
+            End Using
+
+        End Sub
 
         Protected Sub btnExcluirhistorico_Click(ByVal sender As Object, ByVal e As EventArgs)
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")

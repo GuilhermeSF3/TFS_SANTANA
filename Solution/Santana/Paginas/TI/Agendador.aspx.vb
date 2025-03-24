@@ -24,6 +24,7 @@ Namespace Paginas.TI
 
         Private Const HfGridView1Svid As String = "1399D405-7696-46C6-8FC6-2091DCE8A6F6"
         Private Const HfGridView1Shid As String = "D7177246-2FDD-477C-A27E-B94DEFD23EE4"
+        Public Property Newtonsoft As Object
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -161,6 +162,7 @@ Namespace Paginas.TI
 
         Protected Sub btnSalvarAgenda_Click(sender As Object, e As EventArgs)
             Try
+
                 Dim listaAgendas As List(Of Agenda) = TryCast(Session("Agendas"), List(Of Agenda))
                 If listaAgendas Is Nothing Then
                     listaAgendas = New List(Of Agenda)()
@@ -188,7 +190,12 @@ Namespace Paginas.TI
 
                     Using zip As New Ionic.Zip.ZipFile()
                         For Each file As HttpPostedFile In FileUpload1.PostedFiles
-                            zip.AddEntry(Path.GetFileName(file.FileName), file.InputStream)
+                            Dim fileData As Byte()
+                            Using inputStream As New MemoryStream()
+                                file.InputStream.CopyTo(inputStream)
+                                fileData = inputStream.ToArray()
+                            End Using
+                            zip.AddEntry(Path.GetFileName(file.FileName), fileData)
                         Next
                         zip.Save(zipFileName)
                     End Using
@@ -302,8 +309,10 @@ Namespace Paginas.TI
                 txtContaCorrente.Text = ""
                 BindAgendas()
 
+
                 Response.Redirect(Request.RawUrl, False)
                 HttpContext.Current.ApplicationInstance.CompleteRequest()
+
 
 
             Catch ex As Exception
