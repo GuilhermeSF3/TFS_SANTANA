@@ -104,7 +104,7 @@
                             <div class="col-md-12" style="margin-top: 15px">
                                 <div class="col-md-3" style="margin-top: 10px; gap: 10px; display: flex; justify-content: start; margin-bottom: 30px;">
                                     <div>
-                                        <asp:Button ID="btnSalvarAgenda" runat="server" Text="Salvar Agenda" CssClass="btn btn-success" OnClick="btnSalvarAgenda_Click" />
+                                        <asp:Button ID="btnSalvarAgenda" runat="server" Text="Salvar Agenda" CssClass="btn btn-success" OnClick="btnSalvarAgendaSelected" />
                                     </div>
                                     <div>
                                         <asp:Button ID="btnReiniciar" runat="server" Text="Limpar" CssClass="btn btn-danger" OnClick="btnReiniciar_Click" />
@@ -116,7 +116,6 @@
                             <asp:GridView ID="gvAgendas" runat="server" AutoGenerateColumns="False" Style="margin-bottom: 30px;" CssClass="table table-bordered ">
                                 <Columns>
                                     <asp:BoundField DataField="Descricao" HeaderText="Descrição" />
-                                    <asp:BoundField DataField="DataPagamento" HeaderText="Data de Pagamento" />
                                     <asp:BoundField DataField="ValorBruto" HeaderText="Valor Bruto" DataFormatString="{0:C}" />
                                     <asp:BoundField DataField="ValorLiquido" HeaderText="Valor Líquido" DataFormatString="{0:C}" />
                                     <asp:TemplateField HeaderText="Ação">
