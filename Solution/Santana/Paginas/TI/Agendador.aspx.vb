@@ -31,7 +31,7 @@ Namespace Paginas.TI
 
             If Not IsPostBack Then
                 Dim today As DateTime = DateTime.Now
-                Dim previousDate As DateTime
+
 
             End If
 
@@ -54,7 +54,7 @@ Namespace Paginas.TI
             Public Property ArquivoZip As String
         End Class
 
-        Protected Sub btnSalvar_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Protected Sub btnSalvar_Click()
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Using conn As New SqlConnection(strConn)
                 Dim sql As String = "INSERT INTO TB_AGENDAMENTO_SIG (Historico, DATA_PAGAMENTO, DESCRICAO, VALOR_BRUTO , VALOR_LIQUIDO, FAVORECIDO, CPF_CNPJ, FORMA_DE_PAGAMENTO, BANCO, AGENCIA, CONTA_CORRENTE)" & "VALUES (@Historico, @DataPagamento, @Descricao, @ValorBruto, @ValorLiquido, @Favorecido, @CpfCnpj, @FormaPagamento, @Banco, @Agencia, @ContaCorrente)"
@@ -181,7 +181,8 @@ Namespace Paginas.TI
             .ContaCorrente = txtContaCorrente.Text,
             .ArquivoZip = ""
         }
-                Dim uploadPath As String = "\\192.168.0.230\dados\Agendador\ARQUIVOS"
+                Dim uploadPath As String = "C:\Agendador\ARQUIVOS"
+                '"\\192.168.0.230\dados\Agendador\ARQUIVOS"
                 If Not Directory.Exists(uploadPath) Then
                     Directory.CreateDirectory(uploadPath)
                 End If
@@ -215,6 +216,7 @@ Namespace Paginas.TI
                 txtAgencia.Text = ""
                 txtContaCorrente.Text = ""
                 BindAgendas()
+                btnSalvar_Click()
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", "alert('Agenda salva com sucesso!');", True)
 
             Catch ex As Exception
@@ -251,6 +253,7 @@ Namespace Paginas.TI
                 Dim dataPagamento As String = txtDataPagamento.Text
                 email.From = New MailAddress("contasapagar@santanafinanceira.onmicrosoft.com")
                 email.To.Add(ddlAprovador.SelectedItem.Value)
+                email.CC.Add(contexto.UsuarioLogado.EMail)
                 email.Subject = $"SOLICITAÇÃO DE PAGAMENTO {empresa} - {dataPagamento} "
                 email.IsBodyHtml = True
                 Dim listaAgendas As List(Of Agenda) = TryCast(Session("Agendas"), List(Of Agenda))

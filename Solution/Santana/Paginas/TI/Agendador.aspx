@@ -164,15 +164,7 @@
         </Triggers>
     </asp:UpdatePanel>
     <!-- END CONTAINER -->
-    </div>
-                  
 
-                    </div>
-        </ContentTemplate>
-
-    </asp:UpdatePanel>
-
-    <script type="text/javascript" src="https://uxsolutions.github.io/bootstrap-datepicker/boot‌​strap-datepicker/js/‌​locales/bootstrap-da‌​tepicker.pt-BR.min.j‌​s"></script>
     <script>
         let arquivos = [];
         let removidos = [];
@@ -330,8 +322,6 @@
                 dataType: 'json',
                 success: function (response) {
                     alert("Página favoritada com sucesso!");
-
-                    // Alterar o ícone para o coração preenchido
                     document.getElementById('heart-icon').classList.add('favorited');
                     document.getElementById('heart-icon').classList.remove('bi-heart');
                     document.getElementById('heart-icon').classList.add('bi-heart-fill');
@@ -411,6 +401,16 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(StopSpin);
         Sys.WebForms.PageRequestManager.getInstance().add_initializeRequest(StartSpin);
 
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker();
+        });
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR',
+                autoclose: true
+            });
+        });
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
@@ -418,6 +418,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+
 
 
 </asp:Content>
