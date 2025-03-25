@@ -81,7 +81,7 @@
                    
               
 
-             <div style="flex: 1; display: flex; margin  align-items: center; align-items:center; flex-direction:column; gap:30px;">
+             <div style="flex: 1; display: flex;   align-items: center; align-items:center; flex-direction:column; gap:30px;">
       <img src="../Imagens/LOGOESCURO.png" alt="Logo" style="width: 300px; margin-top:100px; height: auto; text-align:center; justify-content:center;" />
 
              <asp:Table ID="Table2" runat="server" Width="100%" CellPadding="0" CellSpacing="100" Height="400px">
@@ -111,8 +111,8 @@
                                                       <small><asp:LinkButton ID="txtAlterarSenha" runat="server" Text="Alterar senha" CssClass="text-left" OnClick="txtAlterarSenha_Click" ></asp:LinkButton></small>
                                                   </div> 
                                                   
-                                                  <asp:Button ID="btnLogin" runat="server" Text="Login" style="width:300px ; font-style:bold; border: none; color:white; border-radius: 15px; background-color:#152B61; height:35px; margin-top: 50px;" OnClick="btnLogin_Click" Height="50px" ></asp:Button>
-                                                   
+                                                  <asp:Button ID="btnLogin" runat="server" Text="Login" style="width:300px ; font-style: normal; border: none; color:white; border-radius: 15px; background-color:#152B61; height:35px; margin-top: 50px;" OnClick="btnLogin_Click" Height="50px" ></asp:Button>
+                                                    
                                                   
                                               </div>
                                           </div> 

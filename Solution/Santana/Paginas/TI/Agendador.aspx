@@ -43,9 +43,10 @@
                             <div style="margin-bottom: 10px;" class="col-md-4 mb-3">
                                 <label for="ddlHistorico" class="form-label">Histórico</label>
                                 <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlHistorico_SelectedIndexChanged" ID="ddlHistorico" runat="server" CssClass="form-control">
-                                  
                                 </asp:DropDownList>
                             </div>
+
+
 
                             <div style="margin-bottom: 10px;" class="col-md-4 mb-3">
                                 <label for="txtDescricao" class="form-label">Descrição</label>
@@ -78,92 +79,91 @@
                                     <asp:ListItem Text="PIX" Value="PIX"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-           
-                            <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
+
+                            <div style="margin-bottom: 10px;" class="col-md-2 mb-3">
                                 <label for="txtBanco" class="form-label">Banco</label>
                                 <asp:TextBox ID="txtBanco" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
 
-                            <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
+                            <div style="margin-bottom: 10px;" class="col-md-2 mb-3">
                                 <label for="txtAgencia" class="form-label">Agência</label>
                                 <asp:TextBox ID="txtAgencia" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
-                            <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
+                            <div style="margin-bottom: 10px;" class="col-md-2 mb-3">
                                 <label for="txtContaCorrente" class="form-label">Conta Corrente</label>
                                 <asp:TextBox ID="txtContaCorrente" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
 
-              
-                                    <div class="col-md-6 mb-3">
-                                        <label for="FileUpload1" style="color: #363636" class="form-label">Anexar Arquivos</label>
-                                        <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" class="form-control" />
-                                        <asp:HiddenField ID="hdnArquivosRemovidos" runat="server" />
-                                        <div id="listaArquivos" class="mt-2"></div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="FileUpload1" style="color: #363636" class="form-label">Anexar Arquivos</label>
+                                <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" class="form-control" />
+                                <asp:HiddenField ID="hdnArquivosRemovidos" runat="server" />
+                                <div id="listaArquivos" class="mt-2"></div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 15px">
+                                <div class="col-md-3" style="margin-top: 10px; gap: 10px; display: flex; justify-content: start; margin-bottom: 30px;">
+                                    <div>
+                                        <asp:Button ID="btnSalvarAgenda" runat="server" Text="Salvar Agenda" CssClass="btn btn-success" OnClick="btnSalvarAgendaSelected" />
                                     </div>
-                                    <div class="col-md-12" style="margin-top: 15px">
-                                        <div class="col-md-3" style="margin-top: 10px; gap: 10px; display: flex; justify-content: start; margin-bottom: 30px;">
-                                            <div>
-                                                <asp:Button ID="btnSalvarAgenda" runat="server" Text="Salvar Agenda" CssClass="btn btn-success" OnClick="btnSalvarAgenda_Click" />
-                                            </div>
-                                            <div>
-                                                <asp:Button ID="btnReiniciar" runat="server" Text="Limpar" CssClass="btn btn-danger" OnClick="btnReiniciar_Click" />
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <asp:Button ID="btnReiniciar" runat="server" Text="Limpar" CssClass="btn btn-danger" OnClick="btnReiniciar_Click" />
                                     </div>
-        
-                                 
-                                            <asp:GridView ID="gvAgendas" runat="server" AutoGenerateColumns="False" Style="margin-bottom: 30px;" CssClass="table table-bordered ">
-                                                <Columns>
-                                                    <asp:BoundField DataField="Descricao" HeaderText="Descrição" />
-                                                    <asp:BoundField DataField="DataPagamento" HeaderText="Data de Pagamento" />
-                                                    <asp:BoundField DataField="ValorBruto" HeaderText="Valor Bruto" DataFormatString="{0:C}" />
-                                                    <asp:BoundField DataField="ValorLiquido" HeaderText="Valor Líquido" DataFormatString="{0:C}" />
-                                                    <asp:TemplateField HeaderText="Ação">
-                                                        <ItemTemplate>
-                                                            <asp:Button ID="btnExcluir" runat="server" Text="Excluir" CssClass="btn btn-danger btn-sm"
-                                                                CommandArgument='<%# Container.DataItemIndex %>' OnClick="btnExcluirAgenda_Click" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
-                                      
+                                </div>
+                            </div>
 
-                                    <div class="col-md-12" style="display: flex; margin-top: 10px; flex-direction: column;">
 
-                                        <div class="col-md-4" style="margin-bottom: 10px;">
-                                            <label for="txtDataPagamento" class="form-label">Data de Pagamento</label>
-                                            <asp:TextBox ID="txtDataPagamento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-5" style="margin-bottom: 10px; margin-top: 20px;">
-                                            <label for="ddlAprovador" class="form-label">Aprovador</label>
-                                            <asp:DropDownList ID="ddlAprovador" runat="server" Style="margin-bottom: 30px;" CssClass="form-control" onchange="verificarAprovador()">
-                                                <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
-                                                <asp:ListItem Text="Luiz" Value="luiz@sf3.com.br"></asp:ListItem>
-                                                <asp:ListItem Text="Junior" Value=""></asp:ListItem>
-                                                <asp:ListItem Text="Marcelo" Value=""></asp:ListItem>
-                                                <asp:ListItem Text="Cesar" Value=""></asp:ListItem>
-                                                <asp:ListItem Text="Guilherme" Value="menoti@sf3.com.br"></asp:ListItem>
-                                            </asp:DropDownList>
-                                            <asp:Button ID="btnEnviarEmail" runat="server" CssClass="btn btn-primary" Text="Enviar Agenda" OnClick="btnEnviarEmail_Click" />
-                                        </div>
-                                    </div> 
+                            <asp:GridView ID="gvAgendas" runat="server" AutoGenerateColumns="False" Style="margin-bottom: 30px;" CssClass="table table-bordered ">
+                                <Columns>
+                                    <asp:BoundField DataField="Descricao" HeaderText="Descrição" />
+                                    <asp:BoundField DataField="ValorBruto" HeaderText="Valor Bruto" DataFormatString="{0:C}" />
+                                    <asp:BoundField DataField="ValorLiquido" HeaderText="Valor Líquido" DataFormatString="{0:C}" />
+                                    <asp:TemplateField HeaderText="Ação">
+                                        <ItemTemplate>
+                                            <asp:Button ID="btnExcluir" runat="server" Text="Excluir" CssClass="btn btn-danger btn-sm"
+                                                CommandArgument='<%# Container.DataItemIndex %>' OnClick="btnExcluirAgenda_Click" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
 
-                                </ContentTemplate>
-                                <Triggers>
-                                    <asp:PostBackTrigger ControlID="btnEnviarEmail" />
-                                    <asp:PostBackTrigger ControlID="btnSalvarAgenda" />
-                                </Triggers>
-                            </asp:UpdatePanel>
-                            <!-- END CONTAINER -->
-                        </div>
-                  
 
-                    </div>
+                            <div class="col-md-12" style="display: flex; margin-top: 10px; flex-direction: column;">
+
+                                <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
+                                    <label for="ddlEmpresa" class="form-label">Empresa</label>
+                                    <asp:DropDownList ID="ddlEmpresa" runat="server" CssClass="form-control">
+                                        <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="SF3" Value="SF3"></asp:ListItem>
+                                        <asp:ListItem Text="SHOPCRED" Value="SHOPCRED"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+
+                                <div class="col-md-4" style="margin-bottom: 10px;">
+                                    <label for="txtDataPagamento" class="form-label">Data de Pagamento</label>
+                                    <asp:TextBox ID="txtDataPagamento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                                </div>
+                                <div class="col-md-5" style="margin-bottom: 10px;">
+                                    <label for="ddlAprovador" class="form-label">Aprovador</label>
+                                    <asp:DropDownList ID="ddlAprovador" runat="server" Style="margin-bottom: 30px;" CssClass="form-control" onchange="verificarAprovador()">
+                                        <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="Luiz" Value="luiz@sf3.com.br"></asp:ListItem>
+                                        <asp:ListItem Text="Junior" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="Marcelo" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="Cesar" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="Guilherme" Value="menoti@sf3.com.br"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:Button ID="btnEnviarEmail" runat="server" CssClass="btn btn-primary" Text="Enviar Agenda" OnClick="btnEnviarEmail_Click" />
+                                </div>
+                            </div>
         </ContentTemplate>
-
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnEnviarEmail" />
+            <asp:PostBackTrigger ControlID="btnSalvarAgenda" />
+        </Triggers>
     </asp:UpdatePanel>
+    <!-- END CONTAINER -->
 
-    <script type="text/javascript" src="https://uxsolutions.github.io/bootstrap-datepicker/boot‌​strap-datepicker/js/‌​locales/bootstrap-da‌​tepicker.pt-BR.min.j‌​s"></script>
     <script>
         let arquivos = [];
         let removidos = [];
@@ -171,10 +171,14 @@
         let hdnRemovidos = document.getElementById('<%= hdnArquivosRemovidos.ClientID %>');
         let lista = document.getElementById("listaArquivos");
 
+
         input.addEventListener('change', function () {
             mostrarArquivos(input);
         });
 
+        //document.forms[0].addEventListener('submit', function () {
+        //    atualizarInput(); // Garante que todos os arquivos estão no FileUpload antes do envio
+        //});
         function mostrarArquivos(fileInput) {
             let novosArquivos = Array.from(fileInput.files);
 
@@ -184,6 +188,7 @@
                 }
             });
 
+            atualizarInput();
             atualizarLista();
         }
 
@@ -316,8 +321,6 @@
                 dataType: 'json',
                 success: function (response) {
                     alert("Página favoritada com sucesso!");
-
-                    // Alterar o ícone para o coração preenchido
                     document.getElementById('heart-icon').classList.add('favorited');
                     document.getElementById('heart-icon').classList.remove('bi-heart');
                     document.getElementById('heart-icon').classList.add('bi-heart-fill');
@@ -397,6 +400,16 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(StopSpin);
         Sys.WebForms.PageRequestManager.getInstance().add_initializeRequest(StartSpin);
 
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker();
+        });
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR',
+                autoclose: true
+            });
+        });
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
@@ -404,6 +417,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+
 
 
 </asp:Content>

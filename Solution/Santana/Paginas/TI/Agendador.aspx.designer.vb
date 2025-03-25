@@ -177,6 +177,15 @@ Namespace Paginas.TI
         Protected WithEvents gvAgendas As Global.System.Web.UI.WebControls.GridView
 
         '''<summary>
+        '''Controle ddlEmpresa.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents ddlEmpresa As Global.System.Web.UI.WebControls.DropDownList
+
+        '''<summary>
         '''Controle txtDataPagamento.
         '''</summary>
         '''<remarks>
