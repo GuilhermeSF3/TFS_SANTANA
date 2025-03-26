@@ -108,7 +108,6 @@
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap-utilities.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chart-legend.css" />
@@ -374,6 +373,7 @@
     <Content Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx" />
     <Content Include="Paginas\RH\CPColaboradoresSintetico.aspx" />
     <Content Include="Paginas\SpreadCapitalDeGiro.aspx" />
+    <Content Include="Paginas\TI\RelatorioDespesas.aspx" />
     <Content Include="Paginas\TI\CadastroHistorico.aspx" />
     <Content Include="Paginas\TI\Agendador.aspx" />
     <Content Include="Paginas\TI\Inventario2.aspx" />
@@ -541,7 +541,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="My Project\PublishProfiles\Homologacao.pubxml" />
     <Content Include="Scripts\gridviewScroll.js" />
     <Content Include="Scripts\i18n\defaults-ar_AR.js" />
@@ -1857,6 +1856,12 @@
     <Compile Include="Paginas\SpreadCapitalDeGiro.aspx.vb">
       <DependentUpon>SpreadCapitalDeGiro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\RelatorioDespesas.aspx.designer.vb">
+      <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\RelatorioDespesas.aspx.vb">
+      <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\TI\CadastroHistorico.aspx.designer.vb">
       <DependentUpon>CadastroHistorico.aspx</DependentUpon>
