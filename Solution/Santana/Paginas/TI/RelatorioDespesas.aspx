@@ -23,8 +23,9 @@
 
 
             <div style="padding-left: 60px; padding-right: 60px;">
-                <div style="display: flex; width: 100%; align-items: center; margin-bottom: 10px">
-                    <div style="display: flex; align-items: center;">
+                <div style=" width: 100%; display:flex; flex-direction: column; gap: 10px; margin-bottom: 10px">
+                    <div style="display: flex; justify-content:space-between;">
+                        <div style="display: flex; align-items: start; justify-content:start;">
                         <label for="ddlFiltros" class="form-label"></label>
                         <asp:DropDownList AutoPostBack="true" ID="DropDownList2" runat="server" CssClass="form-control">
                             <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
@@ -33,17 +34,21 @@
                             <asp:ListItem Text="Departamento" Value="Departamento"></asp:ListItem>
                             <asp:ListItem Text="Favorecido" Value="Favorecido"></asp:ListItem>
                         </asp:DropDownList>
-                        <div style="margin-left: 10px;">
-                            <asp:TextBox ID="txtFiltro" runat="server" MaxLength="10" CssClass="form-control datepicker" Style="width: 400px"></asp:TextBox>
+                        <div>
+                            <asp:TextBox  style="margin-left: 10px;width:440px;" ID="txtFiltro" runat="server" CssClass="form-control datepicker"></asp:TextBox>
                         </div>
-                        <div style="margin-left: 10px">
-                            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary navbar-btn" />
+                        <div style="margin-left: 10px;">
+                            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary" Style="background-color: #152B61; border-color: #152B61; color: white; width: 116px;" />
+                        </div>
+                        </div>
+                        <div>
+                            <asp:ImageButton ID="btnExcel" runat="server" CssClass="btn btn-default" ImageUrl="~/imagens/excel2424.png"></asp:ImageButton>
                         </div>
                     </div>
-                </div>
+                         
 
 
-                <table class="table caption-top" style="width: 100%; table-layout: fixed;">
+                    <table class="table caption-top" style="width: 100%; table-layout: fixed;">
                     <thead style="background-color: lightgray">
                         <tr>
                             <th scope="col" style="text-align: center; vertical-align: middle;">DATA DE
