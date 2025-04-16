@@ -544,11 +544,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-<<<<<<< HEAD
-=======
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="FileDownloadHandler.ashx" />
->>>>>>> 41d28d496e04a9f0f25c6321e262687a79d8cef1
     <None Include="My Project\PublishProfiles\Homologacao.pubxml" />
     <Content Include="Scripts\gridviewScroll.js" />
     <Content Include="Scripts\i18n\defaults-ar_AR.js" />
@@ -1866,13 +1863,11 @@
       <DependentUpon>SpreadCapitalDeGiro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Paginas\TI\RelatorioDespesas.aspx.designer.vb">
       <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\TI\RelatorioDespesas.aspx.vb">
       <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
-=======
     <Compile Include="Paginas\TI\AgendaRecusar.aspx.designer.vb">
       <DependentUpon>AgendaRecusar.aspx</DependentUpon>
     </Compile>
@@ -1893,7 +1888,6 @@
     <Compile Include="Paginas\TI\ListaDeAgendas.aspx.vb">
       <DependentUpon>ListaDeAgendas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
->>>>>>> 41d28d496e04a9f0f25c6321e262687a79d8cef1
     </Compile>
     <Compile Include="Paginas\TI\CadastroHistorico.aspx.designer.vb">
       <DependentUpon>CadastroHistorico.aspx</DependentUpon>
