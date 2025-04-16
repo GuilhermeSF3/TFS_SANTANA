@@ -373,13 +373,10 @@
     <Content Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx" />
     <Content Include="Paginas\RH\CPColaboradoresSintetico.aspx" />
     <Content Include="Paginas\SpreadCapitalDeGiro.aspx" />
-<<<<<<< HEAD
     <Content Include="Paginas\TI\RelatorioDespesas.aspx" />
-=======
     <Content Include="Paginas\TI\AgendaRecusar.aspx" />
     <Content Include="Paginas\TI\AgendaAprovar.aspx" />
     <Content Include="Paginas\TI\ListaDeAgendas.aspx" />
->>>>>>> 41d28d496e04a9f0f25c6321e262687a79d8cef1
     <Content Include="Paginas\TI\CadastroHistorico.aspx" />
     <Content Include="Paginas\TI\Agendador.aspx" />
     <Content Include="Paginas\TI\Inventario2.aspx" />
