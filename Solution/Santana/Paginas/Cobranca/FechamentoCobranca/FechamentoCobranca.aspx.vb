@@ -50,18 +50,14 @@ Namespace Paginas.Cobranca
 
 
 
-        Private Function rodarFechamento()
-
+        Protected Sub rodarFechamento(sender As Object, e As EventArgs)
             Dim UltimoDiaDoMesAnterior As String = txtDataDe3.Text
             Dim PrimeiroDiaDoMesAnterior As String = txtDataDe2.Text
             Dim UltimoDiaUtilDoMesAnterior As String = txtDataDe1.Text
             Dim ultimoDiaFormatado As String = DateTime.Parse(UltimoDiaDoMesAnterior).ToString("yyyyMMdd")
             Dim primeiroDiaFormatado As String = DateTime.Parse(PrimeiroDiaDoMesAnterior).ToString("yyyyMMdd")
             Dim ultimoDiaUtilFormatado As String = DateTime.Parse(UltimoDiaUtilDoMesAnterior).ToString("yyyyMMdd")
-
-
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
-
             Using con As New SqlConnection(strConn)
                 Try
                     Using cmd As New SqlCommand($"EXEC SCR_PC_FECHAMENTO_COB @primeiroDiaFormatado,  @ultimoDiaUtilFormatado,  @ultimoDiaFormatado ", con) '
@@ -73,11 +69,7 @@ Namespace Paginas.Cobranca
                 End Try
 
             End Using
-
-
-
-
-        End Function
+        End Sub
 
 
 

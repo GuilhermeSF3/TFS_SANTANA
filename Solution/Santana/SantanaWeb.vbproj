@@ -374,6 +374,9 @@
     <Content Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx" />
     <Content Include="Paginas\RH\CPColaboradoresSintetico.aspx" />
     <Content Include="Paginas\SpreadCapitalDeGiro.aspx" />
+    <Content Include="Paginas\TI\AgendaRecusar.aspx" />
+    <Content Include="Paginas\TI\AgendaAprovar.aspx" />
+    <Content Include="Paginas\TI\ListaDeAgendas.aspx" />
     <Content Include="Paginas\TI\CadastroHistorico.aspx" />
     <Content Include="Paginas\TI\Agendador.aspx" />
     <Content Include="Paginas\TI\Inventario2.aspx" />
@@ -542,6 +545,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="FileDownloadHandler.ashx" />
     <None Include="My Project\PublishProfiles\Homologacao.pubxml" />
     <Content Include="Scripts\gridviewScroll.js" />
     <Content Include="Scripts\i18n\defaults-ar_AR.js" />
@@ -632,6 +636,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeFile1.vb" />
     <Compile Include="Contexto.vb" />
     <Compile Include="Controls\GridViewPaging.ascx.designer.vb">
       <DependentUpon>GridViewPaging.ascx</DependentUpon>
@@ -1856,6 +1861,27 @@
     </Compile>
     <Compile Include="Paginas\SpreadCapitalDeGiro.aspx.vb">
       <DependentUpon>SpreadCapitalDeGiro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\AgendaRecusar.aspx.designer.vb">
+      <DependentUpon>AgendaRecusar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\AgendaRecusar.aspx.vb">
+      <DependentUpon>AgendaRecusar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\AgendaAprovar.aspx.designer.vb">
+      <DependentUpon>AgendaAprovar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\AgendaAprovar.aspx.vb">
+      <DependentUpon>AgendaAprovar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\ListaDeAgendas.aspx.designer.vb">
+      <DependentUpon>ListaDeAgendas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\ListaDeAgendas.aspx.vb">
+      <DependentUpon>ListaDeAgendas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\TI\CadastroHistorico.aspx.designer.vb">

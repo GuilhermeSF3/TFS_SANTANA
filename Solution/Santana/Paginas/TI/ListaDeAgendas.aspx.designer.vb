@@ -12,7 +12,7 @@ Option Explicit On
 
 Namespace Paginas.TI
 
-    Partial Public Class Agendador
+    Partial Public Class ListaDeAgendas
 
         '''<summary>
         '''Controle UpdatePanel.
@@ -24,291 +24,345 @@ Namespace Paginas.TI
         Protected WithEvents UpdatePanel As Global.System.Web.UI.UpdatePanel
 
         '''<summary>
-        '''Controle btnMenu.
+        '''Controle litTabela.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnMenu As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents litTabela As Global.System.Web.UI.WebControls.Literal
 
         '''<summary>
-        '''Controle ddlEmpresa.
+        '''Controle btnGerenciamento.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents ddlEmpresa As Global.System.Web.UI.WebControls.DropDownList
+        Protected WithEvents btnGerenciamento As Global.System.Web.UI.HtmlControls.HtmlButton
 
         '''<summary>
-        '''Controle rfvEmpresa.
+        '''Controle Button1.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvEmpresa As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
-        '''Controle txtDataPagamento.
+        '''Controle lblHistorico.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtDataPagamento As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents lblHistorico As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle rfvDataPagamento.
+        '''Controle lblDataPagamento.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvDataPagamento As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents lblDataPagamento As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle ddlAprovador.
+        '''Controle lblDescricao.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents ddlAprovador As Global.System.Web.UI.WebControls.DropDownList
+        Protected WithEvents lblDescricao As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle rfvAprovador.
+        '''Controle lblValorBruto.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvAprovador As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents lblValorBruto As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle DropDownList1.
+        '''Controle lblValorLiquido.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
+        Protected WithEvents lblValorLiquido As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle rfvDepartamento.
+        '''Controle lblFavorecido.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvDepartamento As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents lblFavorecido As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle ddlHistorico.
+        '''Controle lblCpfCnpj.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents ddlHistorico As Global.System.Web.UI.WebControls.DropDownList
+        Protected WithEvents lblCpfCnpj As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle txtDescricao.
+        '''Controle lblFormaPagamento.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtDescricao As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents lblFormaPagamento As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle rfvDescricao.
+        '''Controle lblBanco.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvDescricao As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents lblBanco As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle txtFavorecido.
+        '''Controle lblAgencia.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtFavorecido As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents lblAgencia As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle rfvFavorecido.
+        '''Controle lblContaCorrente.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvFavorecido As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents lblContaCorrente As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle txtCpfCnpj.
+        '''Controle lblDigitador.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtCpfCnpj As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents lblDigitador As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle rfvCpfCnpj.
+        '''Controle lblDepartamento.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvCpfCnpj As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents lblDepartamento As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle txtValorBruto.
+        '''Controle lblDataAgenda.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtValorBruto As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents lblDataAgenda As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle rfvValorBruto.
+        '''Controle lblAprovador.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvValorBruto As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents lblAprovador As Global.System.Web.UI.WebControls.Label
 
         '''<summary>
-        '''Controle txtValorLiquido.
+        '''Controle txtNumeroAgenda.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtValorLiquido As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents txtNumeroAgenda As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle rfvValorLiquido.
+        '''Controle btnBuscarAgenda.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvValorLiquido As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents btnBuscarAgenda As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
-        '''Controle ddlFormaPagamento.
+        '''Controle txtEditarHistorico.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents ddlFormaPagamento As Global.System.Web.UI.WebControls.DropDownList
+        Protected WithEvents txtEditarHistorico As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle rfvFormaPagamento.
+        '''Controle txtEditarDataPagamento.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents rfvFormaPagamento As Global.System.Web.UI.WebControls.RequiredFieldValidator
+        Protected WithEvents txtEditarDataPagamento As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle txtBanco.
+        '''Controle txtEditarDescricao.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtBanco As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents txtEditarDescricao As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle txtAgencia.
+        '''Controle txtEditarValorBruto.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtAgencia As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents txtEditarValorBruto As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle txtContaCorrente.
+        '''Controle txtEditarValorLiquido.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents txtContaCorrente As Global.System.Web.UI.WebControls.TextBox
+        Protected WithEvents txtEditarValorLiquido As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle FileUpload1.
+        '''Controle txtEditarFavorecido.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
+        Protected WithEvents txtEditarFavorecido As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle hdnArquivosRemovidos.
+        '''Controle txtEditarCpfCnpj.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents hdnArquivosRemovidos As Global.System.Web.UI.WebControls.HiddenField
+        Protected WithEvents txtEditarCpfCnpj As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnSalvarAgenda.
+        '''Controle txtEditarFormaPagamento.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnSalvarAgenda As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtEditarFormaPagamento As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnReiniciar.
+        '''Controle txtEditarBanco.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnReiniciar As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtEditarBanco As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle gvAgendas.
+        '''Controle txtEditarAgencia.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents gvAgendas As Global.System.Web.UI.WebControls.GridView
+        Protected WithEvents txtEditarAgencia As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnEnviarEmail.
+        '''Controle txtEditarContaCorrente.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnEnviarEmail As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents txtEditarContaCorrente As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle btnMenus.
+        '''Controle btnSalvarEdicao.
         '''</summary>
         '''<remarks>
         '''Campo gerado automaticamente.
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
-        Protected WithEvents btnMenus As Global.System.Web.UI.WebControls.Button
+        Protected WithEvents btnSalvarEdicao As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle txtId.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents txtId As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle ddlStatus.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents ddlStatus As Global.System.Web.UI.WebControls.DropDownList
+
+        '''<summary>
+        '''Controle fileUpload.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents fileUpload As Global.System.Web.UI.WebControls.FileUpload
+
+        '''<summary>
+        '''Controle SalvarArquivo.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents SalvarArquivo As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle StatusAgenda.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents StatusAgenda As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle ExcluirAgendas.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents ExcluirAgendas As Global.System.Web.UI.WebControls.Button
     End Class
 End Namespace
