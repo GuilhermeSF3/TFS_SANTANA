@@ -87,7 +87,9 @@ Namespace Seguranca
         End Property
 
 
-
+        Public Function PossuiPerfil(perfil As Integer) As Boolean
+            Return UsuarioLogado.Perfil = perfil
+        End Function
         Public Property Navegacao() As Navegacao
             Get
                 If HttpContext.Current.Session IsNot Nothing Then
@@ -176,6 +178,9 @@ Namespace Seguranca
 
             End Set
         End Property
+
+
+
 
     End Class
 
@@ -589,6 +594,17 @@ Namespace Seguranca
             End Set
         End Property
         Private m_Ativo As Integer
+
+
+        Public Overridable Property PermissaoAgenda() As String
+            Get
+                Return p_agenda
+            End Get
+            Set(value As String)
+                p_agenda = value
+            End Set
+        End Property
+        Private p_agenda As String
 
 
         Public Overridable Property NomeCompleto() As String

@@ -66,6 +66,7 @@
                                         <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="BOLETO" Value="BOLETO"></asp:ListItem>
                                         <asp:ListItem Text="PIX" Value="PIX"></asp:ListItem>
+                                         <asp:ListItem Text="TRANSFERÊNCIA" Value="TRANSFERÊNCIA"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <div style="margin-bottom: 10px;" class="col-md-3 mb-3">

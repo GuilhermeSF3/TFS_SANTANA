@@ -373,7 +373,13 @@
     <Content Include="Paginas\PerfilConfiguracoes\DadosPessoais.aspx" />
     <Content Include="Paginas\RH\CPColaboradoresSintetico.aspx" />
     <Content Include="Paginas\SpreadCapitalDeGiro.aspx" />
+<<<<<<< HEAD
     <Content Include="Paginas\TI\RelatorioDespesas.aspx" />
+=======
+    <Content Include="Paginas\TI\AgendaRecusar.aspx" />
+    <Content Include="Paginas\TI\AgendaAprovar.aspx" />
+    <Content Include="Paginas\TI\ListaDeAgendas.aspx" />
+>>>>>>> 41d28d496e04a9f0f25c6321e262687a79d8cef1
     <Content Include="Paginas\TI\CadastroHistorico.aspx" />
     <Content Include="Paginas\TI\Agendador.aspx" />
     <Content Include="Paginas\TI\Inventario2.aspx" />
@@ -541,6 +547,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+<<<<<<< HEAD
+=======
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="FileDownloadHandler.ashx" />
+>>>>>>> 41d28d496e04a9f0f25c6321e262687a79d8cef1
     <None Include="My Project\PublishProfiles\Homologacao.pubxml" />
     <Content Include="Scripts\gridviewScroll.js" />
     <Content Include="Scripts\i18n\defaults-ar_AR.js" />
@@ -631,6 +642,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeFile1.vb" />
     <Compile Include="Contexto.vb" />
     <Compile Include="Controls\GridViewPaging.ascx.designer.vb">
       <DependentUpon>GridViewPaging.ascx</DependentUpon>
@@ -1857,11 +1869,34 @@
       <DependentUpon>SpreadCapitalDeGiro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Paginas\TI\RelatorioDespesas.aspx.designer.vb">
       <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\TI\RelatorioDespesas.aspx.vb">
       <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
+=======
+    <Compile Include="Paginas\TI\AgendaRecusar.aspx.designer.vb">
+      <DependentUpon>AgendaRecusar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\AgendaRecusar.aspx.vb">
+      <DependentUpon>AgendaRecusar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\AgendaAprovar.aspx.designer.vb">
+      <DependentUpon>AgendaAprovar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\AgendaAprovar.aspx.vb">
+      <DependentUpon>AgendaAprovar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\TI\ListaDeAgendas.aspx.designer.vb">
+      <DependentUpon>ListaDeAgendas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\TI\ListaDeAgendas.aspx.vb">
+      <DependentUpon>ListaDeAgendas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+>>>>>>> 41d28d496e04a9f0f25c6321e262687a79d8cef1
     </Compile>
     <Compile Include="Paginas\TI\CadastroHistorico.aspx.designer.vb">
       <DependentUpon>CadastroHistorico.aspx</DependentUpon>

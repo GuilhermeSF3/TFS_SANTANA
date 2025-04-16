@@ -40,7 +40,11 @@ Namespace Paginas.TI
 
         End Sub
         Public Class Agenda
+            Public Property Id As Integer
             Public Property Historico As String
+
+            Public Property Empresa As String
+            Public Property Departamento As String
             Public Property DataPagamento As String
             Public Property Descricao As String
             Public Property ValorBruto As String
@@ -54,40 +58,81 @@ Namespace Paginas.TI
             Public Property ArquivoZip As String
         End Class
 
-        Protected Sub btnSalvar_Click()
+        Protected Function SalvarArquivosEmPasta(ByVal fileUpload As FileUpload, ByVal agendaId As Integer) As String
+            Dim uploadPath As String = Path.Combine("C:\Agendador\ARQUIVOSPASTA", agendaId.ToString())
+            If Not Directory.Exists(uploadPath) Then
+                Directory.CreateDirectory(uploadPath)
+                Debug.WriteLine("Pasta criada: " & uploadPath)
+            Else
+                Debug.WriteLine("Pasta já existia: " & uploadPath)
+            End If
+            If fileUpload.HasFiles Then
+                Debug.WriteLine("Quantidade de arquivos recebidos: " & fileUpload.PostedFiles.Count)
+
+                For Each file As HttpPostedFile In fileUpload.PostedFiles
+                    If file IsNot Nothing AndAlso file.ContentLength > 0 Then
+                        Dim filePath As String = Path.Combine(uploadPath, Path.GetFileName(file.FileName))
+                        file.SaveAs(filePath)
+                        Debug.WriteLine("Arquivo salvo: " & filePath)
+                    Else
+                        Debug.WriteLine("Arquivo ignorado: " & file.FileName & " (Vazio ou inválido)")
+                    End If
+                Next
+            Else
+                Debug.WriteLine("Nenhum arquivo recebido")
+            End If
+            Return uploadPath
+            Return "~/uploads/" & agendaId.ToString()
+        End Function
+
+        Protected Sub SalvarAgenda(ByVal agenda As Agenda, ByVal arquivos As List(Of HttpPostedFile))
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+            Dim contexto = New Contexto
             Using conn As New SqlConnection(strConn)
-                Dim sql As String = "INSERT INTO TB_AGENDAMENTO_SIG (Historico, DATA_PAGAMENTO, DESCRICAO, VALOR_BRUTO , VALOR_LIQUIDO, FAVORECIDO, CPF_CNPJ, FORMA_DE_PAGAMENTO, BANCO, AGENCIA, CONTA_CORRENTE)" & "VALUES (@Historico, @DataPagamento, @Descricao, @ValorBruto, @ValorLiquido, @Favorecido, @CpfCnpj, @FormaPagamento, @Banco, @Agencia, @ContaCorrente)"
+                conn.Open()
+                Dim sql As String = "INSERT INTO TB_AGENDAMENTO_SIG 
+                (Empresa, Historico, DATA_PAGAMENTO, DESCRICAO, VALOR_BRUTO , VALOR_LIQUIDO, FAVORECIDO, CPF_CNPJ, FORMA_DE_PAGAMENTO, BANCO, AGENCIA, CONTA_CORRENTE, DIGITADOR, DEPARTAMENTO, DATA_DA_AGENDA, APROVADOR) 
+                             VALUES (@Empresa, @Historico, @DataPagamento, @Descricao, @ValorBruto, @ValorLiquido, @Favorecido, @CpfCnpj, @FormaPagamento, @Banco, @Agencia, @ContaCorrente, @Digitador, @departamento, @data_da_agenda, @Aprovador);
+                             SELECT SCOPE_IDENTITY();"
+
+                Dim agendaId As Integer
 
                 Using cmd As New SqlCommand(sql, conn)
-                    cmd.Parameters.AddWithValue("@Historico", ddlHistorico.SelectedItem.Text)
-                    cmd.Parameters.AddWithValue("@DataPagamento", txtDataPagamento.Text)
-                    cmd.Parameters.AddWithValue("@Descricao", txtDescricao.Text)
-                    cmd.Parameters.AddWithValue("@ValorBruto", txtValorBruto.Text)
-                    cmd.Parameters.AddWithValue("@ValorLiquido", txtValorLiquido.Text)
-                    cmd.Parameters.AddWithValue("@Favorecido", txtFavorecido.Text)
-                    cmd.Parameters.AddWithValue("@CpfCnpj", txtCpfCnpj.Text)
-                    cmd.Parameters.AddWithValue("@FormaPagamento", ddlFormaPagamento.SelectedItem.Text)
-                    cmd.Parameters.AddWithValue("@Banco", txtBanco.Text)
-                    cmd.Parameters.AddWithValue("@Agencia", txtAgencia.Text)
-                    cmd.Parameters.AddWithValue("@ContaCorrente", txtContaCorrente.Text)
+                    cmd.Parameters.AddWithValue("@Empresa", agenda.Empresa)
+                    cmd.Parameters.AddWithValue("@Historico", agenda.Historico)
+                    cmd.Parameters.AddWithValue("@DataPagamento", agenda.DataPagamento)
+                    cmd.Parameters.AddWithValue("@Descricao", agenda.Descricao)
+                    cmd.Parameters.AddWithValue("@ValorBruto", agenda.ValorBruto)
+                    cmd.Parameters.AddWithValue("@ValorLiquido", agenda.ValorLiquido)
+                    cmd.Parameters.AddWithValue("@Favorecido", agenda.Favorecido)
+                    cmd.Parameters.AddWithValue("@CpfCnpj", agenda.CpfCnpj)
+                    cmd.Parameters.AddWithValue("@FormaPagamento", agenda.FormaPagamento)
+                    cmd.Parameters.AddWithValue("@Banco", agenda.Banco)
+                    cmd.Parameters.AddWithValue("@Agencia", agenda.Agencia)
+                    cmd.Parameters.AddWithValue("@ContaCorrente", agenda.ContaCorrente)
+                    cmd.Parameters.AddWithValue("@Digitador", contexto.UsuarioLogado.NomeCompleto)
+                    cmd.Parameters.AddWithValue("@Departamento", DropDownList1.SelectedValue)
+                    cmd.Parameters.AddWithValue("@data_da_agenda", DateTime.Now)
+                    cmd.Parameters.AddWithValue("@Aprovador", ddlAprovador.SelectedValue)
 
-                    Try
-                        conn.Open()
-                        cmd.ExecuteNonQuery()
-                        ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Data inválida!', 'Inserido com Sucesso');", True)
-
-
-                    Catch ex As Exception
-
-
-                    Finally
-                        conn.Close()
-                    End Try
-
+                    agendaId = Convert.ToInt32(cmd.ExecuteScalar())
                 End Using
+
+                agenda.Id = agendaId
+
+                Dim caminhoArquivos As String = SalvarArquivosEmPasta(FileUpload1, agendaId)
+                Dim sqlUpdate As String = "UPDATE TB_AGENDAMENTO_SIG SET ArquivosPasta = @ArquivosPasta WHERE ID = @IdAgendamento"
+                Using cmdUpdate As New SqlCommand(sqlUpdate, conn)
+                    cmdUpdate.Parameters.AddWithValue("@ArquivosPasta", caminhoArquivos)
+                    cmdUpdate.Parameters.AddWithValue("@IdAgendamento", agendaId)
+                    cmdUpdate.ExecuteNonQuery()
+                End Using
+
+
+                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Inserido com Sucesso');", True)
             End Using
         End Sub
+
 
 
         Protected Sub ddlHistorico_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
@@ -105,7 +150,6 @@ Namespace Paginas.TI
                             Dim reader As SqlDataReader = cmd.ExecuteReader()
                             If reader.HasRows Then
                                 reader.Read()
-                                txtDataPagamento.Text = reader("DATA_PAGAMENTO").ToString()
                                 txtDescricao.Text = reader("DESCRICAO").ToString()
                                 txtValorBruto.Text = reader("VALOR_BRUTO").ToString()
                                 txtValorLiquido.Text = reader("VALOR_LIQUIDO").ToString()
@@ -161,12 +205,75 @@ Namespace Paginas.TI
         Protected Sub btnSalvarAgenda_Click()
             Try
 
+                ' Verificar se os campos obrigatórios estão preenchidos
+                Dim erros As New List(Of String)
+
+                If String.IsNullOrEmpty(txtDataPagamento.Text) Then
+                    erros.Add("O campo Data de Pagamento é obrigatório.")
+                    rfvDataPagamento.IsValid = False
+                End If
+
+                If String.IsNullOrEmpty(txtDescricao.Text) Then
+                    erros.Add("O campo Descrição é obrigatório.")
+                    rfvDescricao.IsValid = False
+                End If
+
+                If String.IsNullOrEmpty(txtValorBruto.Text) Then
+                    erros.Add("O campo Valor Bruto é obrigatório.")
+                    rfvValorBruto.IsValid = False
+                End If
+
+
+                If String.IsNullOrEmpty(ddlEmpresa.SelectedValue) Then
+                    erros.Add("O campo Empresa é obrigatório.")
+                    rfvEmpresa.IsValid = False
+                End If
+
+                If String.IsNullOrEmpty(ddlAprovador.SelectedValue) Then
+                    erros.Add("O campo Empresa é obrigatório.")
+                    rfvAprovador.IsValid = False
+                End If
+
+                If String.IsNullOrEmpty(DropDownList1.SelectedValue) Then
+                    erros.Add("O campo Empresa é obrigatório.")
+                    rfvDepartamento.IsValid = False
+                End If
+
+                If String.IsNullOrEmpty(txtValorLiquido.Text) Then
+                    erros.Add("O campo Valor Líquido é obrigatório.")
+                    rfvValorLiquido.IsValid = False
+                End If
+
+                If String.IsNullOrEmpty(txtFavorecido.Text) Then
+                    erros.Add("O campo Favorecido é obrigatório.")
+                    rfvFavorecido.IsValid = False
+                End If
+
+                If String.IsNullOrEmpty(txtCpfCnpj.Text) Then
+                    erros.Add("O campo CPF/CNPJ é obrigatório.")
+                    rfvCpfCnpj.IsValid = False
+                End If
+
+                If String.IsNullOrEmpty(ddlFormaPagamento.SelectedValue) Then
+                    erros.Add("O campo Forma de Pagamento é obrigatório.")
+                    rfvFormaPagamento.IsValid = False
+                End If
+
+                ' Se houver erros, exibir mensagens e interromper o processo
+                If erros.Count > 0 Then
+                    For Each erro In erros
+                        ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", $"alert('{erro}');", True)
+                    Next
+                    Return
+                End If
+
                 Dim listaAgendas As List(Of Agenda) = TryCast(Session("Agendas"), List(Of Agenda))
                 If listaAgendas Is Nothing Then
                     listaAgendas = New List(Of Agenda)()
                 End If
                 Dim novaAgenda As New Agenda() With {
-            .Historico = ddlHistorico.SelectedItem.Text,
+                         .Empresa = ddlEmpresa.SelectedItem.Text,
+            .Historico = If(ddlHistorico.SelectedItem IsNot Nothing, ddlHistorico.SelectedItem.Text, String.Empty),
             .DataPagamento = txtDataPagamento.Text,
             .Descricao = txtDescricao.Text,
             .ValorBruto = txtValorBruto.Text,
@@ -184,6 +291,7 @@ Namespace Paginas.TI
                 If Not Directory.Exists(uploadPath) Then
                     Directory.CreateDirectory(uploadPath)
                 End If
+
                 If FileUpload1.HasFiles Then
                     Dim zipFileName As String = Path.Combine(uploadPath, "AGENDAMENTO_" & txtDescricao.Text & ".zip")
 
@@ -200,10 +308,12 @@ Namespace Paginas.TI
                     End Using
                     novaAgenda.ArquivoZip = zipFileName
                 End If
+                Dim arquivos As New List(Of HttpPostedFile)()
+                SalvarAgenda(novaAgenda, arquivos)
+
                 listaAgendas.Add(novaAgenda)
                 Session("Agendas") = listaAgendas
                 ddlHistorico.SelectedIndex = 0
-                txtDataPagamento.Text = ""
                 txtDescricao.Text = ""
                 txtValorBruto.Text = ""
                 txtValorLiquido.Text = ""
@@ -225,6 +335,12 @@ Namespace Paginas.TI
             Dim listaAgendas As List(Of Agenda) = TryCast(Session("Agendas"), List(Of Agenda))
             gvAgendas.DataSource = listaAgendas
             gvAgendas.DataBind()
+
+            If listaAgendas IsNot Nothing AndAlso listaAgendas.Count > 0 Then
+                btnEnviarEmail.Enabled = True
+            Else
+                btnEnviarEmail.Enabled = False
+            End If
         End Sub
 
         Protected Sub btnExcluirAgenda_Click(sender As Object, e As EventArgs)
@@ -261,14 +377,25 @@ Namespace Paginas.TI
                 Dim body As String = "<h3>Informações de Despesas</h3>"
                 body &= "<table border='1' cellpadding='5'  cellspacing='0' style='border-collapse:collapse; font-style: 10px;'>"
                 body &= "<tr><th>Data Pagamento</th><th>Descrição</th><th>Valor Bruto</th><th>Valor Líquido</th><th>Favorecido</th><th>CPF/CNPJ</th><th>Forma de Pagamento</th><th>Banco</th><th>Agência</th><th>Conta Corrente</th> </tr>"
+                Dim ids As New List(Of String)()
                 For Each agenda In listaAgendas
                     body &= $"<tr><td>{agenda.DataPagamento}</td><td>{agenda.Descricao}</td><td>{agenda.ValorBruto}</td><td>{agenda.ValorLiquido}</td><td>{agenda.Favorecido}</td><td>{agenda.CpfCnpj}</td><td>{agenda.FormaPagamento}</td><td>{agenda.Banco}</td><td>{agenda.Agencia}</td><td>{agenda.ContaCorrente}</td></tr>"
+                    ids.Add(agenda.Id.ToString())
                 Next
                 body &= "</br>"
                 body &= "</table>"
                 body &= $"Digitador: {contexto.UsuarioLogado.NomeUsuario}"
                 body &= "</br>"
                 body &= $"Empresa: {empresa}"
+                body &= "</br>"
+
+
+                Dim idsParam As String = String.Join(",", ids)
+                Dim approveUrl As String = $"http://localhost:4540/Paginas/TI/AgendaAprovar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                Dim rejectUrl As String = $"http://localhost:4540/Paginas/TI/AgendaRecusar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                body &= $"<a href='{approveUrl}' style='padding: 10px; background-color: green; color: white; text-decoration: none; margin-right: 10px;'>Aprovar</a>"
+                body &= $"<a href='{rejectUrl}' style='padding: 10px; background-color: red; color: white; text-decoration: none;'>Recusar</a>"
+
 
                 Dim av As AlternateView = AlternateView.CreateAlternateViewFromString(body, Encoding.UTF8, "text/html")
                 email.AlternateViews.Add(av)
@@ -294,41 +421,53 @@ Namespace Paginas.TI
         End Sub
         Protected Sub btnSalvarAgendaSelected(sender As Object, e As EventArgs)
             btnSalvarAgenda_Click()
-            btnSalvar_Click()
         End Sub
 
         Protected Sub btnReiniciar_Click(sender As Object, e As EventArgs)
             Try
 
-                Session.Remove("Agendas")
-                HttpContext.Current.Cache.Remove("Agendas")
-
-
+                ddlEmpresa.SelectedIndex = 0
                 ddlAprovador.SelectedIndex = 0
-                ddlHistorico.SelectedIndex = 0
+                DropDownList1.SelectedIndex = 0
+
+                ddlHistorico.Items.Clear()
+                ddlHistorico.Items.Insert(0, New ListItem("-- Selecione --", ""))
+
+
                 txtDescricao.Text = ""
                 txtDataPagamento.Text = ""
                 txtValorBruto.Text = ""
                 txtValorLiquido.Text = ""
                 txtFavorecido.Text = ""
                 txtCpfCnpj.Text = ""
-                ddlFormaPagamento.SelectedIndex = 0
                 txtBanco.Text = ""
                 txtAgencia.Text = ""
                 txtContaCorrente.Text = ""
+
+
+                ddlFormaPagamento.SelectedIndex = 0
+
+
+                Session.Remove("Agendas")
+                HttpContext.Current.Cache.Remove("Agendas")
+
+
+                Page.Validate()
+                For Each validator As BaseValidator In Page.Validators
+                    validator.IsValid = True
+                Next
+
+
                 BindAgendas()
 
 
-                Response.Redirect(Request.RawUrl, False)
-                HttpContext.Current.ApplicationInstance.CompleteRequest()
-
-
+                UpdatePanel.Update()
 
             Catch ex As Exception
+
                 ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", $"alert('Erro ao reiniciar: {ex.Message}');", True)
             End Try
         End Sub
-
 
         Protected Sub btnHelp_Click(sender As Object, e As EventArgs)
             ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Em construção!' ,'Esta funcionalidade esta em desenvolvimento.');", True)

@@ -19,44 +19,90 @@
             <!-- END NAVBAR -->
             <!-- CONTAINER -->
 
-            <div style="padding: 20px; display: flex; flex-direction: column; gap: 20px">
-                <div class="container-large">
-                    <p style="font-size: 16px; margin-bottom: 30px;">Agendador de Despesas </p>
+            <div style="padding: 20px; display: flex;  flex-direction: column; gap: 20px">
+                <div class="container-large ">
+                    <p style="font-size: 16px; margin-left:15px; margin-bottom: 10px;">Agendador de Despesas </p>
+                    <div class="row" style="  margin-bottom:30px; ">
+                        <div class="col-md-12" style="display: flex; margin-top: 10px;">
+
+                            <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
+                                <label for="ddlEmpresa" class="form-label">Empresa</label>
+                                <asp:DropDownList ID="ddlEmpresa" runat="server" CssClass="form-control">
+                                    <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
+                                       <asp:ListItem Text="SHOPCRED" Value="SHOPCRED"></asp:ListItem>
+                                    <asp:ListItem Text="SF3" Value="SF3"></asp:ListItem>
+                                      <asp:ListItem Text="SANTANA GESTÃO" Value="SANTANA GESTÃO"></asp:ListItem>
+                                          <asp:ListItem Text="CJJ" Value="CJJ"></asp:ListItem>
+                                 
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvEmpresa" runat="server" ControlToValidate="ddlEmpresa"
+                                    InitialValue="" ErrorMessage="O campo Empresa é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                            </div>
+
+                            <div class="col-md-2" style="margin-bottom: 10px;">
+                                <label for="txtDataPagamento" class="form-label">Data de Pagamento</label>
+                                <asp:TextBox ID="txtDataPagamento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvDataPagamento" runat="server" ControlToValidate="txtDataPagamento"
+                                    ErrorMessage="O campo Data de Pagamento é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+
+                            </div>
+                            <div class="col-md-3" style="margin-bottom: 10px;">
+                                <label for="ddlAprovador" class="form-label">Aprovador</label>
+                                <asp:DropDownList ID="ddlAprovador" runat="server"  CssClass="form-control" onchange="verificarAprovador()">
+                                    <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="Luiz" Value="luiz@sf3.com.br"></asp:ListItem>
+                                    <asp:ListItem Text="Junior" Value=""></asp:ListItem>
+                                    <asp:ListItem Text="Marcelo" Value="marcelo@shopcred.com.br"></asp:ListItem>
+                                    <asp:ListItem Text="Cesar" Value="cesar@sf3.com.br"></asp:ListItem>
+                                    <asp:ListItem Text="Guilherme" Value="menoti@sf3.com.br"></asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvAprovador" runat="server" ControlToValidate="ddlAprovador"
+                                    ErrorMessage="O campo Aprovador é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <!-- Formulário (lado esquerdo) -->
                         <div class="col-md-12 mb-4">
                             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
-    <ContentTemplate>
-                            <div style="margin-bottom: 10px;" class="col-md-2 mb-4">
-                                <label for="ddlHistorico" class="form-label">Departamento</label>
-                                <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlHistorico_SelectedIndexChanged" ID="DropDownList1" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="RECURSOS HUMANOS (RH)" Value="RH"></asp:ListItem>
-                                    <asp:ListItem Text="FINANCEIRO" Value="Financeiro"></asp:ListItem>
-                                    <asp:ListItem Text="TECNOLOGIA" Value="TI"></asp:ListItem>
-                                    <asp:ListItem Text="JURIDICO" Value="Jurídico"></asp:ListItem>
-                                    <asp:ListItem Text="RECUPERAÇÃO" Value="Recuperação"></asp:ListItem>
-                                    <asp:ListItem Text="CONTABILIDADE" Value="Contabilidade"></asp:ListItem>
-                                    <asp:ListItem Text="FORMALIZAÇÃO" Value="Formalização"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
+                                <ContentTemplate>
+                                    <div style="margin-bottom: 10px;" class="col-md-2 mb-4">
+                                        <label for="ddlHistorico" class="form-label">Departamento</label>
+                                        <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlHistorico_SelectedIndexChanged" ID="DropDownList1" runat="server" CssClass="form-control">
+                                            <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
+                                            <asp:ListItem Text="RECURSOS HUMANOS (RH)" Value="RH"></asp:ListItem>
+                                            <asp:ListItem Text="FINANCEIRO" Value="Financeiro"></asp:ListItem>
+                                            <asp:ListItem Text="TECNOLOGIA" Value="TI"></asp:ListItem>
+                                            <asp:ListItem Text="JURIDICO" Value="Jurídico"></asp:ListItem>
+                                            <asp:ListItem Text="RECUPERAÇÃO" Value="Recuperação"></asp:ListItem>
+                                            <asp:ListItem Text="CONTABILIDADE" Value="Contabilidade"></asp:ListItem>
+                                            <asp:ListItem Text="FORMALIZAÇÃO" Value="Formalização"></asp:ListItem>
+                                        </asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="rfvDepartamento" runat="server" ControlToValidate="DropDownList1"
+                                            ErrorMessage="O campo Departamento é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    </div>
 
-                            <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
-                                <label for="ddlHistorico" class="form-label">Histórico</label>
-                                <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlHistorico_SelectedIndexChanged" ID="ddlHistorico" runat="server" CssClass="form-control">
-                                </asp:DropDownList>
-                            </div>
+                                    <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
+                                        <label for="ddlHistorico" class="form-label">Histórico</label>
+                                        <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlHistorico_SelectedIndexChanged" ID="ddlHistorico" runat="server" CssClass="form-control">
+                                        </asp:DropDownList>
+                                    </div>
 
-          </ContentTemplate>
-</asp:UpdatePanel>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
 
                             <div style="margin-bottom: 10px;" class="col-md-4 mb-3">
                                 <label for="txtDescricao" class="form-label">Descrição</label>
                                 <asp:TextBox ID="txtDescricao" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvDescricao" runat="server" ControlToValidate="txtDescricao"
+                                    ErrorMessage="O campo Descrição é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <div style="margin-bottom: 10px;" class="col-md-2 mb-3">
                                 <label for="txtFavorecido" class="form-label">Favorecido</label>
                                 <asp:TextBox ID="txtFavorecido" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvFavorecido" runat="server" ControlToValidate="txtFavorecido"
+                                    ErrorMessage="O campo Favorecido é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
 
 
@@ -69,18 +115,24 @@
                             <div style="margin-bottom: 10px;" class="col-md-2 mb-3">
                                 <label for="txtCpfCnpj" class="form-label">CPF/CNPJ</label>
                                 <asp:TextBox ID="txtCpfCnpj" runat="server" CssClass="form-control" onkeyup="formatarDocumento(this)" MaxLength="18"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvCpfCnpj" runat="server" ControlToValidate="txtCpfCnpj"
+                                    ErrorMessage="O campo CPF/CNPJ é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
 
 
                             <div style="margin-bottom: 10px;" class="col-md-2 mb-3">
                                 <label for="txtValorBruto" class="form-label">Valor Bruto</label>
                                 <asp:TextBox ID="txtValorBruto" runat="server" CssClass="form-control" onkeyup="formatarValor(this)" MaxLength="15"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvValorBruto" runat="server" ControlToValidate="txtValorBruto"
+                                    ErrorMessage="O campo Valor Bruto é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
 
 
                             <div style="margin-bottom: 10px;" class="col-md-2 mb-3">
                                 <label for="txtValorLiquido" class="form-label">Valor Líquido</label>
                                 <asp:TextBox ID="txtValorLiquido" runat="server" CssClass="form-control" onkeyup="formatarValor(this)" MaxLength="15"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvValorLiquido" runat="server" ControlToValidate="txtValorLiquido"
+                                    ErrorMessage="O campo Valor Líquido é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
 
 
@@ -91,7 +143,10 @@
                                     <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="BOLETO" Value="BOLETO"></asp:ListItem>
                                     <asp:ListItem Text="PIX" Value="PIX"></asp:ListItem>
+                                    <asp:ListItem Text="TRANSFERÊNCIA" Value="TRANSFERÊNCIA"></asp:ListItem>
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvFormaPagamento" runat="server" ControlToValidate="ddlFormaPagamento"
+                                    InitialValue="" ErrorMessage="O campo Forma de Pagamento é obrigatório." CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                     </div>
@@ -139,16 +194,14 @@
                                     <asp:Button ID="btnSalvarAgenda" runat="server" Text="Salvar Agenda" CssClass="btn btn-success" OnClick="btnSalvarAgendaSelected" />
                                 </div>
                                 <div>
-                                    <asp:Button ID="btnReiniciar" runat="server" Text="Limpar" CssClass="btn btn-danger" OnClick="btnReiniciar_Click" />
+                                    <asp:Button ID="btnReiniciar" runat="server" Text="Limpar" CssClass="btn btn-danger" OnClick="btnReiniciar_Click" CausesValidation="False" />
 
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                     <div class="row">
-                        <div class="col-md-6 mb-4" style="margin-top: 15px;">
+                        <div class="col-md-6 mb-4">
                             <asp:GridView ID="gvAgendas" runat="server" AutoGenerateColumns="False" Style="margin-bottom: 30px;" CssClass="table table-bordered ">
                                 <Columns>
                                     <asp:BoundField DataField="Descricao" HeaderText="Descrição" />
@@ -158,7 +211,7 @@
                                         <ItemTemplate>
                                             <asp:Button ID="btnExcluir" runat="server" Text="Excluir" CssClass="btn btn-danger btn-sm"
                                                 CommandArgument='<%# Container.DataItemIndex %>' OnClick="btnExcluirAgenda_Click" />
-                                        
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -167,52 +220,36 @@
                     </div>
 
 
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-md-12" style="display: flex; margin-top: 15px;">
 
-                            <div style="margin-bottom: 10px;" class="col-md-3 mb-3">
-                                <label for="ddlEmpresa" class="form-label">Empresa</label>
-                                <asp:DropDownList ID="ddlEmpresa" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="SF3" Value="SF3"></asp:ListItem>
-                                    <asp:ListItem Text="SHOPCRED" Value="SHOPCRED"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-
-                            <div class="col-md-2" style="margin-bottom: 10px;">
-                                <label for="txtDataPagamento" class="form-label">Data de Pagamento</label>
-                                <asp:TextBox ID="txtDataPagamento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
-                            </div>
-                            <div class="col-md-3" style="margin-bottom: 10px;">
-                                <label for="ddlAprovador" class="form-label">Aprovador</label>
-                                <asp:DropDownList ID="ddlAprovador" runat="server" Style="margin-bottom: 30px;" CssClass="form-control" onchange="verificarAprovador()">
-                                    <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="Luiz" Value="luiz@sf3.com.br"></asp:ListItem>
-                                    <asp:ListItem Text="Junior" Value=""></asp:ListItem>
-                                    <asp:ListItem Text="Marcelo" Value=""></asp:ListItem>
-                                    <asp:ListItem Text="Cesar" Value=""></asp:ListItem>
-                                    <asp:ListItem Text="Guilherme" Value="menoti@sf3.com.br"></asp:ListItem>
-                                </asp:DropDownList>
+                    <!-- Formulário (lado esquerdo) -->
 
 
-                            </div>
-                            <div class="col-md-2" style="margin-bottom: 16px; display: flex; gap: 10px; align-self: center;">
-                                <asp:Button ID="btnEnviarEmail" runat="server" CssClass="btn btn-primary" Text="Enviar Agenda" OnClick="btnEnviarEmail_Click" />
-                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-default" Text="Menu Principal" OnClick="btnMenu_Click" />
-                            </div>
-                        </div>
+
+                    <div class="col-md-12" style="margin-bottom: 16px; display: flex; justify-content: space-between; gap: 10px; align-self: center;">
+                        <asp:Button ID="btnEnviarEmail" runat="server" CssClass=" btn btn-primary navbar-btn" Text="Enviar Agenda" OnClick="btnEnviarEmail_Click"  Enabled="False" CausesValidation="False"/>
+                      <asp:Button ID="btnMenus" runat="server" Text="Menu Principal" CssClass="btn btn-default navbar-btn" OnClick="btnMenu_Click" CausesValidation="False" />
+
+
                     </div>
+
+
+
+                </div>
+            </div>
+            </div>
+                   
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnEnviarEmail" />
             <asp:PostBackTrigger ControlID="btnSalvarAgenda" />
             <asp:PostBackTrigger ControlID="DropDownList1" />
             <asp:PostBackTrigger ControlID="ddlHistorico" />
+            <asp:PostBackTrigger ControlID="txtDataPagamento" />
 
         </Triggers>
     </asp:UpdatePanel>
 
- 
+
     <!-- END CONTAINER -->
     <style>
         .upload-area {
@@ -289,60 +326,60 @@
     <script>
 
 
-            console.log("Scripts foram recarregados!");
-            let arquivos = [];
-            let removidos = [];
-            let input = document.getElementById('<%= FileUpload1.ClientID %>');
-            let hdnRemovidos = document.getElementById('<%= hdnArquivosRemovidos.ClientID %>');
- let lista = document.getElementById("listaArquivos");
+        console.log("Scripts foram recarregados!");
+        let arquivos = [];
+        let removidos = [];
+        let input = document.getElementById('<%= FileUpload1.ClientID %>');
+        let hdnRemovidos = document.getElementById('<%= hdnArquivosRemovidos.ClientID %>');
+        let lista = document.getElementById("listaArquivos");
 
 
- input.addEventListener('change', function () {
-     mostrarArquivos(input);
- });
+        input.addEventListener('change', function () {
+            mostrarArquivos(input);
+        });
 
- //document.forms[0].addEventListener('submit', function () {
- //    atualizarInput(); // Garante que todos os arquivos estão no FileUpload antes do envio
- //});
- function mostrarArquivos(fileInput) {
-     let novosArquivos = Array.from(fileInput.files);
+        //document.forms[0].addEventListener('submit', function () {
+        //    atualizarInput(); // Garante que todos os arquivos estão no FileUpload antes do envio
+        //});
+        function mostrarArquivos(fileInput) {
+            let novosArquivos = Array.from(fileInput.files);
 
-     novosArquivos.forEach(novoArquivo => {
-         if (!arquivos.some(arquivo => arquivo.name === novoArquivo.name)) {
-             arquivos.push(novoArquivo);
-         }
-     });
-
-     atualizarInput();
-     atualizarLista();
-            }
-
-            Sys.Application.add_load(function () {
-                iniciarScripts();
+            novosArquivos.forEach(novoArquivo => {
+                if (!arquivos.some(arquivo => arquivo.name === novoArquivo.name)) {
+                    arquivos.push(novoArquivo);
+                }
             });
 
+            atualizarInput();
+            atualizarLista();
+        }
 
- function atualizarLista() {
-     lista.innerHTML = "";
+        Sys.Application.add_load(function () {
+            iniciarScripts();
+        });
 
-     arquivos.forEach((file, index) => {
-         let fileURL = URL.createObjectURL(file);
-         let fileType = file.type;
-         let preview = "";
 
-         if (fileType === "application/pdf") {
-             preview = `<a href="${fileURL}" target="_blank" class="btn btn-light btn-sm text-primary" title="Visualizar PDF">
+        function atualizarLista() {
+            lista.innerHTML = "";
+
+            arquivos.forEach((file, index) => {
+                let fileURL = URL.createObjectURL(file);
+                let fileType = file.type;
+                let preview = "";
+
+                if (fileType === "application/pdf") {
+                    preview = `<a href="${fileURL}" target="_blank" class="btn btn-light btn-sm text-primary" title="Visualizar PDF">
                  <i class="bi bi-search"></i>
                </a>`;
-         } else if (fileType.startsWith("image/")) {
-             preview = `<img src="${fileURL}" style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover; margin-right: 10px;">`;
-         } else {
-             preview = `<i class="bi bi-file-earmark-text text-primary" style="font-size: 24px; margin-right: 10px;"></i>`;
-         }
+                } else if (fileType.startsWith("image/")) {
+                    preview = `<img src="${fileURL}" style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover; margin-right: 10px;">`;
+                } else {
+                    preview = `<i class="bi bi-file-earmark-text text-primary" style="font-size: 24px; margin-right: 10px;"></i>`;
+                }
 
-         let div = document.createElement("div");
-         div.className = "d-flex align-items-center mb-2";
-         div.innerHTML = `
+                let div = document.createElement("div");
+                div.className = "d-flex align-items-center mb-2";
+                div.innerHTML = `
      <div style="border: 1px solid #152B61; margin-top:15px; display: flex; align-items: center; justify-content: space-between; border-radius: 10px; padding: 10px; width: 100%;">
          ${preview}
          <span style="flex: 1; margin-left: 10px;">${file.name}</span>
@@ -351,30 +388,30 @@
          </button>
      </div>
  `;
-         lista.appendChild(div);
-     });
- }
- function removerArquivo(index) {
-     arquivos.splice(index, 1);
-     atualizarInput();
-     atualizarLista();
- }
+                lista.appendChild(div);
+            });
+        }
+        function removerArquivo(index) {
+            arquivos.splice(index, 1);
+            atualizarInput();
+            atualizarLista();
+        }
 
- function atualizarInput() {
-     const dataTransfer = new DataTransfer();
-     arquivos.forEach(arquivo => dataTransfer.items.add(arquivo));
-     input.files = dataTransfer.files;
- }
+        function atualizarInput() {
+            const dataTransfer = new DataTransfer();
+            arquivos.forEach(arquivo => dataTransfer.items.add(arquivo));
+            input.files = dataTransfer.files;
+        }
 
 
- Sys.Application.add_load(function () {
-     let input = document.getElementById('<%= FileUpload1.ClientID %>');
-     input.addEventListener('change', function () {
-         mostrarArquivos(input);
-     });
- });
-    
-       
+        Sys.Application.add_load(function () {
+            let input = document.getElementById('<%= FileUpload1.ClientID %>');
+            input.addEventListener('change', function () {
+                mostrarArquivos(input);
+            });
+        });
+
+
 
         function removerArquivo(index) {
 
@@ -431,25 +468,7 @@
             input.value = valor ? 'R$ ' + valor : '';
         }
 
-        window.onload = function () {
-            verificarAprovador();
-        };
 
-        document.getElementById('<%= ddlAprovador.ClientID %>').addEventListener('change', function () {
-            verificarAprovador();  // A validação acontece apenas quando o valor do aprovador mudar
-        });
-
-        function verificarAprovador() {
-            var aprovador = document.getElementById('<%= ddlAprovador.ClientID %>').value;
-            var btnEnviarEmail = document.getElementById('<%= btnEnviarEmail.ClientID %>');
-
-
-            if (aprovador) {
-                btnEnviarEmail.disabled = false;
-            } else {
-                btnEnviarEmail.disabled = true;
-            }
-        }
 
 
 
@@ -478,9 +497,8 @@
             });
         }
 
-
-
-
+      
+        });
         $(document).ready(function () {
 
             NumericAllow();
@@ -569,8 +587,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-        
-    
+
+
 
 </asp:Content>
 

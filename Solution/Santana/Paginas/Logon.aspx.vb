@@ -5,69 +5,49 @@ Imports Santana.Seguranca
 
 Partial Class Logon
     Inherits SantanaPage
-
     Dim AutenticacaoModo As Integer = 0
-
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Session.Clear()
         txtUsuario.Focus()
         If Not IsPostBack Then
-            CarregaAutenticacaoModo()
-
+            If Not String.IsNullOrEmpty(Request.QueryString("ReturnUrl")) Then
+                ViewState("ReturnUrl") = Request.QueryString("ReturnUrl")
+            End If
         End If
     End Sub
 
     Private Sub CarregaAutenticacaoModo()
-
         Try
-
             AutenticacaoModo = 0
-
         Catch ex As Exception
-
         End Try
-
-
     End Sub
 
     Private Function AutenticaBancoDados(ByVal strUser As String, ByVal strPwd As String) As String
-        Dim strNovasenha As String = ""
-        Dim strValidacao As String = ""
         Dim strRetorno As String = ""
-
         Try
-
             strRetorno = SetUserSessions(Trim(strUser), Trim(strPwd), True)
-
         Catch ex As Exception
             strRetorno = "Falha na autenticação."
         Finally
             GC.Collect()
         End Try
-
         Return strRetorno
-
     End Function
 
     Private Function SetUserSessions(ByVal strUser As String, ByVal strPwd As String, ByVal AutenticacaoModoBD As Boolean) As String
-
         Dim strRetorno As String = ""
-
         Try
             ValidarDireitos(strUser, strPwd, AutenticacaoModoBD)
             LoadMenuItens()
-
             If IsNothing(ContextoWeb.UsuarioLogado) Or ContextoWeb.UsuarioLogado.SingIn = False Then
                 strRetorno = "Por favor, verifique seu usuário e senha."
             ElseIf ContextoWeb.UsuarioLogado.Ativo = 0 Then
                 strRetorno = "Verifique seu usuário, ele esta inativo."
-                'Else
-                '   ContextoWeb.UpdateUser()
             ElseIf Not ContextoWeb.DadosMenu.ListMenu.Any(Function(x) x.Perfil.Contains(ContextoWeb.UsuarioLogado.Perfil)) Then
                 strRetorno = "Perfil não encontrado para este usuário."
             End If
-
         Catch ex As SqlException
             strRetorno = "Falha na comunicação com o banco de dados."
         Catch ex As Exception
@@ -75,7 +55,6 @@ Partial Class Logon
         Finally
             GC.Collect()
         End Try
-
         Return strRetorno
     End Function
 
@@ -87,70 +66,57 @@ Partial Class Logon
         Dim cmd As New SqlCommand(
                     "Select top 1 Login, NomeUsuario, Funcao,codGerente as codGerente, convert(int,CodFilial) as CodFilial, Cpf, EMail, Ativo, NomeCompleto, senha, perfil, Produto from usuario (nolock) where Login='" & strUsuario & "'", con)
         cmd.Connection.Open()
-
         Dim dr As SqlDataReader = cmd.ExecuteReader(CommandBehavior.CloseConnection)
-
-
         While dr.Read()
-
             Vsenha = Trim(dr.GetString(9))
             Validacao = Util.Senha.GeraHash(Trim(strPwd))
             If (AutenticacaoModoBD = True And Validacao = Vsenha) Or AutenticacaoModoBD = False Then
-
                 ContextoWeb.UsuarioLogado.Login = dr.GetString(0)
                 ContextoWeb.UsuarioLogado.NomeUsuario = dr.GetString(1)
                 ContextoWeb.UsuarioLogado.Funcao = dr.GetString(2)
-                ContextoWeb.UsuarioLogado.codGerente = dr.GetString(3)  ' alterado fev/16 por Raquel
+                ContextoWeb.UsuarioLogado.codGerente = dr.GetString(3)
                 ContextoWeb.UsuarioLogado.CodFilial = dr.GetInt32(4)
                 ContextoWeb.UsuarioLogado.Cpf = dr.GetString(5)
                 ContextoWeb.UsuarioLogado.EMail = dr.GetString(6)
                 ContextoWeb.UsuarioLogado.Ativo = dr.GetInt32(7)
                 ContextoWeb.UsuarioLogado.NomeCompleto = dr.GetString(8)
                 ContextoWeb.UsuarioLogado.Perfil = dr.GetInt32(10)
-                ContextoWeb.UsuarioLogado.Produto = dr.GetInt32(11)   'int ex veic = 2
+                ContextoWeb.UsuarioLogado.Produto = dr.GetInt32(11)
                 ContextoWeb.UsuarioLogado.SingIn = True
-
             End If
-
         End While
-
         dr.Close()
         con.Close()
-
     End Sub
 
     Protected Sub btnLogin_Click(sender As Object, e As EventArgs)
         Dim strMensagem As String = ""
-
         Try
-
             If txtUsuario.Text.Trim() = "" Or txtSenha.Text.Trim() = "" Then
                 strMensagem = "Por favor, verifique seu usuário e senha."
             Else
-
                 If AutenticacaoModo = 0 Then
                     strMensagem = AutenticaBancoDados(Trim(txtUsuario.Text), Trim(txtSenha.Text))
-
                 End If
             End If
-
         Catch ex As Exception
             strMensagem = "Falha na autenticação."
         Finally
             GC.Collect()
         End Try
 
-
-
         If strMensagem <> "" Then
-
             ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Existe Algo Errado!' ,'" + strMensagem + "');", True)
-
             txtUsuario.Text = ""
             txtSenha.Text = ""
             txtUsuario.Focus()
         Else
-            Response.Redirect("Menu.aspx", False)
+            Dim returnUrl As String = TryCast(ViewState("ReturnUrl"), String)
+            If Not String.IsNullOrEmpty(returnUrl) Then
+                Response.Redirect(returnUrl, False)
+            Else
+                Response.Redirect("Menu.aspx", False)
+            End If
         End If
     End Sub
 
@@ -563,6 +529,9 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Inventario2.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Agendador.aspx", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/CadastroHistorico.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/ListaDeAgendas.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/AgendaAprovar.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/AgendaRecusar.aspx", New List(Of Integer)({0, 1})))
 
 
 
