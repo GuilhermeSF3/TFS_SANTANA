@@ -620,21 +620,22 @@
                         </li>
 
                         <li class="dropdown" id="Financeiro" runat="server" visible="False">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-bank2"></i> Financeiro<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="bi bi-bank2"></i>Financeiro<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../Paginas/Financeiro/OperacaoCaptacao.aspx">Operação Captação</a></li>
                                 <li><a href="../Paginas/Financeiro/BaseCaptacao.aspx">Base de Captação</a></li>
                                 <li><a href="../Paginas/Cadastro/Financeiro/TaxaCDI.aspx">Cadastro de Taxa CDI</a></li>
                                 <li><a href="../Paginas/Cadastro/Financeiro/Caixa.aspx">Lançamento de Caixa</a></li>
                                 <li><a href="../Paginas/Financeiro/Remessa.aspx">Remessa</a></li>
-                                      <li class="dropdown-submenu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamento</a>
-          <ul class="dropdown-menu">
-              <li><a href="../Paginas/TI/Agendador.aspx">Agendador</a></li>
-              <li><a href="../Paginas/TI/CadastroHistorico.aspx">Cadastro Histórico</a></li>
-                    <li><a href="../Paginas/TI/ListaDeAgendas.aspx">Lista De Agendas</a></li>
-          </ul>
-      </li>
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamento</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../Paginas/TI/Agendador.aspx">Agendador</a></li>
+                                        <li><a href="../Paginas/TI/CadastroHistorico.aspx">Cadastro Histórico</a></li>
+                                        <li><a href="../Paginas/TI/ListaDeAgendas.aspx">Lista De Agendas</a></li>
+                                        <li><a href="../Paginas/TI/RelatorioDespesas.aspx">Relatório de Despesas</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
 
@@ -657,35 +658,23 @@
                                 <li><a href="../Paginas/Desconto/Assertiva.aspx">Assertiva</a></li>
                             </ul>
                         </li>
-<li class="dropdown" id="TI" runat="server" visible="False">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <i class="bi bi-browser-edge"></i> TI <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a href="../Paginas/TI/Inventario2.aspx">Inventário</a></li>
-        
-<<<<<<< HEAD
-  
-=======
-        <li class="dropdown-submenu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamento</a>
-            <ul class="dropdown-menu">
-                <li><a href="../Paginas/TI/Agendador.aspx">Agendador</a></li>
-                <li><a href="../Paginas/TI/CadastroHistorico.aspx">Cadastro Histórico</a></li>
-                <li><a href="../Paginas/TI/RelatorioDespesas.aspx">Relatório de Despesas</a></li>
-            </ul>
-        </li>
->>>>>>> renato
-    </ul>
-</li>
+                        <li class="dropdown" id="TI" runat="server" visible="False">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="bi bi-browser-edge"></i>TI <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../Paginas/TI/Inventario2.aspx">Inventário</a></li>
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamento</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../Paginas/TI/Agendador.aspx">Agendador</a></li>
+                                        <li><a href="../Paginas/TI/CadastroHistorico.aspx">Cadastro Histórico</a></li>
+                                        
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
-
-
-
-
-
-
-
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~/Paginas/Logon.aspx"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
                     </ul>
@@ -1280,7 +1269,7 @@
 
             if (selectedValue) {
 
-                __doPostBack('<%= btnFavoritar.UniqueID %>', '');
+               //__doPostBack('<%= btnFavoritar.UniqueID %>', '');
             } else {
                 alert("Por favor, selecione uma página.");
             }
