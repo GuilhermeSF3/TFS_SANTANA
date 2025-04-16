@@ -60,24 +60,6 @@ Namespace Paginas.TI
         Protected WithEvents txtDescricao As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
-        '''Controle txtValorBruto.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents txtValorBruto As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
-        '''Controle txtValorLiquido.
-        '''</summary>
-        '''<remarks>
-        '''Campo gerado automaticamente.
-        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        '''</remarks>
-        Protected WithEvents txtValorLiquido As Global.System.Web.UI.WebControls.TextBox
-
-        '''<summary>
         '''Controle txtFavorecido.
         '''</summary>
         '''<remarks>
@@ -94,6 +76,24 @@ Namespace Paginas.TI
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents txtCpfCnpj As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle txtValorBruto.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents txtValorBruto As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle txtValorLiquido.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents txtValorLiquido As Global.System.Web.UI.WebControls.TextBox
 
         '''<summary>
         '''Controle ddlFormaPagamento.
@@ -211,5 +211,14 @@ Namespace Paginas.TI
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents btnEnviarEmail As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle Button1.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
     End Class
 End Namespace

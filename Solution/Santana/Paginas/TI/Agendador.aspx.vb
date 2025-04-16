@@ -31,7 +31,7 @@ Namespace Paginas.TI
 
             If Not IsPostBack Then
                 Dim today As DateTime = DateTime.Now
-
+                ClientScript.RegisterStartupScript(Me.GetType(), "initUpload", "Sys.Application.add_load(function() { mostrarArquivos(document.getElementById('" & FileUpload1.ClientID & "')); });", True)
 
             End If
 
@@ -88,8 +88,6 @@ Namespace Paginas.TI
                 End Using
             End Using
         End Sub
-
-
 
 
         Protected Sub ddlHistorico_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)

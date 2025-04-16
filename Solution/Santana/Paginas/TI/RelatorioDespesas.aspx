@@ -7,6 +7,7 @@
     <title>Relatório de despesas</title>
 </asp:Content>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <asp:UpdatePanel ID="UpdatePanel" runat="server">
@@ -21,76 +22,237 @@
             <!-- END NAVBAR -->
             <!-- CONTAINER -->
 
+            <div style="padding-left: 60px; padding-right: 60px">
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="display: flex; align-items: start; justify-content: start;">
 
-            <div style="padding-left: 60px; padding-right: 60px;">
-                <div style=" width: 100%; display:flex; flex-direction: column; gap: 10px; margin-bottom: 10px">
-                    <div style="display: flex; justify-content:space-between;">
-                        <div style="display: flex; align-items: start; justify-content:start;">
-                        <label for="ddlFiltros" class="form-label"></label>
-                        <asp:DropDownList AutoPostBack="true" ID="DropDownList2" runat="server" CssClass="form-control">
-                            <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
-                            <asp:ListItem Text="Data de pagamento" Value="Data de pagamento"></asp:ListItem>
-                            <asp:ListItem Text="Digitador" Value="Digitador"></asp:ListItem>
-                            <asp:ListItem Text="Departamento" Value="Departamento"></asp:ListItem>
-                            <asp:ListItem Text="Favorecido" Value="Favorecido"></asp:ListItem>
-                        </asp:DropDownList>
+
+                            <asp:UpdatePanel ID="updFiltros" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <div style="display: flex; align-items: start;">
+
+                                        <asp:DropDownList AutoPostBack="true" ID="ddlFiltros" runat="server"
+                                            CssClass="form-control" OnSelectedIndexChanged="ddlFiltros_SelectedIndexChanged">
+                                            <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
+                                            <asp:ListItem Text="Data de pagamento" Value="5"></asp:ListItem>
+                                            <asp:ListItem Text="Digitador" Value="1"></asp:ListItem>
+                                            <asp:ListItem Text="Departamento" Value="2"></asp:ListItem>
+                                            <asp:ListItem Text="Favorecido" Value="3"></asp:ListItem>
+                                            <asp:ListItem Text="Status" Value="4"></asp:ListItem>
+                                        </asp:DropDownList>
+
+                                        <div>
+                                            <asp:TextBox Style="margin-left: 10px; width: 440px;" ID="txtFiltro" runat="server"
+                                                CssClass="form-control datepicker"></asp:TextBox>
+                                        </div>
+
+
+                                        <div id="campoDataPagamento" runat="server" style="margin-left: 10px; display: none;">
+                                            <asp:TextBox ID="txtDataDe" runat="server" CssClass="form-control"
+                                                onkeyup="formatarData(this);" Placeholder="Data de"
+                                                Style="width: 210px; display: inline-block; margin-right: 10px;" />
+
+                                            <asp:TextBox ID="txtDataAte" runat="server" CssClass="form-control"
+                                                onkeyup="formatarData(this);" Placeholder="Data até"
+                                                Style="width: 210px; display: inline-block;" />
+                                        </div>
+
+
+                                        <div style="margin-left: 10px;">
+                                            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary"
+                                                Style="background-color: #152B61; border-color: #152B61; color: white; width: 116px;"
+                                                OnClick="Pesquisar_Relatorio" />
+                                        </div>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                        </div>
+
+                        <!-- Botão Exportar Excel -->
                         <div>
-                            <asp:TextBox  style="margin-left: 10px;width:440px;" ID="txtFiltro" runat="server" CssClass="form-control datepicker"></asp:TextBox>
-                        </div>
-                        <div style="margin-left: 10px;">
-                            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary" Style="background-color: #152B61; border-color: #152B61; color: white; width: 116px;" />
-                        </div>
-                        </div>
-                        <div>
-                            <asp:ImageButton ID="btnExcel" runat="server" CssClass="btn btn-default" ImageUrl="~/imagens/excel2424.png"></asp:ImageButton>
+                            <asp:ImageButton ID="btnExcel" runat="server" CssClass="btn btn-default" ImageUrl="~/imagens/excel2424.png" OnClick="Exportar_Excel"></asp:ImageButton>
                         </div>
                     </div>
-                         
 
 
-                    <table class="table caption-top" style="width: 100%; table-layout: fixed;">
-                    <thead style="background-color: lightgray">
-                        <tr>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">DATA DE
-                                <br>
-                                PAGAMENTO</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">DIGITADOR</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">DEPARTAMENTO</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">HISTÓRICO</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">VALOR
-                                <br>
-                                BRUTO</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">VALOR
-                                <br>
-                                LIQUIDO</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">FAVORECIDO</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">CPF_CNPJ</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">FORMA DE
-                                <br>
-                                PAGAMENTO</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">BANCO</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">AGENCIA</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">CONTA
-                                <br>
-                                CORRENTE</th>
-                        </tr>
-                    </thead>
+                    <table class="table caption-top minha-tabela" style="width: 100%; table-layout: fixed;">
+                        <thead>
+                            <tr style="background-color: lightgray">
+                                <th scope="col" style="text-align: center; vertical-align: middle;">DATA DE
+                                        <br>
+                                    PAGAMENTO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">DIGITADOR</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">DEPARTAMENTO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">HISTÓRICO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">VALOR
+                                        <br>
+                                    BRUTO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">VALOR
+                                        <br>
+                                    LIQUIDO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">FAVORECIDO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">CPF_CNPJ</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">FORMA<br>
+                                    PAGAMENTO </th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">BANCO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">AGENCIA</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">CONTA_CORRENTE</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">STATUS</th>
 
-                    <tbody>
-                    </tbody>
-                </table>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaDados">
+                            <asp:Literal ID="litTabela" runat="server"></asp:Literal>
+                        </tbody>
+                    </table>
+                    <div>
+                        <nav aria-label="Página de navegação">
+                            <ul class="pagination justify-content-center" id="paginacao">
+                                <li class="page-item" id="paginaAnterior">
+                                    <a class="page-link" href="#" aria-label="Anterior">
+                                        <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
 
-            </div>
+                    </div>
+
+                </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnExcel" />
+            <asp:PostBackTrigger ControlID="btnFiltrar" />
+            <asp:PostBackTrigger ControlID="ddlFiltros" />
+        </Triggers>
     </asp:UpdatePanel>
 
 
 
-    <script type="text/javascript" src="https://uxsolutions.github.io/bootstrap-datepicker/boot‌​strap-datepicker/js/‌​locales/bootstrap-da‌​tepicker.pt-BR.min.j‌​s"></script>
+    <script type="text/javascript" src="https://uxsolutions.github.io/bootstrap-datepicker/boot‌strap-datepicker/js/‌locales/bootstrap-da‌tepicker.pt-BR.min.j‌s"></script>
+    <style>
+        .desabilitado {
+            display: none;
+        }
 
+        .habilitado {
+            display: flex;
+        }
+
+        .minha-tabela {
+            width: 80%;
+            margin: auto;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+            .minha-tabela th, .minha-tabela td {
+                padding: 5px;
+                font-size: 12px;
+                text-align: center;
+                word-wrap: break-word;
+            }
+
+            .minha-tabela th {
+                background-color: #f4f4f4;
+            }
+
+        .pagination {
+            border: none;
+            color: black;
+            background-color: transparent;
+        }
+
+            .pagination .page-item {
+                border: none;
+                color: black;
+                background-color: transparent;
+            }
+
+            .pagination .page-link {
+                border: none;
+                color: black;
+                background-color: transparent;
+            }
+
+        .status-digitado {
+            background-color: #f7efad;
+            padding: 4px;
+            text-align: center;
+            height: 20px;
+            width: 200px;
+            border-radius: 5px;
+        }
+
+        .status-enviado {
+            background-color: #bee2f7;
+            padding: 4px;
+            text-align: center;
+            height: 20px;
+            width: 200px;
+            border-radius: 5px;
+        }
+
+
+        .status-recusado {
+            background-color: #f7bebe;
+            padding: 4px;
+            text-align: center;
+            height: 20px;
+            width: 200px;
+            border-radius: 5px;
+        }
+
+
+        .status-pago {
+            background-color: #c5f7be;
+            padding: 4px;
+            text-align: center;
+            height: 20px;
+            width: 200px;
+            border-radius: 5px;
+        }
+
+        .pagination {
+            border: none;
+            color: black;
+            background-color: transparent;
+        }
+
+        .pagination .page-item {
+            border: none;
+            color: black;
+            background-color: transparent;
+        }
+
+        .pagination .page-link {
+            border: none;
+            color: black;
+            background-color: transparent;
+        }
+    </style>
 
     <script type="text/javascript">
 
+        function formatarData(input) {
+            let valor = input.value.replace(/\D/g, '');
+            if (valor.length > 2 && valor.length <= 4)
+                valor = valor.replace(/(\d{2})(\d+)/, '$1/$2');
+            else if (valor.length > 4)
+                valor = valor.replace(/(\d{2})(\d{2})(\d+)/, '$1/$2/$3');
+            input.value = valor;
+        }
+
+        function mostrarCampoData(select) {
+            var campoDataPagamento = document.getElementById('campoDataPagamento');
+            if (select.value === "5") { // Valor da opção "Data de pagamento"
+                campoDataPagamento.style.display = "block";
+            } else {
+                campoDataPagamento.style.display = "none";
+            }
+        }
 
 
         function favoritarPagina() {
@@ -112,10 +274,6 @@
                 }
             });
         }
-
-
-
-
         $(document).ready(function () {
 
             NumericAllow();
@@ -145,6 +303,98 @@
         var spinner;
 
 
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var table = document.getElementById("tabelaDados");
+            var rows = table.getElementsByTagName("tr");
+            var rowsPerPage = 10;
+            var currentPage = 1;
+
+            function showPage(page) {
+                var start = (page - 1) * rowsPerPage;
+                var end = start + rowsPerPage;
+
+                for (var i = 0; i < rows.length; i++) {
+                    rows[i].style.display = (i >= start && i < end) ? "table-row" : "none";
+                }
+            }
+
+            function createPagination() {
+                var pagination = document.getElementById("paginacao");
+                var numPages = Math.ceil(rows.length / rowsPerPage);
+
+                pagination.innerHTML = "";
+
+                var prevLi = document.createElement("li");
+                prevLi.className = "page-item";
+                var prevLink = document.createElement("a");
+                prevLink.className = "page-link";
+                prevLink.href = "#";
+                prevLink.innerText = "«";
+                prevLink.onclick = function () {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        showPage(currentPage);
+                        updateActivePage();
+                    }
+                    return false;
+                };
+                prevLi.appendChild(prevLink);
+                pagination.appendChild(prevLi);
+
+                for (var i = 1; i <= numPages; i++) {
+                    var li = document.createElement("li");
+                    li.className = "page-item";
+                    var link = document.createElement("a");
+                    link.className = "page-link";
+                    link.href = "#";
+                    link.innerText = i;
+                    link.onclick = (function (page) {
+                        return function () {
+                            currentPage = page;
+                            showPage(page);
+                            updateActivePage();
+                            return false;
+                        };
+                    })(i);
+                    li.appendChild(link);
+                    pagination.appendChild(li);
+                }
+
+                var nextLi = document.createElement("li");
+                nextLi.className = "page-item";
+                var nextLink = document.createElement("a");
+                nextLink.className = "page-link";
+                nextLink.href = "#";
+                nextLink.innerText = "»";
+                nextLink.onclick = function () {
+                    if (currentPage < numPages) {
+                        currentPage++;
+                        showPage(currentPage);
+                        updateActivePage();
+                    }
+                    return false;
+                };
+                nextLi.appendChild(nextLink);
+                pagination.appendChild(nextLi);
+
+                updateActivePage();
+            }
+
+            function updateActivePage() {
+                var pages = document.querySelectorAll("#paginacao .page-item");
+                pages.forEach((page, index) => {
+                    if (index === currentPage) {
+                        page.classList.add("active");
+                    } else {
+                        page.classList.remove("active");
+                    }
+                });
+            }
+
+            showPage(currentPage);
+            createPagination();
+        });
 
 
         function StartSpin() {
