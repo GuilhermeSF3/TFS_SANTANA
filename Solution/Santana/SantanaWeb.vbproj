@@ -1868,6 +1868,7 @@
     </Compile>
     <Compile Include="Paginas\TI\RelatorioDespesas.aspx.vb">
       <DependentUpon>RelatorioDespesas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\TI\AgendaRecusar.aspx.designer.vb">
       <DependentUpon>AgendaRecusar.aspx</DependentUpon>
     </Compile>
