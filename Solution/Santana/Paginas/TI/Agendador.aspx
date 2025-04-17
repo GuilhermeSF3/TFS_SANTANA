@@ -51,7 +51,7 @@
                                 <asp:DropDownList ID="ddlAprovador" runat="server"  CssClass="form-control" onchange="verificarAprovador()">
                                     <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="Luiz" Value="luiz@sf3.com.br"></asp:ListItem>
-                                    <asp:ListItem Text="Junior" Value=""></asp:ListItem>
+                                    <asp:ListItem Text="Junior" Value="junior@sf3.com.br"></asp:ListItem>
                                     <asp:ListItem Text="Marcelo" Value="marcelo@shopcred.com.br"></asp:ListItem>
                                     <asp:ListItem Text="Cesar" Value="cesar@sf3.com.br"></asp:ListItem>
                                     <asp:ListItem Text="Guilherme" Value="menoti@sf3.com.br"></asp:ListItem>
