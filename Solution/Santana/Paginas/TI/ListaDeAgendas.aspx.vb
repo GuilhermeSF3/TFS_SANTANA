@@ -36,7 +36,8 @@ Namespace Paginas.TI
 
             Dim contexto As New Contexto()
 
-            If Not contexto.PossuiPerfil(0) Then
+            If Not contexto.PossuiPerfil(0) Or contexto.PossuiPerfil(11) Then
+
                 btnGerenciamento.Visible = False
             End If
 

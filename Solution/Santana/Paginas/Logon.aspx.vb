@@ -129,9 +129,9 @@ Partial Class Logon
 
     Private Sub LoadMenuItens()
 
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Parametros", New List(Of Integer)({0, 1, 8})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Parametros", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("ParametrosGerencial", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Cobranca", New List(Of Integer)({0, 1, 5})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Cobranca", New List(Of Integer)({0, 1, 5, 11})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("ICM", New List(Of Integer)({0, 1, 5})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("FOP", New List(Of Integer)({0, 1, 5})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("CobrancaP123", New List(Of Integer)({0, 1, 3, 4, 6, 7, 8})))
@@ -162,9 +162,9 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("PendCrvCartAtiva", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("BankFacil", New List(Of Integer)({0, 1, 9})))  ' 9= BKF
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Financeiro", New List(Of Integer)({0, 1, 11})))   ' 11= FINANC
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("RH", New List(Of Integer)({0, 12})))   ' 12= RH
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("RH", New List(Of Integer)({12})))   ' 12= RH
 
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("TI", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("TI", New List(Of Integer)({0})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("DCO", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Desconto", New List(Of Integer)({0, 1})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("Cadastro", New List(Of Integer)({0, 1, 8})))
@@ -442,55 +442,61 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cadastro/Gerencial/CadastroDeContaComissao.aspx", New List(Of Integer)({0, 1, 3})))
 
         'CETIP
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipUpload.aspx", New List(Of Integer)({1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipGerarArquivo.aspx", New List(Of Integer)({1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipPotencialAnalitico.aspx", New List(Of Integer)({1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipPotencialSintetico.aspx", New List(Of Integer)({1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipRanking.aspx", New List(Of Integer)({1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipUpload.aspx", New List(Of Integer)({1, 0})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipGerarArquivo.aspx", New List(Of Integer)({1, 0})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipPotencialAnalitico.aspx", New List(Of Integer)({1, 0})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipPotencialSintetico.aspx", New List(Of Integer)({1, 0})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cetip/CetipRanking.aspx", New List(Of Integer)({1, 0})))
 
         'BANKFACIL
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Operacoes.aspx", New List(Of Integer)({0, 1, 9})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Cobranca.aspx", New List(Of Integer)({0, 1, 9})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Pagamentos.aspx", New List(Of Integer)({0, 1, 9})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/CnabGerarArquivo.aspx", New List(Of Integer)({0, 1, 9})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/PosicaoVencimento.aspx", New List(Of Integer)({0, 1, 9})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Lastro.aspx", New List(Of Integer)({0, 1, 9})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Operacoes.aspx", New List(Of Integer)({1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Cobranca.aspx", New List(Of Integer)({1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Pagamentos.aspx", New List(Of Integer)({1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/CnabGerarArquivo.aspx", New List(Of Integer)({1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/PosicaoVencimento.aspx", New List(Of Integer)({1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/BankFacil/Lastro.aspx", New List(Of Integer)({1})))
 
         'FINANCEIRO
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Financeiro/OperacaoCaptacao.aspx", New List(Of Integer)({1, 11})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Financeiro/BaseCaptacao.aspx", New List(Of Integer)({1, 11})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cadastro/Financeiro/TaxaCDI.aspx", New List(Of Integer)({1, 11})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Cadastro/Financeiro/Caixa.aspx", New List(Of Integer)({1, 11})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Financeiro/Remessa.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Financeiro/Remessa.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Agendador.aspx", New List(Of Integer)({1, 0, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/CadastroHistorico.aspx", New List(Of Integer)({1, 0, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/ListaDeAgendas.aspx", New List(Of Integer)({1, 0, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/AgendaAprovar.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/AgendaRecusar.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/RelatorioDespesas.aspx", New List(Of Integer)({1, 11})))
 
         'RH
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/RH/CPColaboradores.aspx", New List(Of Integer)({0, 12})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/RH/CPColaboradoresSintetico.aspx", New List(Of Integer)({0, 12})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/RH/CPColaboradores.aspx", New List(Of Integer)({1, 12})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/RH/CPColaboradoresSintetico.aspx", New List(Of Integer)({1, 12})))
 
         'FORMALIZAÇÃO
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasCRVsint.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasFormalizacao.aspx", New List(Of Integer)({0, 1}))) ' sem acesso aos 8=Operadores 
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasFormalizacaoAnalitico.aspx", New List(Of Integer)({0, 1}))) ' sem acesso aos 8=Operadores 
-        
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConferePagto.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConferePagto_Det.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/GravameInclusao.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/GravameQuitacao.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasCRVCartAtivaAnali.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasCRVCartAtivaSint.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasCRVCartAtivaLiq.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/SubstituicaoGarantia.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/PagtoCtaAgente.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/PassoEsteiraFormaliz.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/TempoFormalizAnalitico.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PropostasBalcao.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConsultaCrivo.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/BaseSMS.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConsultaCarne.aspx", New List(Of Integer)({0, 1, 8})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConsultaCarneSintetico.aspx", New List(Of Integer)({0, 1, 8})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/AssinaturaDigital.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/RegistroGravame.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/PendenciaRegistroContrato.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasCRVsint.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasFormalizacao.aspx", New List(Of Integer)({0, 1, 11}))) ' sem acesso aos 8=Operadores 
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasFormalizacaoAnalitico.aspx", New List(Of Integer)({0, 1, 11}))) ' sem acesso aos 8=Operadores 
+
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConferePagto.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConferePagto_Det.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/GravameInclusao.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/GravameQuitacao.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasCRVCartAtivaAnali.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasCRVCartAtivaSint.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PendenciasCRVCartAtivaLiq.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/SubstituicaoGarantia.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/PagtoCtaAgente.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/PassoEsteiraFormaliz.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/TempoFormalizAnalitico.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/PropostasBalcao.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConsultaCrivo.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/BaseSMS.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConsultaCarne.aspx", New List(Of Integer)({0, 1, 8, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Comercial/ConsultaCarneSintetico.aspx", New List(Of Integer)({0, 1, 8, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/AssinaturaDigital.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/RegistroGravame.aspx", New List(Of Integer)({0, 1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Formaliz/PendenciaRegistroContrato.aspx", New List(Of Integer)({0, 1, 11})))
 
         'DESCONTO
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Desconto/DescontoProducao.aspx", New List(Of Integer)({0, 1})))
@@ -506,35 +512,28 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/Cadastro/Cadastro/Operadores.aspx", New List(Of Integer)({0, 1, 8})))
 
         'FUNDOQUATA
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/Cnab550.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/CnabBaixaInclusao.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/GerarCnab.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/CnabAlter.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/GerarCnabAlter.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCarga_O.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabGerar_O.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/RenegCnabCarga_RN.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/RenegCnabGerar_RN.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/EstornoCnabGerar_ES.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/EstornoCnabCarga_ES.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabAtualizar_O.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabCriticaGerar_O.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabCriticaAtualizar_O.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/Cnab550.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/CnabBaixaInclusao.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/GerarCnab.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/CnabAlter.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/GerarCnabAlter.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCarga_O.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabGerar_O.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/RenegCnabCarga_RN.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/RenegCnabGerar_RN.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/EstornoCnabGerar_ES.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/EstornoCnabCarga_ES.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabAtualizar_O.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabCriticaGerar_O.aspx", New List(Of Integer)({1, 11})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/FundoQuata/OrdinarioCnabCriticaAtualizar_O.aspx", New List(Of Integer)({1, 11})))
 
         'PERFILCONFIGURACOES
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/PerfilConfiguracoes/DadosPessoais.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/PerfilConfiguracoes/DadosPessoais.aspx", New List(Of Integer)({0, 1, 2, 3, 4, 5, 6, 7})))
 
 
         'Tecnologia'
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Inventario2.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Agendador.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/CadastroHistorico.aspx", New List(Of Integer)({0, 1})))
+        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/Inventario2.aspx", New List(Of Integer)({0})))
 
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/ListaDeAgendas.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/AgendaAprovar.aspx", New List(Of Integer)({0, 1})))
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/AgendaRecusar.aspx", New List(Of Integer)({0, 1})))
-
-        ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/Paginas/TI/RelatorioDespesas.aspx", New List(Of Integer)({0, 1})))
 
 
 

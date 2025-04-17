@@ -75,10 +75,10 @@
                  <br />
                  <p>Recebedor </p>
                  <asp:DropDownList CssClass="form-control" ID="ddlAprovador" runat="server">
-                     <asp:ListItem Text="Guilherme" Value="menoti@sf3.com.br"></asp:ListItem>
-                     <asp:ListItem Text="Renato" Value="renato@sf3.com.br"></asp:ListItem>
-                     <asp:ListItem Text="Contabilidade" Value="email2@example.com"></asp:ListItem>
-                     <asp:ListItem Text="CW" Value="email2@example.com"></asp:ListItem>
+                     <asp:ListItem Text="Guilherme - SF3 (TESTES)" Value="menoti@sf3.com.br"></asp:ListItem>
+                     <asp:ListItem Text="Contabilidade" Value="bpo@logtechcontabil.com.br"></asp:ListItem>
+                     <asp:ListItem Text="Renato Kempe - CloudWalk " Value="renato.kempe@cloudwalk.io"></asp:ListItem>
+                     <asp:ListItem Text="Guilherme Landim - CloudWalk " Value="guilherme.landim@cloudwalk.io"></asp:ListItem>
                  </asp:DropDownList>
              </div>
              <div class="modal-footer">
