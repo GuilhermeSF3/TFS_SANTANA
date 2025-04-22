@@ -35,9 +35,11 @@
                                         <asp:DropDownList AutoPostBack="true" ID="ddlFiltros" runat="server"
                                             CssClass="form-control" OnSelectedIndexChanged="ddlFiltros_SelectedIndexChanged">
                                             <asp:ListItem Text="Selecione" Value="" Selected="True"></asp:ListItem>
+                                            <asp:ListItem Text="Data de agendamento" Value="6"></asp:ListItem>
                                             <asp:ListItem Text="Data de pagamento" Value="5"></asp:ListItem>
-                                            <asp:ListItem Text="Digitador" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="Departamento" Value="2"></asp:ListItem>
+                                            <asp:ListItem Text="Digitador" Value="1"></asp:ListItem>
+                                            <asp:ListItem Text="Empresa" Value="7"></asp:ListItem>
                                             <asp:ListItem Text="Favorecido" Value="3"></asp:ListItem>
                                             <asp:ListItem Text="Status" Value="4"></asp:ListItem>
                                         </asp:DropDownList>
@@ -80,27 +82,21 @@
                     <table class="table caption-top minha-tabela" style="width: 100%; table-layout: fixed;">
                         <thead>
                             <tr style="background-color: lightgray">
-                                <th scope="col" style="text-align: center; vertical-align: middle;">DATA DE
-                                        <br>
-                                    PAGAMENTO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 115px">DATA DE <br>AGENDAMENTO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 90px">EMPRESA</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 120px;">DEPARTAMENTO</th>
                                 <th scope="col" style="text-align: center; vertical-align: middle;">DIGITADOR</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">DEPARTAMENTO</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">HISTÓRICO</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">VALOR
-                                        <br>
-                                    BRUTO</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">VALOR
-                                        <br>
-                                    LIQUIDO</th>
                                 <th scope="col" style="text-align: center; vertical-align: middle;">FAVORECIDO</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">CPF_CNPJ</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">FORMA<br>
-                                    PAGAMENTO </th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">BANCO</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">AGENCIA</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">CONTA_CORRENTE</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">STATUS</th>
-
+                                <th scope="col" style="text-align: center; vertical-align: middle; width:125px">CPF_CNPJ</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">HISTÓRICO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 95px">VALOR <br>BRUTO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 95px">VALOR <br>LIQUIDO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 115px">DATA DE <br>PAGAMENTO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 105px">FORMA DE<br>PAGAMENTO </th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 80px;">BANCO</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 80px;">AGENCIA</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 80px;">CONTA</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle; width: 80px;">STATUS</th>
                             </tr>
                         </thead>
                         <tbody id="tabelaDados">
@@ -247,7 +243,7 @@
 
         function mostrarCampoData(select) {
             var campoDataPagamento = document.getElementById('campoDataPagamento');
-            if (select.value === "5") { // Valor da opção "Data de pagamento"
+            if (select.value === "5" || select.value === "6") { // Valor da opção "Data de pagamento"
                 campoDataPagamento.style.display = "block";
             } else {
                 campoDataPagamento.style.display = "none";

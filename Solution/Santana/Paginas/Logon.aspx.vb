@@ -364,7 +364,7 @@ Partial Class Logon
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/FechaComercial/GerarArquivoComissao.aspx", New List(Of Integer)({0, 1, 3})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/FechaComercial/ComissaoSintetico.aspx", New List(Of Integer)({0, 1, 3})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Comercial/BasePropostaTempo.aspx", New List(Of Integer)({0, 1, 3})))
-        
+
         'Comercial
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Comercial/MapaComercial.aspx", New List(Of Integer)({0, 1, 3, 4, 8})))
         ContextoWeb.DadosMenu.ListMenu.Add(New ItemMenu("/paginas/Comercial/MapaPDV.aspx", New List(Of Integer)({0, 1, 3, 4, 6})))

@@ -45,7 +45,7 @@ Namespace Paginas.TI
         End Sub
 
         Private Sub AtualizarVisibilidadeCampos()
-            If ddlFiltros.SelectedValue = "5" Then
+            If ddlFiltros.SelectedValue = "5" Or ddlFiltros.SelectedValue = "6" Then
                 txtFiltro.Visible = False
                 campoDataPagamento.Style("display") = "flex"
             Else
@@ -99,14 +99,16 @@ Namespace Paginas.TI
                     For Each row As DataRow In dt.Rows
 
                         html.Append("<tr>")
-                        html.Append($"<td style='text-align:center;'>{row("DATA_PAGAMENTO")}</td>")
-                        html.Append($"<td style='text-align:center;'>{row("DIGITADOR")}</td>")
+                        html.Append($"<td style='text-align:center;'>{row("DATA_DA_AGENDA")}</td>")
+                        html.Append($"<td style='text-align:center;'>{row("EMPRESA")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("DEPARTAMENTO")}</td>")
+                        html.Append($"<td style='text-align:center;'>{row("DIGITADOR")}</td>")
+                        html.Append($"<td style='text-align:center;'>{row("FAVORECIDO")}</td>")
+                        html.Append($"<td style='text-align:center;'>{row("CPF_CNPJ")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("HISTORICO")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("VALOR_BRUTO")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("VALOR_LIQUIDO")}</td>")
-                        html.Append($"<td style='text-align:center;'>{row("FAVORECIDO")}</td>")
-                        html.Append($"<td style='text-align:center;'>{row("CPF_CNPJ")}</td>")
+                        html.Append($"<td style='text-align:center;'>{row("DATA_PAGAMENTO")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("FORMA_DE_PAGAMENTO")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("BANCO")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("AGENCIA")}</td>")
