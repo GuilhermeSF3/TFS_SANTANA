@@ -249,7 +249,7 @@
                                         <li><a href="Protesto/Protesto.aspx">Acompanhamento Protesto</a></li>
                                     </ul>
                                 </li>
-
+                        <li><a href="Cobranca/ArquivoSerasa.aspx">Remessa Serasa</a></li>
                                 <li class="menu-item dropdown dropdown-submenu" id="RiscoGerencial" runat="server" visible="False">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Risco Gerencial</a>
                                     <ul class="dropdown-menu">
@@ -276,6 +276,7 @@
                                      <li><a href="Cobranca/FechamentoCobranca/FechamentoCobranca.aspx">Cobrança</a></li>
                                      </ul>
                                 </li>
+        
                                 <li class="menu-item dropdown dropdown-submenu" id="ICM" runat="server" visible="false">
                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">ICM</a>
                                    <ul class="dropdown-menu">
