@@ -321,6 +321,7 @@
     <Content Include="Paginas\CETIP\CETIPSintetico.aspx" />
     <Content Include="Paginas\CETIP\CETIPUpload.aspx" />
     <Content Include="Paginas\Cobranca\Consolidado\GraficoRolagemConsolidado.aspx" />
+    <Content Include="Paginas\Cobranca\ArquivoSerasa.aspx" />
     <Content Include="Paginas\Cobranca\FechamentoCobranca\FechamentoCobranca.aspx" />
     <Content Include="Paginas\Cobranca\FOP\ArquivoFOP.aspx" />
     <Content Include="Paginas\Cobranca\P123Gerencial\Inadimplencia.aspx" />
@@ -1497,6 +1498,13 @@
     </Compile>
     <Compile Include="Paginas\Cobranca\Consolidado\GraficoRolagemConsolidado.aspx.vb">
       <DependentUpon>GraficoRolagemConsolidado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\ArquivoSerasa.aspx.designer.vb">
+      <DependentUpon>ArquivoSerasa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Cobranca\ArquivoSerasa.aspx.vb">
+      <DependentUpon>ArquivoSerasa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Cobranca\FechamentoCobranca\FechamentoCobranca.aspx.designer.vb">
