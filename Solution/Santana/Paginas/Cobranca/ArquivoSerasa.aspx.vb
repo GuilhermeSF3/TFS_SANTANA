@@ -103,7 +103,7 @@ Namespace Paginas.Cobranca
                         linha = linha.PadRight(501)
                     End If
                     Dim sequencia As String = contador.ToString("D4")
-                    linha = linha.Substring(0, 497) & sequencia
+                    linha = linha.Substring(0, 496) & sequencia
 
                     linhasFinal.Add(linha)
                     contador += 1
