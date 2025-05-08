@@ -364,5 +364,14 @@ Namespace Paginas.TI
         '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         '''</remarks>
         Protected WithEvents ExcluirAgendas As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle btnReenviarEmails.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnReenviarEmails As Global.System.Web.UI.WebControls.Button
     End Class
 End Namespace

@@ -11,6 +11,7 @@ Imports System.Web
 Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports Componentes
+Imports Ionic.Zip
 Imports Microsoft.VisualBasic
 Imports Santana.Paginas.TI.Agendador
 Imports Santana.Seguranca
@@ -233,6 +234,7 @@ Namespace Paginas.TI
                         Dim status As String = row("STATUS").ToString()
                         Dim statusClass As String = GetStatusClass(status)
                         html.Append("<tr>")
+                        html.Append($"<td style='text-align:center;'><input type='checkbox' name='chkReenviar' value='{idAgenda}' /></td>")
                         html.Append($"<td style='text-align:center;'>{row("ID")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("DATA_DA_AGENDA")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("DIGITADOR")}</td>")
@@ -255,6 +257,114 @@ Namespace Paginas.TI
                 End Using
             End Using
         End Sub
+        Protected Sub btnEnviarEmail_Click(sender As Object, e As EventArgs)
+            ' Lista para armazenar os IDs das agendas selecionadas
+            Dim agendasSelecionadas As New List(Of Integer)()
+
+            ' Capturar os valores dos checkboxes selecionados
+            Dim valoresSelecionados As String() = Request.Form.GetValues("chkReenviar")
+
+            If valoresSelecionados IsNot Nothing Then
+                For Each id As String In valoresSelecionados
+                    agendasSelecionadas.Add(Convert.ToInt32(id))
+                Next
+            End If
+
+            ' Verificar se há agendas selecionadas
+            If agendasSelecionadas.Count = 0 Then
+                ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", "alert('Nenhuma agenda selecionada.');", True)
+                Exit Sub
+            End If
+
+            ' Converter a lista de IDs em uma string separada por vírgula
+            Dim ids As String = String.Join(",", agendasSelecionadas)
+
+            ' Chamar o método para enviar os e-mails
+            EnviarEmails(ids)
+        End Sub
+
+
+
+
+
+
+
+        Private Sub EnviarEmails(ByVal ids As String)
+            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+            Dim contexto = New Contexto
+
+            Using conn As New SqlConnection(strConn)
+                conn.Open()
+                Dim sql As String = "SELECT * FROM TB_AGENDAMENTO_SIG WHERE ID IN (" & ids & ")"
+                Using cmd As New SqlCommand(sql, conn)
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            ' Cria o e-mail
+                            Dim email As New MailMessage()
+                            email.From = New MailAddress("contasapagar@santanafinanceira.onmicrosoft.com")
+                            Dim emailAprovador As String = reader("Aprovador").ToString()
+                            If Not String.IsNullOrEmpty(emailAprovador) Then
+                                email.To.Add(emailAprovador)
+                            End If
+                            Dim dataPagamento As String = Convert.ToDateTime(reader("Data_Pagamento")).ToString("dd/MM/yyyy")
+                            Dim empresa As String = reader("Empresa").ToString()
+                            email.Subject = $"SOLICITAÇÃO DE PAGAMENTO {empresa} - {dataPagamento} "
+
+                            email.IsBodyHtml = True
+                            Dim corpoEmail As String = "<h3>Informações de Despesas</h3>"
+                            corpoEmail &= "<table border='1' cellpadding='5' cellspacing='0' style='border-collapse:collapse; font-size: 10px;'>"
+                            corpoEmail &= "<tr><th>Data Pagamento</th><th>Descrição</th><th>Valor Bruto</th><th>Valor Líquido</th><th>Favorecido</th><th>CPF/CNPJ</th><th>Forma de Pagamento</th><th>Banco</th><th>Agência</th><th>Conta Corrente</th><th>Empresa</th></tr>"
+                            corpoEmail &= $"<tr><td>{dataPagamento}</td>" &
+                                  $"<td>{reader("Descricao")}</td>" &
+                                  $"<td>{reader("Valor_Bruto")}</td>" &
+                                  $"<td>{reader("Valor_Liquido")}</td>" &
+                                  $"<td>{reader("Favorecido")}</td>" &
+                                  $"<td>{reader("Cpf_Cnpj")}</td>" &
+                                  $"<td>{reader("Forma_de_Pagamento")}</td>" &
+                                  $"<td>{reader("Banco")}</td>" &
+                                  $"<td>{reader("Agencia")}</td>" &
+                                  $"<td>{reader("Conta_Corrente")}</td>" &
+                                  $"<td>{empresa}</td></tr>"
+                            corpoEmail &= "</table>"
+                            corpoEmail &= $"<br><br>Digitador: {contexto.UsuarioLogado.NomeUsuario}"
+                            corpoEmail &= "<br/>"
+                            Dim idsParam As String = String.Join(",", ids)
+                            Dim approveUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaAprovar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                            Dim rejectUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaRecusar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                            corpoEmail &= $"<a href='{approveUrl}' style='padding: 10px; background-color: green; color: white; text-decoration: none; margin-right: 10px;'>Aprovar</a>"
+                            corpoEmail &= $"<a href='{rejectUrl}' style='padding: 10px; background-color: red; color: white; text-decoration: none;'>Recusar</a>"
+                            email.Body = corpoEmail
+                            Dim arquivosPasta As String = If(IsDBNull(reader("ARQUIVOSPASTA")), "", reader("ARQUIVOSPASTA").ToString().Trim())
+                            If Not String.IsNullOrEmpty(arquivosPasta) AndAlso Directory.Exists(arquivosPasta) Then
+                                Dim arquivos As String() = Directory.GetFiles(arquivosPasta)
+                                If arquivos.Length > 0 Then
+                                    Dim zipFileName As String = Path.Combine(Path.GetTempPath(), $"AGENDAMENTO_{reader("Descricao")}.zip")
+                                    Using zip As New ZipFile()
+                                        For Each arquivo As String In arquivos
+                                            zip.AddFile(arquivo, "")
+                                        Next
+                                        zip.Save(zipFileName)
+                                    End Using
+
+                                    If File.Exists(zipFileName) Then
+                                        email.Attachments.Add(New Attachment(zipFileName))
+                                    End If
+                                End If
+                            End If
+                            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+                            Dim smtp As New SmtpClient("smtp.office365.com")
+                            smtp.Port = 587
+                            smtp.Credentials = New NetworkCredential("contasapagar@santanafinanceira.onmicrosoft.com", "Xay16092")
+                            smtp.EnableSsl = True
+                            smtp.Send(email)
+                        End While
+                        ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "alert", "alert('E-mail enviado com sucesso!');", True)
+                    End Using
+                End Using
+            End Using
+
+        End Sub
+
 
 
         Private Function GerarModal(idAgenda As String) As String
@@ -348,6 +458,8 @@ Namespace Paginas.TI
             End Select
         End Function
 
+
+
         Protected Sub UploadArquivo(sender As Object, e As EventArgs)
             Dim agendaId As String = Request.Form("agendaId")
             Dim caminhoPasta As String = ""
@@ -374,6 +486,8 @@ Namespace Paginas.TI
         Protected Sub btnHelp_Click(sender As Object, e As EventArgs)
             ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Em construção!' ,'Esta funcionalidade esta em desenvolvimento.');", True)
         End Sub
+
+
 
 
         Protected Sub btnMenu_Click(sender As Object, e As EventArgs)

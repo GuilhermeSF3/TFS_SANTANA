@@ -1196,7 +1196,7 @@
             </div>
             <!-- Seção de Imagens -->
             <div style="flex: 1; text-align: center;">
-                <img src="/imagens/SIG 1.png" style="max-width: 100%; height: auto;" />
+                <img src="../imagens/SIG 1.png" style="max-width: 100%; height: auto;" />
             </div>
         </div>
         <asp:Table ID="TbGeral" runat="server" Width="100%" CellPadding="0" CellSpacing="100">

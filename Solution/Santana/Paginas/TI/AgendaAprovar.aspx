@@ -10,15 +10,19 @@
             padding: 10px;
             text-align: left;
         }
+
         .grid-view th {
             background-color: #f2f2f2;
         }
+
         .grid-view tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         .grid-view tr:hover {
             background-color: #f1f1f1;
         }
+
         .btn-confirm {
             background-color: #4CAF50;
             color: white;
@@ -26,9 +30,19 @@
             border: none;
             cursor: pointer;
         }
-        .btn-confirm:hover {
-            background-color: #45a049;
-        }
+
+        .modal-full {
+    width: 95%;
+    max-width: none;
+}
+        .checkbox-horizontal td {
+    padding-right: 20px; /* espaço entre os itens */
+    white-space: nowrap;
+}
+
+            .btn-confirm:hover {
+                background-color: #45a049;
+            }
     </style>
 </asp:Content>
 
@@ -52,54 +66,64 @@
                         <asp:BoundField DataField="Banco" HeaderText="Banco" />
                         <asp:BoundField DataField="Agencia" HeaderText="Agência" />
                         <asp:BoundField DataField="Conta_Corrente" HeaderText="Conta Corrente" />
+                          <asp:BoundField DataField="Empresa" HeaderText="Empresa" />
+                          <asp:BoundField DataField="Digitador" HeaderText="Digitador" />
                     </Columns>
                 </asp:GridView>
                 <div style="margin-top: 20px;">
-       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Confirmar Aprovação</button>
-                    </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Confirmar Aprovação</button>
+                </div>
             </asp:Panel>
 
-             <!-- Modal de Confirmação -->
-   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-       <div class="modal-dialog modal-dialog-centered" role="document">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="confirmModalLabel">Confirmação</h5>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                 </button>
-             </div>
-             <div class="modal-body">
-                 <p>Deseja realmente aprovar a agenda?</p>
-                 <asp:CheckBox ID="chkConfirm" runat="server" Text="Aprovar" />
-                 <br />
-                 <p>Recebedor </p>
-                 <asp:DropDownList CssClass="form-control" ID="ddlAprovador" runat="server">
-                     <asp:ListItem Text="Guilherme - SF3 (TESTES)" Value="menoti@sf3.com.br"></asp:ListItem>
-                     <asp:ListItem Text="Contabilidade" Value="bpo@logtechcontabil.com.br"></asp:ListItem>
-                     <asp:ListItem Text="Renato Kempe - CloudWalk " Value="renato.kempe@cloudwalk.io"></asp:ListItem>
-                     <asp:ListItem Text="Guilherme Landim - CloudWalk " Value="guilherme.landim@cloudwalk.io"></asp:ListItem>
-                 </asp:DropDownList>
-             </div>
-             <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                 <asp:Button ID="btnModalConfirmar" runat="server" Text="Confirmar" CssClass="btn btn-primary" OnClick="btnModalConfirmar_Click" />
-             </div>
-         </div>
-     </div>
- </div>
+            <!-- Modal de Confirmação -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-full modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">Confirmação</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deseja realmente aprovar a agenda?</p>
+                            <asp:CheckBox ID="chkConfirm" runat="server" Text="Aprovar" />
+                            <br />
+                            <p>Recebedor </p>
+                            <asp:DropDownList CssClass="form-control" ID="ddlAprovador" runat="server">
+                                <asp:ListItem Text="BPO Financeiro" Value="bpo@logtechcontabil.com.br"></asp:ListItem>
+                                <asp:ListItem Text="CloudWalk" Value="renato.kempe@cloudwalk.io"></asp:ListItem>  
+                            </asp:DropDownList>
+                            <br />
+                            <p>Selecione as pessoas que estarão em cópia:</p>
+                           <asp:CheckBoxList ID="chkCopiaEmails" runat="server" CssClass="checkbox-horizontal" RepeatDirection="Horizontal">
+                                <asp:ListItem Text="Cesar" Value="cesar@sf3.com.br"></asp:ListItem>
+                                <asp:ListItem Text="Marcelo" Value="mm@sf3.com.br"></asp:ListItem>
+                                <asp:ListItem Text="Luiz" Value="luiz@sf3.com.br"></asp:ListItem>
+                                <asp:ListItem Text="Junior" Value="junior@sf3.com.br"></asp:ListItem>
+                                <asp:ListItem Text="Laura" Value="laura@sf3.com.br"></asp:ListItem>
+                                <asp:ListItem Text="Contas a Pagar" Value="contasapagar@sf3.com.br"></asp:ListItem>
+                            </asp:CheckBoxList>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <asp:Button ID="btnModalConfirmar" runat="server" Text="Confirmar" CssClass="btn btn-primary" OnClick="btnModalConfirmar_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ContentTemplate>
-            <Triggers>
-    <asp:PostBackTrigger ControlID="btnModalConfirmar" />
-</Triggers>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnModalConfirmar" />
+        </Triggers>
 
     </asp:UpdatePanel>
-   
-      <script type="text/javascript">
-          function openModal() {
-              $('#confirmModal').modal('show');
-          }
-  </script>
+
+    <script type="text/javascript">
+        function openModal() {
+            $('#confirmModal').modal('show');
+        }
+    </script>
     <script type="text/javascript" src="https://uxsolutions.github.io/bootstrap-datepicker/boot‌​strap-datepicker/js/‌​locales/bootstrap-da‌​tepicker.pt-BR.min.j‌​s"></script>
 
 

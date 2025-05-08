@@ -17,9 +17,11 @@
                                 <p>Nova Agenda <a href="../TI/Agendador.aspx"><i class="bi bi-plus-circle-fill"></i></a></p>
                             </div>
                         </div>
-                        <table class="table caption-top minha-tabela" style="width: 100%; table-layout: fixed;">
+                        <table id="tblAgendas" class="table caption-top minha-tabela" style="width: 100%; table-layout: fixed;">
                             <thead style="background-color: lightgray">
                                 <tr>
+                                      <th scope="col" style="text-align: center; vertical-align: middle;">SELECIONAR AGENDA
+      </th>
                                     <th scope="col" style="text-align: center; vertical-align: middle;">NUMERO DA
                                          <br />
                                         AGENDA</th>
@@ -257,15 +259,16 @@
 </div>
 
                  
-
+            
                 <button type="button" style="display: none" class="btn btn-light" data-toggle="modal" data-target="#modalVisualizarAgenda"></button>
                 <button type="button" style="display: none" class="btn btn-light" data-toggle="modal" data-target="#modalGerenciarAgenda"></button>
+                  <asp:Button ID="btnReenviarEmails" runat="server" Text="Reenviar E-mails" CssClass="btn btn-primary" OnClick="btnEnviarEmail_Click" />
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="ExcluirAgendas" />
             <asp:PostBackTrigger ControlID="StatusAgenda" />
             <asp:PostBackTrigger ControlID="SalvarArquivo" />
-            
+             <asp:PostBackTrigger ControlID="btnReenviarEmails" />
             <asp:PostBackTrigger ControlID="btnBuscarAgenda" />
 
 

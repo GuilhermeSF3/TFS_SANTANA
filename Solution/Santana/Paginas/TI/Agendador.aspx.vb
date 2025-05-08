@@ -55,6 +55,8 @@ Namespace Paginas.TI
             Public Property Banco As String
             Public Property Agencia As String
             Public Property ContaCorrente As String
+
+
             Public Property ArquivoZip As String
         End Class
 
@@ -91,8 +93,8 @@ Namespace Paginas.TI
             Using conn As New SqlConnection(strConn)
                 conn.Open()
                 Dim sql As String = "INSERT INTO TB_AGENDAMENTO_SIG 
-                (Empresa, Historico, DATA_PAGAMENTO, DESCRICAO, VALOR_BRUTO , VALOR_LIQUIDO, FAVORECIDO, CPF_CNPJ, FORMA_DE_PAGAMENTO, BANCO, AGENCIA, CONTA_CORRENTE, DIGITADOR, DEPARTAMENTO, DATA_DA_AGENDA, APROVADOR) 
-                             VALUES (@Empresa, @Historico, @DataPagamento, @Descricao, @ValorBruto, @ValorLiquido, @Favorecido, @CpfCnpj, @FormaPagamento, @Banco, @Agencia, @ContaCorrente, @Digitador, @departamento, @data_da_agenda, @Aprovador);
+                (Empresa, Historico, DATA_PAGAMENTO, DESCRICAO, VALOR_BRUTO , VALOR_LIQUIDO, FAVORECIDO, CPF_CNPJ, FORMA_DE_PAGAMENTO, BANCO, AGENCIA, CONTA_CORRENTE, DIGITADOR, DEPARTAMENTO, DATA_DA_AGENDA, APROVADOR, EMAIL_DIGITADOR) 
+                             VALUES (@Empresa, @Historico, @DataPagamento, @Descricao, @ValorBruto, @ValorLiquido, @Favorecido, @CpfCnpj, @FormaPagamento, @Banco, @Agencia, @ContaCorrente, @Digitador, @departamento, @data_da_agenda, @Aprovador, @email_digitador);
                              SELECT SCOPE_IDENTITY();"
 
                 Dim agendaId As Integer
@@ -114,6 +116,7 @@ Namespace Paginas.TI
                     cmd.Parameters.AddWithValue("@Departamento", DropDownList1.SelectedValue)
                     cmd.Parameters.AddWithValue("@data_da_agenda", DateTime.Now)
                     cmd.Parameters.AddWithValue("@Aprovador", ddlAprovador.SelectedValue)
+                    cmd.Parameters.AddWithValue("@email_digitador", contexto.UsuarioLogado.EMail)
 
                     agendaId = Convert.ToInt32(cmd.ExecuteScalar())
                 End Using

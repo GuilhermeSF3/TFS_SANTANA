@@ -92,11 +92,12 @@ Namespace Paginas.TI
                             Dim dataPagamento As String = Convert.ToDateTime(reader("Data_Pagamento")).ToString("dd/MM/yyyy")
                             Dim empresa As String = reader("Empresa").ToString()
                             Dim emailAprovador As String = ddlAprovador.SelectedValue
-                            Dim emailDigitador As String = reader("Digitador").ToString()
+                            Dim emailDigitador As String = reader("email_digitador").ToString()
                             Dim assunto As String = $"Agenda Aprovada - Empresa: {empresa} - Data de Pagamento: {dataPagamento}"
                             Dim corpo As String = ConstruirCorpoEmail(reader)
+                            Dim emailDigitadorAprovador As String = reader("Aprovador").ToString()
                             EnviarEmail1(emailAprovador, assunto, corpo, reader)
-                            EnviarEmailColaborador(ids)
+                            EnviarEmailColaborador(ids, emailDigitadorAprovador)
                         End While
                     End Using
                 End Using
@@ -112,7 +113,7 @@ Namespace Paginas.TI
             body &= $"<tr><td>{reader("Data_Pagamento")}</td><td>{reader("Descricao")}</td><td>{reader("Valor_Bruto")}</td><td>{reader("Valor_Liquido")}</td><td>{reader("Favorecido")}</td><td>{reader("Cpf_Cnpj")}</td><td>{reader("Forma_de_Pagamento")}</td><td>{reader("Banco")}</td><td>{reader("Agencia")}</td><td>{reader("Conta_Corrente")}</td></tr>"
             body &= "</table>"
             body &= $"<br>Empresa: {empresa}"
-            body &= $"<br>Digitador: {contexto.UsuarioLogado.NomeUsuario}"
+
 
             Return body
         End Function
@@ -121,7 +122,16 @@ Namespace Paginas.TI
             Dim email As New MailMessage()
             Dim contexto = New Contexto
             email.From = New MailAddress("contasapagar@santanafinanceira.onmicrosoft.com")
-            email.To.Add("menoti@sf3.com.br")
+            Dim emailsCopia As New List(Of String)()
+            Dim destinatario As String = ddlAprovador.SelectedValue
+            email.To.Add(destinatario)
+
+            ' Itera sobre os itens do CheckBoxList e adiciona os selecionados à lista
+            For Each item As ListItem In chkCopiaEmails.Items
+                If item.Selected Then
+                    email.CC.Add(item.Value)
+                End If
+            Next
             email.Subject = assunto
             email.Body = corpo
             email.IsBodyHtml = True
@@ -146,14 +156,15 @@ Namespace Paginas.TI
             smtp.Send(email)
         End Sub
 
-        Private Sub EnviarEmailColaborador(ByVal ids As String)
+        Private Sub EnviarEmailColaborador(ByVal ids As String, ByVal emailDigitador As String)
             Dim assunto As String = "Agenda Aprovada"
             Dim email As New MailMessage()
             email.From = New MailAddress("contasapagar@santanafinanceira.onmicrosoft.com")
-            email.To.Add("menoti@sf3.com.br")
+            email.To.Add(emailDigitador)
             email.Subject = assunto
             Dim body As String = "<h3>Agenda(s) aprovada(s)</h3>"
             body &= $"Sua(s) agenda(s) de número(s) {ids} foram aprovadas."
+            body &= $"Acompanhe pela lista de agendas o pagamento da fatura, e visualize o comprovante."
             email.Body = body
             email.IsBodyHtml = True
             Dim smtp As New SmtpClient("smtp.office365.com")

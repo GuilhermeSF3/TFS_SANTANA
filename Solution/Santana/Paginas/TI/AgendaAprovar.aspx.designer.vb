@@ -69,6 +69,15 @@ Namespace Paginas.TI
         Protected WithEvents ddlAprovador As Global.System.Web.UI.WebControls.DropDownList
 
         '''<summary>
+        '''Controle chkCopiaEmails.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents chkCopiaEmails As Global.System.Web.UI.WebControls.CheckBoxList
+
+        '''<summary>
         '''Controle btnModalConfirmar.
         '''</summary>
         '''<remarks>
