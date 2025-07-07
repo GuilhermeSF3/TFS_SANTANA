@@ -39,9 +39,22 @@ Namespace Paginas.TI
 
         Protected Sub btnModalConfirmar_Click(ByVal sender As Object, ByVal e As EventArgs)
             If chkConfirm.Checked Then
-                Dim ids As String = Request.QueryString("ids")
-                If Not String.IsNullOrEmpty(ids) Then
+                Dim idsSelecionados As New List(Of String)()
+
+                For Each row As GridViewRow In gvAgendas.Rows
+                    Dim chkSelecionar As CheckBox = CType(row.FindControl("chkSelecionar"), CheckBox)
+                    Dim hdnId As HiddenField = CType(row.FindControl("hdnId"), HiddenField)
+
+                    If chkSelecionar IsNot Nothing AndAlso chkSelecionar.Checked Then
+                        idsSelecionados.Add(hdnId.Value)
+                    End If
+                Next
+
+                If idsSelecionados.Count > 0 Then
+                    Dim ids As String = String.Join(",", idsSelecionados)
                     RecusarAgendas(ids)
+                Else
+                    lblMessage.Text = "Selecione ao menos uma agenda para recusar."
                 End If
             Else
                 lblMessage.Text = "Por favor, confirme a recusa."
@@ -49,10 +62,14 @@ Namespace Paginas.TI
         End Sub
 
         Private Sub RecusarAgendas(ByVal ids As String)
+
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Using conn As New SqlConnection(strConn)
                 conn.Open()
-                Dim sql As String = "UPDATE TB_AGENDAMENTO_SIG SET STATUS = 'RECUSADO' WHERE ID IN (" & ids & ")"
+                EnviarEmails(ids)
+                Dim sql As String = "DELETE FROM TB_AGENDAMENTO_SIG WHERE ID IN (" & ids & ")"
+
+
                 Using cmd As New SqlCommand(sql, conn)
                     cmd.ExecuteNonQuery()
                 End Using
@@ -61,10 +78,11 @@ Namespace Paginas.TI
             pnlAgendas.Visible = False
 
             ' Enviar e-mails
-            EnviarEmails(ids)
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
         End Sub
 
         Private Sub EnviarEmails(ByVal ids As String)
+
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Using conn As New SqlConnection(strConn)
                 conn.Open()
@@ -72,7 +90,7 @@ Namespace Paginas.TI
                 Using cmd As New SqlCommand(sql, conn)
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         While reader.Read()
-                            Dim emailDigitador As String = reader("Digitador").ToString()
+                            Dim emailDigitador As String = reader("email_digitador").ToString()
                             Dim assunto As String = "Agenda Recusada"
                             Dim motivo As String = txtMotivo.Text
                             Dim corpo As String = $"A(s) agenda(s) com ID(s) {ids} foram recusadas.<br />Motivo: {motivo}"
@@ -83,12 +101,14 @@ Namespace Paginas.TI
                     End Using
                 End Using
             End Using
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
         End Sub
 
         Private Sub EnviarEmail(ByVal para As String, ByVal assunto As String, ByVal corpo As String)
+
             Dim email As New MailMessage()
             email.From = New MailAddress("contasapagar@santanafinanceira.onmicrosoft.com")
-            email.To.Add("menoti@sf3.com.br")
+            email.To.Add(para)
             email.Subject = assunto
             email.Body = corpo
             email.IsBodyHtml = True
@@ -98,6 +118,7 @@ Namespace Paginas.TI
             smtp.Credentials = New NetworkCredential("contasapagar@santanafinanceira.onmicrosoft.com", "Xay16092")
             smtp.EnableSsl = True
             smtp.Send(email)
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
         End Sub
 
         Protected Sub btnHelp_Click(sender As Object, e As EventArgs)

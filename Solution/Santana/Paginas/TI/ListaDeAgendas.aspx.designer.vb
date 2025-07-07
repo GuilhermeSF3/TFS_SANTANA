@@ -366,6 +366,123 @@ Namespace Paginas.TI
         Protected WithEvents ExcluirAgendas As Global.System.Web.UI.WebControls.Button
 
         '''<summary>
+        '''Controle inputId.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputId As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle btnBuscar.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnBuscar As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
+        '''Controle inputDataPagamento.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputDataPagamento As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputDescricao.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputDescricao As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputValorBruto.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputValorBruto As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputValorLiquido.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputValorLiquido As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputFavorecido.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputFavorecido As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputCpfCnpj.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputCpfCnpj As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputFormaPagamento.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputFormaPagamento As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputBanco.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputBanco As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputAgencia.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputAgencia As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle inputContaCorrente.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents inputContaCorrente As Global.System.Web.UI.WebControls.TextBox
+
+        '''<summary>
+        '''Controle btnSalvarAlterada.
+        '''</summary>
+        '''<remarks>
+        '''Campo gerado automaticamente.
+        '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        '''</remarks>
+        Protected WithEvents btnSalvarAlterada As Global.System.Web.UI.WebControls.Button
+
+        '''<summary>
         '''Controle btnReenviarEmails.
         '''</summary>
         '''<remarks>

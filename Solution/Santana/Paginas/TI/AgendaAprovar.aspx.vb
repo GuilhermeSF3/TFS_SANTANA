@@ -25,8 +25,6 @@ Namespace Paginas.TI
 
         Inherits SantanaPage
 
-
-
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
             If Not IsPostBack Then
                 Dim ids As String = Request.QueryString("ids")
@@ -78,10 +76,8 @@ Namespace Paginas.TI
             EnviarEmails(ids)
         End Sub
 
-
-
-
         Private Sub EnviarEmails(ByVal ids As String)
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
             Using conn As New SqlConnection(strConn)
                 conn.Open()
@@ -114,11 +110,11 @@ Namespace Paginas.TI
             body &= "</table>"
             body &= $"<br>Empresa: {empresa}"
 
-
             Return body
         End Function
 
         Private Sub EnviarEmail1(ByVal para As String, ByVal assunto As String, ByVal corpo As String, ByVal reader As SqlDataReader)
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim email As New MailMessage()
             Dim contexto = New Contexto
             email.From = New MailAddress("contasapagar@santanafinanceira.onmicrosoft.com")
@@ -126,7 +122,6 @@ Namespace Paginas.TI
             Dim destinatario As String = ddlAprovador.SelectedValue
             email.To.Add(destinatario)
 
-            ' Itera sobre os itens do CheckBoxList e adiciona os selecionados à lista
             For Each item As ListItem In chkCopiaEmails.Items
                 If item.Selected Then
                     email.CC.Add(item.Value)
@@ -157,13 +152,14 @@ Namespace Paginas.TI
         End Sub
 
         Private Sub EnviarEmailColaborador(ByVal ids As String, ByVal emailDigitador As String)
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim assunto As String = "Agenda Aprovada"
             Dim email As New MailMessage()
             email.From = New MailAddress("contasapagar@santanafinanceira.onmicrosoft.com")
             email.To.Add(emailDigitador)
             email.Subject = assunto
             Dim body As String = "<h3>Agenda(s) aprovada(s)</h3>"
-            body &= $"Sua(s) agenda(s) de número(s) {ids} foram aprovadas."
+            body &= $"Sua(s) agenda(s) foram aprovadas."
             body &= $"Acompanhe pela lista de agendas o pagamento da fatura, e visualize o comprovante."
             email.Body = body
             email.IsBodyHtml = True

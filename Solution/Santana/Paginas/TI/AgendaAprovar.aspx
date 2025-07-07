@@ -92,7 +92,7 @@
                             <p>Recebedor </p>
                             <asp:DropDownList CssClass="form-control" ID="ddlAprovador" runat="server">
                                 <asp:ListItem Text="BPO Financeiro" Value="bpo@logtechcontabil.com.br"></asp:ListItem>
-                                <asp:ListItem Text="CloudWalk" Value="renato.kempe@cloudwalk.io"></asp:ListItem>  
+                                <asp:ListItem Text="Contas a Pagar" Value="contasapagar@sf3.com.br"></asp:ListItem>                                         
                             </asp:DropDownList>
                             <br />
                             <p>Selecione as pessoas que estarão em cópia:</p>
@@ -103,6 +103,7 @@
                                 <asp:ListItem Text="Junior" Value="junior@sf3.com.br"></asp:ListItem>
                                 <asp:ListItem Text="Laura" Value="laura@sf3.com.br"></asp:ListItem>
                                 <asp:ListItem Text="Contas a Pagar" Value="contasapagar@sf3.com.br"></asp:ListItem>
+                                        
                             </asp:CheckBoxList>
                         </div>
                         <div class="modal-footer">

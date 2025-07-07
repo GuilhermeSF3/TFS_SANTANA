@@ -119,7 +119,6 @@ Namespace Paginas.TI
         End Sub
 
 
-
         Protected Sub AtualizarStatusAgendas(sender As Object, e As EventArgs)
 
             Dim agendaID As String = txtId.Text
@@ -207,12 +206,12 @@ Namespace Paginas.TI
                 Dim sql As String
                 If possuiAcessoTotal Then
 
-                    sql = "SELECT ID, DATA_DA_AGENDA, DIGITADOR, DEPARTAMENTO, DESCRICAO, FAVORECIDO, DATA_PAGAMENTO, APROVADOR, STATUS " &
-                  "FROM TB_AGENDAMENTO_SIG " &
-                  "ORDER BY ID DESC"
+                    sql = "SELECT ID, DATA_DA_AGENDA, DIGITADOR, DEPARTAMENTO, DESCRICAO, FAVORECIDO, DATA_PAGAMENTO, APROVADOR, STATUS, EMPRESA, VALOR_LIQUIDO " &
+  "FROM TB_AGENDAMENTO_SIG " &
+  "ORDER BY ID DESC"
                 Else
 
-                    sql = "SELECT ID, DATA_DA_AGENDA, DIGITADOR, DEPARTAMENTO, DESCRICAO, FAVORECIDO, DATA_PAGAMENTO, APROVADOR, STATUS " &
+                    sql = "SELECT ID, DATA_DA_AGENDA, DIGITADOR, DEPARTAMENTO, DESCRICAO, FAVORECIDO, DATA_PAGAMENTO, APROVADOR, STATUS, EMPRESA, VALOR_LIQUIDO " &
                   "FROM TB_AGENDAMENTO_SIG " &
                   "WHERE DIGITADOR = @UsuarioLogado " &
                   "ORDER BY ID DESC"
@@ -243,6 +242,9 @@ Namespace Paginas.TI
                         html.Append($"<td style='text-align:center;'>{row("FAVORECIDO")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("DATA_PAGAMENTO")}</td>")
                         html.Append($"<td style='text-align:center;'>{row("APROVADOR")}</td>")
+                        html.Append($"<td style='text-align:center;'>{row("EMPRESA")}</td>")
+                        html.Append($"<td style='text-align:center;'>{row("VALOR_LIQUIDO")}</td>")
+
                         html.Append($"<td style='text-align:center;'><span class='{statusClass}'>{status}</span></td>")
                         html.Append("<td style='text-align:center;'>")
                         html.Append($"<button type='button' class='btn btn-light' data-toggle='modal' data-target='#modalVisualizarAgenda{idAgenda}'><i class=""bi bi-eye""></i></button>")
@@ -329,8 +331,11 @@ Namespace Paginas.TI
                             corpoEmail &= $"<br><br>Digitador: {contexto.UsuarioLogado.NomeUsuario}"
                             corpoEmail &= "<br/>"
                             Dim idsParam As String = String.Join(",", ids)
-                            Dim approveUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaAprovar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
-                            Dim rejectUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaRecusar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                            'Dim approveUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaAprovar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                            'Dim rejectUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaRecusar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                            Dim approveUrl As String = $"https://www.sanfin.com.br/SIG-SHOPCRED/Paginas/TI/AgendaAprovar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                            Dim rejectUrl As String = $"https://www.sanfin.com.br/SIG-SHOPCRED/Paginas/TI/AgendaRecusar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+
                             corpoEmail &= $"<a href='{approveUrl}' style='padding: 10px; background-color: green; color: white; text-decoration: none; margin-right: 10px;'>Aprovar</a>"
                             corpoEmail &= $"<a href='{rejectUrl}' style='padding: 10px; background-color: red; color: white; text-decoration: none;'>Recusar</a>"
                             email.Body = corpoEmail
@@ -483,6 +488,89 @@ Namespace Paginas.TI
             Next
             Response.Redirect(Request.Url.AbsoluteUri)
         End Sub
+
+
+        Protected Sub buscarAlterarAgendaPagamento(ByVal sender As Object, ByVal e As EventArgs)
+            Dim id As String = inputId.Text
+            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+
+            Using conn As New SqlConnection(strConn)
+                Dim sql As String = "SELECT * FROM tb_agendamento_sig WHERE ID = @ID"
+                Using cmd As New SqlCommand(sql, conn)
+                    cmd.Parameters.AddWithValue("@ID", id)
+
+                    Try
+                        conn.Open()
+                        Using reader As SqlDataReader = cmd.ExecuteReader()
+                            If reader.Read() Then
+                                inputDataPagamento.Text = Convert.ToDateTime(reader("data_pagamento")).ToString("yyyy-MM-dd")
+                                inputDescricao.Text = reader("descricao").ToString()
+                                inputValorBruto.Text = reader("valor_bruto").ToString()
+                                inputValorLiquido.Text = reader("valor_liquido").ToString()
+                                inputFavorecido.Text = reader("favorecido").ToString()
+                                inputCpfCnpj.Text = reader("cpf_cnpj").ToString()
+                                inputFormaPagamento.Text = reader("forma_de_pagamento").ToString()
+                                inputBanco.Text = reader("banco").ToString()
+                                inputAgencia.Text = reader("agencia").ToString()
+                                inputContaCorrente.Text = reader("conta_corrente").ToString()
+
+
+                            Else
+                                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alert", "alert('Agenda não encontrada.');", True)
+                            End If
+                        End Using
+                    Catch ex As Exception
+                        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "erro", "alert('Erro: " & ex.Message & "');", True)
+                    End Try
+                End Using
+            End Using
+            ScriptManager.RegisterStartupScript(UpdatePanel, UpdatePanel.GetType(), "abrirModalBusca", "$('#exampleModalAlterar').modal('show');", True)
+        End Sub
+
+        Protected Sub AlterAgenda(ByVal sender As Object, ByVal e As EventArgs)
+
+            Dim id As String = inputId.Text
+            Dim strConn As String = ConfigurationManager.AppSettings("ConexaoPrincipal")
+
+            Using conn As New SqlConnection(strConn)
+
+                Dim sql As String = "UPDATE tb_agendamento_sig SET " &
+                            "data_pagamento = @data_pagamento, descricao = @descricao, valor_bruto = @valor_bruto, " &
+                            "valor_liquido = @valor_liquido, favorecido = @favorecido, cpf_cnpj = @cpf_cnpj, " &
+                            "forma_de_pagamento = @forma_de_pagamento, banco = @banco, agencia = @agencia, " &
+                            "conta_corrente = @conta_corrente WHERE ID = @ID"
+
+                Using cmd As New SqlCommand(sql, conn)
+                    cmd.Parameters.AddWithValue("@ID", id)
+                    cmd.Parameters.AddWithValue("@data_pagamento", inputDataPagamento.Text)
+                    cmd.Parameters.AddWithValue("@descricao", inputDescricao.Text)
+                    cmd.Parameters.AddWithValue("@valor_bruto", inputValorBruto.Text)
+                    cmd.Parameters.AddWithValue("@valor_liquido", inputValorLiquido.Text)
+                    cmd.Parameters.AddWithValue("@favorecido", inputFavorecido.Text)
+                    cmd.Parameters.AddWithValue("@cpf_cnpj", inputCpfCnpj.Text)
+                    cmd.Parameters.AddWithValue("@forma_de_pagamento", inputFormaPagamento.Text)
+                    cmd.Parameters.AddWithValue("@banco", inputBanco.Text)
+                    cmd.Parameters.AddWithValue("@agencia", inputAgencia.Text)
+                    cmd.Parameters.AddWithValue("@conta_corrente", inputContaCorrente.Text)
+
+
+                    Try
+                        conn.Open()
+                        cmd.ExecuteNonQuery()
+
+                        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Sucesso", "alert('Agenda atualizada com sucesso!');", True)
+                    Catch ex As Exception
+                        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alert", "alert('Erro ao atualizar a agenda: " & ex.Message & "');", True)
+                    Finally
+                        conn.Close()
+                    End Try
+                End Using
+            End Using
+        End Sub
+
+
+
+
         Protected Sub btnHelp_Click(sender As Object, e As EventArgs)
             ScriptManager.RegisterStartupScript(Me.Page, Me.GetType(), "tmp", "Alerta('Em construção!' ,'Esta funcionalidade esta em desenvolvimento.');", True)
         End Sub

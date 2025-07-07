@@ -36,7 +36,9 @@
                                     <br />
                                         PAGAMENTO </th>
                                     <th scope="col" style="text-align: center; vertical-align: middle;">APROVADOR</th>
-                                    <th scope="col" style="text-align: center; vertical-align: middle;">STATUS</th>
+                                    <th scope="col" style="text-align: center; vertical-align: middle;">EMPRESA</th>
+                                          <th scope="col" style="text-align: center; vertical-align: middle;">VALOR_LIQUIDO</th>
+                                          <th scope="col" style="text-align: center; vertical-align: middle;">STATUS</th>
                                     <th scope="col" style="text-align: center; vertical-align: middle; width: 200px;">AÇÃO</th>
                             </thead>
 
@@ -258,11 +260,99 @@
     </div>
 </div>
 
+
+
+                 <!--MODAL Alterar-->
+ <div class="modal fade" id="exampleModalAlterar" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-scrollable" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Editar Agenda</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+
+                 <div class="form-group" style="display: flex; flex-direction: column; gap: 10px;">
+                     <div>
+                         <label for="usuarioInput">Número Agenda</label>
+                         <asp:TextBox ID="inputId" runat="server" CssClass="form-control" placeholder="Digite o número da Agenda"></asp:TextBox>
+                     </div>
+                     <div>
+
+                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="buscarAlterarAgendaPagamento"  />
+
+                     </div>
+                 </div>
+
+            <div class="form-group">
+    <label for="inputDataPagamento">Data Pagamento</label>
+    <asp:TextBox ID="inputDataPagamento" runat="server" CssClass="form-control" TextMode="Date" ></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputDescricao">Descrição</label>
+    <asp:TextBox ID="inputDescricao" runat="server" CssClass="form-control" ></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputValorBruto">Valor Bruto</label>
+    <asp:TextBox ID="inputValorBruto" runat="server" CssClass="form-control"></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputValorLiquido">Valor Líquido</label>
+    <asp:TextBox ID="inputValorLiquido" runat="server" CssClass="form-control" ></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputFavorecido">Favorecido</label>
+    <asp:TextBox ID="inputFavorecido" runat="server" CssClass="form-control" ></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputCpfCnpj">CPF/CNPJ</label>
+    <asp:TextBox ID="inputCpfCnpj" runat="server" CssClass="form-control" ></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputFormaPagamento">Forma de Pagamento</label>
+    <asp:TextBox ID="inputFormaPagamento" runat="server" CssClass="form-control" ></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputBanco">Banco</label>
+    <asp:TextBox ID="inputBanco" runat="server" CssClass="form-control"></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputAgencia">Agência</label>
+    <asp:TextBox ID="inputAgencia" runat="server" CssClass="form-control"></asp:TextBox>
+</div>
+
+<div class="form-group">
+    <label for="inputContaCorrente">Conta Corrente</label>
+    <asp:TextBox ID="inputContaCorrente" runat="server" CssClass="form-control"></asp:TextBox>
+</div>
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+            <asp:Button ID="btnSalvarAlterada" runat="server" Text="Salvar" CssClass="btn btn-primary" OnClick="AlterAgenda" />
+             </div>
+         </div>
+     </div>
+ </div>
+
+
+
                  
             
                 <button type="button" style="display: none" class="btn btn-light" data-toggle="modal" data-target="#modalVisualizarAgenda"></button>
                 <button type="button" style="display: none" class="btn btn-light" data-toggle="modal" data-target="#modalGerenciarAgenda"></button>
                   <asp:Button ID="btnReenviarEmails" runat="server" Text="Reenviar E-mails" CssClass="btn btn-primary" OnClick="btnEnviarEmail_Click" />
+          <button type="button"  class="btn btn-warning" data-toggle="modal" data-target="#exampleModalAlterar">Editar Agenda</button>
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="ExcluirAgendas" />
@@ -270,8 +360,10 @@
             <asp:PostBackTrigger ControlID="SalvarArquivo" />
              <asp:PostBackTrigger ControlID="btnReenviarEmails" />
             <asp:PostBackTrigger ControlID="btnBuscarAgenda" />
-
-
+                 <asp:PostBackTrigger ControlID="btnBuscar" />
+              <asp:PostBackTrigger ControlID="btnSalvarAlterada" />
+              
+         
         </Triggers>
 
     </asp:UpdatePanel>
@@ -360,7 +452,12 @@
 
         let arquivos = [];
         let removidos = [];
-
+        $(document).ready(function () {
+            $('#exampleModalAlterar').on('hidden.bs.modal', function () {
+                // Evita o fechamento do modal quando o postback ocorrer
+                $('#exampleModalAlterar').modal('show');
+            });
+        });
         function removerArquivo(index) {
 
             removidos.push(arquivos[index].name);
@@ -474,8 +571,15 @@
                 };
                 prevLi.appendChild(prevLink);
                 pagination.appendChild(prevLi);
+                var maxVisible = 5;
+                var startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+                var endPage = Math.min(numPages, startPage + maxVisible - 1);
 
-                for (var i = 1; i <= numPages; i++) {
+                if (endPage - startPage < maxVisible - 1) {
+                    startPage = Math.max(1, endPage - maxVisible + 1);
+                }
+
+                for (var i = startPage; i <= endPage; i++) {
                     var li = document.createElement("li");
                     li.className = "page-item";
                     var link = document.createElement("a");

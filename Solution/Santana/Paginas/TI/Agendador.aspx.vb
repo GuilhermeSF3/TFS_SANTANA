@@ -61,7 +61,7 @@ Namespace Paginas.TI
         End Class
 
         Protected Function SalvarArquivosEmPasta(ByVal fileUpload As FileUpload, ByVal agendaId As Integer) As String
-            Dim uploadPath As String = Path.Combine("C:\Agendador\ARQUIVOSPASTA", agendaId.ToString())
+            Dim uploadPath As String = Path.Combine("D:\SIG_AGENDADOR\Agendador\ARQUIVOSPASTA", agendaId.ToString())
             If Not Directory.Exists(uploadPath) Then
                 Directory.CreateDirectory(uploadPath)
                 Debug.WriteLine("Pasta criada: " & uploadPath)
@@ -289,7 +289,7 @@ Namespace Paginas.TI
             .ContaCorrente = txtContaCorrente.Text,
             .ArquivoZip = ""
         }
-                Dim uploadPath As String = "C:\Agendador\ARQUIVOS"
+                Dim uploadPath As String = "D:\SIG_AGENDADOR\Agendador\ARQUIVOS"
                 '"\\192.168.0.230\dados\Agendador\ARQUIVOS"
                 If Not Directory.Exists(uploadPath) Then
                     Directory.CreateDirectory(uploadPath)
@@ -394,8 +394,10 @@ Namespace Paginas.TI
 
 
                 Dim idsParam As String = String.Join(",", ids)
-                Dim approveUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaAprovar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
-                Dim rejectUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaRecusar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                'Dim approveUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaAprovar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                'Dim rejectUrl As String = $"http://192.168.0.227:180/Paginas/TI/AgendaRecusar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                Dim approveUrl As String = $"https://www.sanfin.com.br/SIG-SHOPCRED/Paginas/TI/AgendaAprovar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
+                Dim rejectUrl As String = $"https://www.sanfin.com.br/SIG-SHOPCRED/Paginas/TI/AgendaRecusar.aspx?ids={idsParam}&ReturnUrl={HttpUtility.UrlEncode(Request.Url.ToString())}"
                 body &= $"<a href='{approveUrl}' style='padding: 10px; background-color: green; color: white; text-decoration: none; margin-right: 10px;'>Aprovar</a>"
                 body &= $"<a href='{rejectUrl}' style='padding: 10px; background-color: red; color: white; text-decoration: none;'>Recusar</a>"
 

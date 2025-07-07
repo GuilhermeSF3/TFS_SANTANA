@@ -40,6 +40,12 @@
                 <h3>Detalhes das Agendas</h3>
                 <asp:GridView ID="gvAgendas" runat="server" AutoGenerateColumns="False" CssClass="grid-view">
                     <Columns>
+                           <asp:TemplateField HeaderText="Selecionar">
+            <ItemTemplate>
+                <asp:CheckBox ID="chkSelecionar" runat="server" />
+                <asp:HiddenField ID="hdnId" runat="server" Value='<%# Eval("ID") %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
                         <asp:BoundField DataField="Historico" HeaderText="Histórico" />
                         <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
                         <asp:BoundField DataField="Data_Pagamento" HeaderText="Data de Pagamento" />
